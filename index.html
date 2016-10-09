@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<tatDOCTYPE html>
 <meta charset="utf-8">
 <style>
 
@@ -8,44 +8,45 @@
   text-align: right;
   padding: 3px;
   margin: 1px;
-  color: white;
+  color: black;
 }
 
 </style>
 <div class="chart"></div>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-
 <script>
 
-
 var data = [];
-
 var github = (function(url) {
-  $.getJSON("http://localhost:5555/" + url, function(d) {data.push(d)})
+  $.getJSON("http://localhost:5555/" + url,
+  function(d) {data.push({name: url.replace('pr/','')+" "+d, value: d})
+})});
+
+var langs = ["JavaScript", "Java", "Python", "CSS", "PHP", "Ruby", "C++", "C", "Shell", "C#",
+"Objective-C", "R", "VimL", "Go", "Perl", "CoffeeScript", "TeX", "Swift", "Scala",
+"Emacs Lisp", "Haskell" , "Lua", "Clojure", "Matlab", "Arduino", "Makefile", "Groovy",
+"Puppet", "Rust", "PowerShell"];
+
+langs.forEach(function(l) {
+  github("pr/"+l);
 });
 
-$.when(
-  github("pr/JavaScript"),
-  github("pr/Scala"),
-  github("pr/Haskell"),
-  github("pr/Ruby"),
-  github("pr/Java"),
-  github("fork/JavaScript"),
-  $.getJSON('http://localhost:5555/pr/Java', function(d) {console.log(d)})
-)
-  .then(function () {
+$(document).ajaxStop(function () {
 
-var x = d3.scale.linear()
-    .domain([0, d3.max(data)])
+data.sort(function(a, b) {return b.value - a.value;});
+
+var scale = d3.scale.linear()
+    .domain([0, d3.max(8000,2)])
     .range([0, 420]);
 
+console.info(JSON.stringify(data));
 d3.select(".chart")
   .selectAll("div")
     .data(data)
   .enter().append("div")
-    .style("width", function(d) { return x(d) + "px"; })
-    .text(function(d) { return d; });
+    .style("width", function(d) { return d.value/10 + "px"; })
+    .text(function(d) { return d.name; });
 
   });
 </script>
