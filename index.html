@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+</style>
+<div class="chart"></div>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+<script>
+
+
+var data = [];
+
+var github = (function(url) {
+  $.getJSON("http://localhost:5555/" + url, function(d) {data.push(d)})
+});
+
+$.when(
+  github("pr/JavaScript"),
+  github("pr/Scala"),
+  github("pr/Haskell"),
+  github("pr/Ruby"),
+  github("pr/Java"),
+  github("fork/JavaScript"),
+  $.getJSON('http://localhost:5555/pr/Java', function(d) {console.log(d)})
+)
+  .then(function () {
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(data)])
+    .range([0, 420]);
+
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
+
+  });
+</script>

@@ -1,0 +1,16 @@
+{
+  "name": "github-stats",
+  "author": "Fabian Beuke",
+  "version": "0.0.22",
+  "description": "Github Language Stats Rest API",
+  "main": "app.coffee",
+  "scripts": {
+    "test": "forever -c coffee app.coffee"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "coffee": "^3.2.5",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10"
+  }
+}
