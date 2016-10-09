@@ -1,16 +1,14 @@
-FROM alpine:edge
+FROM node
 MAINTAINER Fabian Beuke <mail@beuke.org>
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add --update bash wget gzip mongodb-tools
+RUN mkdir web
+COPY package.json /web
 
-# Downloading the Archive Files up to 2020
-RUN bash -c "wget http://data.githubarchive.org/{2012..2020}-{01..12}-01-5.json.gz; exit 0"
+WORKDIR /web
 
-# Extract the Archive Files
-RUN gunzip *.json.gz
+RUN npm install
+RUN npm install -g forever coffee coffee-script nodemon
 
-# Import the Data into the Mongo Database
-CMD mongoimport --drop -h=db --db gh --collection github && \
-    ls -1 *.json | while read jsonfile; do \
-    mongoimport --upsert -h=db --db gh --collection github --file $jsonfile; done
+EXPOSE 5555
+
+CMD npm test

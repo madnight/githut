@@ -1,8 +1,17 @@
 version: '2'
 services:
 
-   data:
+   web:
       build: .
+      ports:
+      - "5000:5555"
+      volumes:
+      -  .:/web
+      links:
+       - db
+
+   data:
+      build: ./data
       links:
        - db
 

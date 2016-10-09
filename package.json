@@ -5,7 +5,7 @@
   "description": "Github Language Stats Rest API",
   "main": "app.coffee",
   "scripts": {
-    "test": "forever -c coffee app.coffee"
+    "test": "while true; do nodemon --exitcrash app.coffee; killall node; done"
   },
   "license": "ISC",
   "dependencies": {
