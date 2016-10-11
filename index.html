@@ -1,34 +1,88 @@
-<tatDOCTYPE html>
+<!DOCTYPE html>
 <meta charset="utf-8">
-<style>
+<body>
+<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+$(function () {
 
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: black;
+$.getJSON("http://localhost:5000/datetop", function(data) {
+
+var xdata = [];
+
+const langExsist = (name) => {
+        for (var key in xdata)
+          if (xdata[key].name == name)
+            return true;
+  }
+
+  const addData = (name, d) => {
+        for (var key in xdata)
+          if (xdata[key].name == name)
+            (xdata[key].data).push(d)
+  }
+
+  data.forEach(function(d) {
+          if (!(langExsist(d._id.lang)))
+            xdata.push( {name: d._id.lang, data: []} );
+          addData(d._id.lang,d.count)
+});
+
+const sumQ = (a) => {
+  var test = [];
+    for (var i = 0; i < a.length ; i=i+3)
+      test.push(a[i]+a[i+1]+a[i+2]);
+  return test;
 }
 
-</style>
-<div class="chart"></div>
-<script src="//d3js.org/d3.v3.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script>
+const sumData = (data) => {
+        for (var key in data) {
+            var temp = sumQ(data[key].data)
+            data[key].data = temp;
+          }
+  }
 
-$.getJSON("http://localhost:5000/top", function(data) {
+  sumData(xdata);
 
-var scale = d3.scale.linear()
-    .domain([0, d3.max(8000,2)])
-    .range([0, 420]);
+  // console.log(xdata);
+  // console.log(JSON.stringify(xdata));
 
-d3.select(".chart")
-  .selectAll("div")
-    .data(data)
-  .enter().append("div")
-    .style("width", function(d) { return d.count/10 + "px"; })
-    .text(function(d) { return d._id + " " + d.count; });
+const quarters = () => {
+    var q = [];
+    for (var i = 12; i < 99; i++)
+        for (var n = 1; n < 5; n++)
+            q.push(i+"/Q"+n)
+    return q;
+}
 
-  });
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Github Language Statistics'
+        },
+
+        xAxis: {
+            categories: quarters()
+        },
+        yAxis: {
+            title: {
+                text: 'Pull Request'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: false
+            }
+        },
+        series : xdata
+    });
+});
+});
 </script>

@@ -55,4 +55,26 @@ app.get '/rangetop', (req, res) ->
   ]).then (val) -> res.send val
 
 
+app.get '/datetop', (req, res) ->
+  aggr([ {
+    "$match": {
+      "payload.pull_request.base.repo.language": { "$exists": true, "$ne": null },
+      $or: [
+        { "payload.pull_request.base.repo.language": 'C++' }
+        { "payload.pull_request.base.repo.language": 'C' }
+        { "payload.pull_request.base.repo.language": 'Objective-C' }
+      "payload.pull_request.base.repo.language": {$in : [/\b(Ruby|Java|JavaScript|Go|PHP|Python|Shell)\b/]},],
+      # "payload.pull_request.base.repo.language": "C++",
+      "created_at" : {$in : [/201/]},
+      }}, { $group : {
+        _id: {
+          lang: "$payload.pull_request.base.repo.language",
+          year : { $substr : ["$created_at", 0, 4 ] },
+          month : { $substr : ["$created_at", 5, 2 ] }
+        }, count: { $sum: 1 }
+    }},{$sort: { "_id.year": 1, "_id.month": 1}}
+  ]).then (val) -> res.send val
+
+
+
 app.listen 5555
