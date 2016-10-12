@@ -17,5 +17,6 @@ services:
 
    db:
      image: mongo
+     mem_limit: 4g
      ports:
       - "4000:27017"
