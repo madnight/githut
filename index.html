@@ -6,84 +6,117 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="con" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 <script>
-$(function () {
+$(function() {
+    
+    $.getJSON("http://localhost:5000/data.json", function(data) {
 
-$.getJSON("http://localhost:5000/data.json", function(data) {
+        var xdata = [];
+        var langs = ['C++', 'C', 'Objective-C', 'Ruby', 'Java', 'JavaScript', 'Go', 'PHP', 'Python', 'Shell'];
 
-var xdata = [];
-var langs = ['C++', 'C', 'Objective-C', 'Ruby', 'Java', 'JavaScript','Go', 'PHP', 'Python','Shell'];
+        const langExsist = (name) => {
+            if (!_.includes(langs, name))
+                return true;
+            for (var key in xdata)
+                if (xdata[key].name == name)
+                    return true;
+        }
 
-const langExsist = (name) => {
-        if (!_.includes(langs,name))
-          return true;
-        for (var key in xdata)
-          if (xdata[key].name == name)
-            return true;
-  }
+        const addData = (name, d) => {
+            for (var key in xdata)
+                if (xdata[key].name == name)
+                    (xdata[key].data).push(d)
+        }
 
-  const addData = (name, d) => {
-        for (var key in xdata)
-          if (xdata[key].name == name)
-            (xdata[key].data).push(d)
-  }
+        data.forEach(function(d) {
+            if (!(langExsist(d.lang)))
+                xdata.push({
+                    name: d.lang,
+                    data: []
+                });
+            addData(d.lang, d.count)
+        });
 
-  data.forEach(function(d) {
-          if (!(langExsist(d.lang)))
-            xdata.push( {name: d.lang, data: []} );
-          addData(d.lang,d.count)
-});
+        const sumQ = (a) => {
+            var test = [];
+            for (var i = 0; i < a.length; i = i + 3)
+                test.push(a[i] + a[i + 1] + a[i + 2]);
+            return test;
+        }
 
-const sumQ = (a) => {
-  var test = [];
-    for (var i = 0; i < a.length ; i=i+3)
-      test.push(a[i]+a[i+1]+a[i+2]);
-  return test;
-}
+        const sumData = (data) => {
+            for (var key in data)
+                data[key].data = sumQ(data[key].data)
+        }
 
-const sumData = (data) => {
-        for (var key in data) {
-            var temp = sumQ(data[key].data)
-            data[key].data = temp;
-          }
-  }
 
-  sumData(xdata);
+        const pData = (data) => {
+            for (var i = 0; i < 19; i++) { //TODO fix 19 magic
+                var temp = 0;
+                for (var key in data)
+                    temp += data[key].data[i];
+                for (var key in data)
+                    data[key].data[i] = data[key].data[i] / temp;
+            }
+        }
 
-const quarters = () => {
-    var q = [];
-    for (var i = 12; i < 99; i++)
-        for (var n = 1; n < 5; n++)
-            q.push(i+"/Q"+n)
-    return q;
-}
+        sumData(xdata);
+        pData(xdata);
 
-    $('#container').highcharts({
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Github Language Statistics'
-        },
+        const quarters = () => {
+            var q = [];
+            for (var i = 12; i < 99; i++)
+                for (var n = 1; n < 5; n++)
+                    q.push(i + "/Q" + n)
+            return q;
+        }
 
-        xAxis: {
-            categories: quarters()
-        },
-        yAxis: {
+        console.log(JSON.stringify(xdata));
+
+        $('#container').highcharts({
+            credits: {
+                enabled: false
+            },
+
+            chart: {
+                type: 'spline'
+            },
             title: {
-                text: 'Pull Request'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: false
-                },
-                enableMouseTracking: false
-            }
-        },
-        series : xdata
+                text: 'Github Language Statistics'
+            },
+            xAxis: {
+                categories: quarters(),
+                // type: 'datetime'
+                //  tickInterval: 30,
+            },
+            yAxis: {
+                title: {
+                    text: 'Pull Request %'
+                }
+            },
+            plotOptions: {
+                spline: {
+                    lineWidth: 4,
+                    states: {
+                        hover: {
+                            lineWidth: 5
+                        }
+                    },
+                    marker: {
+                        enabled: false
+                    },
+                    // pointInterval: 3600*1000*24*30,
+                    // pointStart: Date.UTC(2012, 1, 0, 0, 0, 0)
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<span style="color:' + this.series.color + '">' + this.series.name + '</span>: <b>' + Highcharts.numberFormat((this.y * 100), 2, '.') + '%</b>';
+                }
+            },
+            series: xdata
+        });
     });
-});
 });
 </script>
