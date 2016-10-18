@@ -4,15 +4,19 @@
 <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 <script>
 $(function () {
 
-$.getJSON("http://localhost:5000/datetop", function(data) {
+$.getJSON("http://localhost:5000/data.json", function(data) {
 
 var xdata = [];
+var langs = ['C++', 'C', 'Objective-C', 'Ruby', 'Java', 'JavaScript','Go', 'PHP', 'Python','Shell'];
 
 const langExsist = (name) => {
+        if (!_.includes(langs,name))
+          return true;
         for (var key in xdata)
           if (xdata[key].name == name)
             return true;
@@ -25,9 +29,9 @@ const langExsist = (name) => {
   }
 
   data.forEach(function(d) {
-          if (!(langExsist(d._id.lang)))
-            xdata.push( {name: d._id.lang, data: []} );
-          addData(d._id.lang,d.count)
+          if (!(langExsist(d.lang)))
+            xdata.push( {name: d.lang, data: []} );
+          addData(d.lang,d.count)
 });
 
 const sumQ = (a) => {
@@ -45,9 +49,6 @@ const sumData = (data) => {
   }
 
   sumData(xdata);
-
-  // console.log(xdata);
-  // console.log(JSON.stringify(xdata));
 
 const quarters = () => {
     var q = [];
