@@ -1,16 +1,32 @@
 {
   "name": "github-stats",
-  "author": "Fabian Beuke",
   "version": "0.0.22",
-  "description": "Github Language Stats Rest API",
-  "main": "app.coffee",
-  "scripts": {
-    "test": "while true; do nodemon --exitcrash app.coffee; killall node; done"
-  },
-  "license": "ISC",
+  "description": "",
+  "main": "webpack.config.js",
   "dependencies": {
-    "coffee": "^3.2.5",
-    "express": "^4.14.0",
-    "mongodb": "^2.2.10"
-  }
+    "axios": "^0.15.2",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.3.13",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "bootstrap": "^3.3.7",
+    "highcharts": "^5.0.0",
+    "lodash": "^4.16.4",
+    "react": "^0.14.8",
+    "react-bootstrap": "^0.30.5",
+    "react-dom": "^0.14.6",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "webpack-dev-server --content-base src --inline --hot"
+  },
+  "author": "",
+  "license": "ISC"
 }
