@@ -27,69 +27,45 @@ export default class LangChart extends React.Component {
 
     isTopLanguage(name) {
         return _.includes(['C++', 'C', 'Objective-C', 'Ruby', 'Java',
-            'JavaScript', 'Go', 'PHP', 'Python', 'Shell' ], name);
+            'JavaScript', 'Go', 'PHP', 'Python', 'Shell' ], name)
     }
 
     categories() {
-        let q = [];
-        _.map(_.range(12,99), i => {
-            _.map(_.range(1,5), n => { q.push(i + "/Q" + n) })
-        })
-        return q;
+        return _.flatten(_.map(_.range(12,99), year =>
+            _.map(_.range(1,5), quarter => year + "/Q" + quarter)))
     }
 
     sumQuarters(data) {
-        _.mapValues(data, v => {
-            let tmp = [];
-            let a = v.data;
-            _.map(_.range(0, a.length, 3), i => {
-                tmp.push(a[i] + a[i + 1] + a[i + 2]);
-            });
-            v.data = tmp;
-        });
-        return data;
+        return _.each(data, v =>
+            v.data = _.map(_.chunk(v.data, 3), _.sum))
     }
 
     percentageData(data) {
-        _.map(_.range(0, _.first(data).data.length), i => {
-            let tmp = 0;
-            _.mapValues(data, v => tmp += v.data[i]);
-            _.mapValues(data, v => v.data[i] = v.data[i] / tmp);
-        });
-        return data;
-    }
-
-    langExsist(name, d) {
-        for (let key in d) if (d[key].name == name) return true;
-    }
-
-    addData(name, val, d) {
-        _.mapValues(d, v => { if (v.name == name) v.data.push(val) })
+        const sum = _.map(_.unzip(_.map(data, i => i.data)), _.sum)
+        return _.each(data, v => v.data = _.zipWith(v.data, sum, _.divide))
     }
 
     createSeries({data}) {
-        let tmp = [];
-        _.map(data, ( d => {
-            if (!this.langExsist(d.lang, tmp) && this.isTopLanguage(d.lang))
-                tmp.push({ name: d.lang, data: []});
-            this.addData(d.lang, d.count, tmp)
-        }).bind(this));
-        return tmp;
+        return _.chain(data)
+        .filter(d => this.isTopLanguage(d.lang))
+        .map(d => ({ name: d.lang,
+            data: _.map(_.filter(data, { 'lang': d.lang }), d => d.count) }))
+        .uniqBy('name')
+        .value()
     }
 
     componentDidMount() {
-        let chart = this.refs.chart.getChart();
-        let series = _.flow(this.createSeries,
-            this.sumQuarters, this.percentageData).bind(this);
-        axios.get('http://localhost:8080/data.json').then(( d => {
-            _.map(series(d), s => chart.addSeries(s, false));
+        let chart = this.refs.chart.getChart()
+        const series = _.flow(this.createSeries,
+            this.sumQuarters, this.percentageData).bind(this)
+        axios.get('http://localhost:8080/data.json').then((d => {
+            _.map(series(d), s => chart.addSeries(s, false))
             _.first(chart.xAxis).setCategories(this.categories())
-            chart.redraw();
-        }).bind(this));
+            chart.redraw()
+        }).bind(this))
     }
 
     render() {
-        return (<ReactHighcharts config = { this.config } ref="chart"> </ReactHighcharts>
-        );
+        return (<ReactHighcharts config = { this.config } ref="chart"> </ReactHighcharts>);
     }
 }
