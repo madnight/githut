@@ -25,6 +25,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "build": "NODE_ENV=production webpack --content-base src --config webpack.config.js",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "author": "",
