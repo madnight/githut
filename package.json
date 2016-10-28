@@ -3,6 +3,10 @@
   "version": "0.0.23",
   "description": "",
   "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madnight/github-stats.git"
+  },
   "dependencies": {
     "axios": "^0.15.2",
     "babel-core": "^6.17.0",
@@ -14,12 +18,11 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "bootstrap": "^3.3.7",
-    "highcharts": "^5.0.0",
     "lodash": "^4.16.4",
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^0.14.6",
+    "react-highcharts": "^11.0.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
