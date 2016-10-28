@@ -1,29 +1,16 @@
-import React from "react";
-import axios from "axios";
-import ReactHighcharts from 'react-highcharts';
+import React from 'react'
+import axios from 'axios'
+import ReactHighcharts from 'react-highcharts'
 import { map, first } from 'lodash'
+import { LangChartStore } from '../stores/LangChartStore'
 
 export default class LangChart extends React.Component {
 
-    config = {
-        credits: { enabled: false },
-        chart: { type: 'spline' },
-        title: { text: 'Github Language Statistics' },
-        yAxis: { title: { text: 'Pull Request %' } },
-        plotOptions: {
-            spline: { lineWidth: 4,
-                states: { hover: { lineWidth: 5 } },
-                marker: { enabled: false },
-            }
-        },
-        tooltip: {
-            formatter: function() {
-                return '<span style="color:' + this.series.color + '">'
-                + this.series.name + '</span>: <b>'
-                + (this.y * 100).toFixed(2) + '%</b>'
-            }
-        }
-     };
+    constructor() {
+        super();
+        const store = new LangChartStore;
+        this.config = store.getConfig();
+    }
 
     isTopLanguage(name) {
         return _.includes(['C++', 'C', 'Objective-C', 'Ruby', 'Java',

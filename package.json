@@ -1,6 +1,6 @@
 {
   "name": "github-stats",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
@@ -23,9 +23,8 @@
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
-  "devDependencies": {},
   "scripts": {
-    "build": "NODE_ENV=production webpack --content-base src --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --content-base src",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "author": "",
