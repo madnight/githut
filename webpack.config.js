@@ -14,24 +14,19 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties'],
+          plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
         }
       },
       {test: /\.json$/, loader: "json"}
     ]
   },
   output: {
-    path: __dirname + "/src/",
+    path: path.join(__dirname, "src"),
     filename: "client.min.js"
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    // new webpack.DefinePlugin({
-            // 'process.env': {
-                // 'NODE_ENV': JSON.stringify('production')
-            // }
-    // })
-  ],
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
+  ]
 };

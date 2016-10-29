@@ -7,9 +7,9 @@ import { LangChartStore } from '../stores/LangChartStore'
 export default class LangChart extends React.Component {
 
     constructor() {
-        super();
-        const store = new LangChartStore;
-        this.config = store.getConfig();
+        super()
+        const store = new LangChartStore
+        this.config = store.getConfig()
     }
 
     isTopLanguage(name) {
@@ -45,11 +45,11 @@ export default class LangChart extends React.Component {
         let chart = this.refs.chart.getChart()
         const series = _.flow(this.createSeries,
             this.sumQuarters, this.percentageData).bind(this)
-        axios.get('https://beuke.org/github-stats/data.json').then((d => {
+        axios.get('https://beuke.org/github-stats/data.json').then(d => {
             _.map(series(d), s => chart.addSeries(s, false))
             _.first(chart.xAxis).setCategories(this.categories())
             chart.redraw()
-        }).bind(this))
+        })
     }
 
     render() {

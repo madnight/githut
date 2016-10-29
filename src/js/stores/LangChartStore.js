@@ -9,7 +9,7 @@ export class LangChartStore {
         plotOptions: {
             spline: { lineWidth: 4,
                 states: { hover: { lineWidth: 5 } },
-                marker: { enabled: false },
+                marker: { enabled: false }
             }
         },
         tooltip: {
