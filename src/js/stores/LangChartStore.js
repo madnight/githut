@@ -3,7 +3,7 @@ export class LangChartStore {
   constructor() {
     this.config = {
         credits: { enabled: false },
-        chart: { type: 'spline' },
+        chart: { type: 'spline', backgroundColor: 'transparent' },
         title: { text: 'Github Language Statistics' },
         yAxis: { title: { text: 'Pull Request %' } },
         plotOptions: {
