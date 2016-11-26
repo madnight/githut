@@ -45,7 +45,7 @@ export default class LangChart extends React.Component {
         let chart = this.refs.chart.getChart()
         const series = _.flow(this.createSeries,
             this.sumQuarters, this.percentageData).bind(this)
-        axios.get('https://beuke.org/github-stats/data.json').then(d => {
+        axios.get('https://beuke.org/githut/data.json').then(d => {
             _.map(series(d), s => chart.addSeries(s, false))
             _.first(chart.xAxis).setCategories(this.categories())
             chart.redraw()

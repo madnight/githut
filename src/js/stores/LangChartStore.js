@@ -4,7 +4,7 @@ export class LangChartStore {
     this.config = {
         credits: { enabled: false },
         chart: { type: 'spline', backgroundColor: 'transparent' },
-        title: { text: 'Github Language Statistics' },
+        title: { text: '' },
         yAxis: { title: { text: 'Pull Request %' } },
         plotOptions: {
             spline: { lineWidth: 4,
