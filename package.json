@@ -20,14 +20,12 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "html-webpack-plugin": "^2.24.1",
     "lodash": "^4.16.4",
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^0.14.6",
     "react-highcharts": "^11.0.0",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.12.9"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --content-base src",
@@ -36,6 +34,8 @@
   },
   "devDependencies": {
     "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1",
+    "webpack-dev-server": "^1.14.1",
     "gulp-gh-pages": "^0.5.4",
     "html-minifier": "^3.2.3",
     "json-loader": "^0.5.4",
