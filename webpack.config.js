@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var stylus_plugin = require('stylus_plugin');
 var path = require('path');
 
 module.exports = {
@@ -18,12 +19,16 @@ module.exports = {
           plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
         }
       },
-      {test: /\.json$/, loader: "json"}
+      {test: /\.json$/, loader: "json"},
+      {test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'}
     ]
   },
   output: {
     path: path.join(__dirname, "src"),
     filename: "client.min.js"
+  },
+  stylus: {
+    use: [stylus_plugin()]
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
