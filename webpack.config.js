@@ -24,7 +24,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, "src"),
+    path: path.join(__dirname, "public"),
     filename: "client.min.js"
   },
   stylus: {

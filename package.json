@@ -28,8 +28,12 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --content-base src",
+    "deploy": "gulp deploy",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-gh-pages": "^0.5.4"
+  }
 }
