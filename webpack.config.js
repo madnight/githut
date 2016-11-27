@@ -1,7 +1,8 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var stylus_plugin = require('stylus_plugin');
+var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 module.exports = {
@@ -19,24 +20,30 @@ module.exports = {
           plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties']
         }
       },
-      {test: /\.json$/, loader: "json"},
-      {test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'}
+      {
+        test: /\.json$/,
+        loader: "file-loader?name=[name]_[hash:6].[ext]"
+      },
+      {
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
+      },
     ]
   },
   output: {
     path: path.join(__dirname, "public"),
-    filename: "client.min.js"
+    filename: "client_[hash:6].min.js"
   },
-  stylus: {
-    use: [stylus_plugin()]
-  },
-  plugins: debug ? [] : [
+  plugins: [
+    new ExtractTextPlugin("styles_[hash:6].css", { allChunks: false }),
+    new HtmlWebpackPlugin({
+      title: 'GitHut 2.0',
+      template: 'index.ejs'
+    })
+  ].concat(debug ? [] : [
+    new WebpackCleanupPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    new HtmlWebpackPlugin({
-      title: 'GitHut 2.0',
-      filename: 'src/index.ejs'
-    })
-   ]
+  ])
 };

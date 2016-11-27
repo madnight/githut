@@ -1,0 +1,353 @@
+html
+  overflow-y scroll
+
+html, body
+  background #E2F6FF
+  height 100%
+  font-family 'Open Sans', sans-serif
+  font-weight 300
+  // background url(data:image/#pc svg+xml background -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e2f6ff 100%))
+  background -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#e2f6ff))
+  background -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#e2f6ff 100%)
+  background -o-radial-gradient(center, ellipse cover,  #ffffff 0%,#e2f6ff 100%)
+  background -ms-radial-gradient(center, ellipse cover,  #ffffff 0%,#e2f6ff 100%)
+  background radial-gradient(ellipse at center,  #ffffff 0%,#e2f6ff 100%)
+  // filter progid:DXImageTransform.Microsoft.gradient(startColorstr, #ffffff, endColorstr #e2f6ff, GradientType=1)
+
+h1,h2,h3,h4,h5,h6
+  text-rendering optimizeLegibility
+
+a
+  text-decoration none
+  color #006AAD
+  &:hover
+    color #A06535
+
+#header
+  width 80%
+  min-width 960px
+  margin 0 auto 10px
+  padding-bottom 5px
+  position relative
+  h1
+    font-size 23px
+    color #A06535
+    font-weight 400
+    margin 0
+    text-align center
+    padding 0
+    b
+      font-weight 700
+  h2
+    font-size 13px
+    color #666
+    font-weight 300
+    margin 0
+    text-align center
+    padding 0
+    text-transform uppercase
+
+#pc
+  width 80%
+  min-width 960px
+  margin 0 auto
+  min-height 400px
+  position relative
+  div#tooltip
+    position absolute
+    font-size 11px
+    top 0
+    bottom 0
+    z-index 9
+    font-size 11px
+    color #333
+    display none
+    div
+      width 180px
+      background rgba(0,0,0,0.8)
+      padding 5px
+      color #fff
+      -webkit-border-radius 5px
+      border-radius 5px
+    &.visible
+      display block
+    h4
+      margin 2px
+      font-weight 400
+      text-transform uppercase
+  svg
+    font-family 'Open Sans', sans-serif
+    font-weight 300
+    margin 0 auto
+    display block
+    #columns
+      line
+        shape-rendering crispEdges
+        stroke #666
+        stroke-width 1
+        fill none
+      g
+        &.axis
+          line
+            shape-rendering crispEdges
+            stroke #777
+            stroke-width 1
+          g
+            &.tick
+              text
+                font-size 10px
+                fill #777
+                text-anchor middle
+              &.start
+                text
+                  text-anchor start
+              &.end
+                text
+                  text-anchor end
+    #languages
+      circle
+        stroke none
+        fill #333
+      path
+        stroke #A06535
+        stroke-opacity 0.2
+        stroke-width 1
+        fill none
+      text
+        fill #000
+        font-size 12px
+        text-anchor end
+      g
+        .lang-label
+          cursor pointer
+        &.new
+          .lang-label
+            text
+              fill #339933
+        &.highlight
+          .lang-label
+            rect
+              fill-opacity 1
+              fill #333
+          .marker
+            rect
+              stroke #333
+              stroke-opacity 1
+        &.hover
+          .lang-label
+            rect
+              &.hover
+                fill-opacity 0
+      .lang-label
+        rect
+          fill #A06535
+          fill-opacity 0
+      .connection
+        path
+          &.hover
+            stroke-opacity 0
+            stroke-width 10
+      .marker
+        circle
+          fill #333
+          fill-opacity 1
+          &.hover
+            fill #A06535
+            fill-opacity 0.2
+        &.ordinal
+          circle
+            fill-opacity 0
+          line
+            stroke-opacity 1
+          rect
+            stroke-opacity 0.5
+            fill-opacity 1
+        text
+          text-anchor middle
+          font-size 10px
+          fill #333
+        line
+          stroke-width 4
+          stroke #333
+          stroke-opacity 0
+        rect
+          shape-rendering crispEdges
+          stroke-width 1
+          stroke #A06535
+          stroke-opacity 0
+          fill-opacity 0
+    #labels
+      .label
+        text
+          fill-opacity 0
+          text-anchor middle
+          font-weight normal
+          fill #333
+        rect
+          &.ix
+            fill #000
+            fill-opacity 0
+            cursor pointer
+      g
+        &.label
+          path
+            &.label
+              fill #fff
+              stroke #A06535
+              fill-opacity 0.8
+              stroke-opacity 0.8
+              display none
+        &.hover
+          .label
+            path
+              &.label
+                fill-opacity 0.8
+          &.year
+            .label
+              &:last-child
+                text
+                  display block
+                  fill-opacity 1
+              &.year
+                text
+                  display block
+                  fill-opacity 1
+    .column
+      text
+        &.title
+          text-anchor middle
+          text-transform uppercase
+          font-size 11px
+          font-weight 400
+          cursor help
+          &.first
+            text-anchor end
+
+#pc svg #languages g.hover .lang-label text,
+#pc svg #languages g.highlight .lang-label text,
+#pc svg #languages g.year .lang-label text
+  fill-opacity 1
+  fill #fff
+
+#pc svg #languages g.hover .lang-label rect,
+#pc svg #languages g.year .lang-label rect
+  fill-opacity 1
+
+#pc svg #labels g.hover .label path.label,
+#pc svg #labels g.hover .label text
+  font-size 12px
+  display block
+  fill-opacity 1
+
+#pc svg #labels g.hover.year .label path.label,
+#pc svg #labels g.hover.year .label text
+  display none
+  fill-opacity 0
+
+#pc svg #languages g.highlight g.connection path,
+#pc svg #languages g.highlight g.connection.year path,
+#pc svg #languages g.hover g.connection path,
+#pc svg #languages g.year g.connection path
+  stroke #A06535
+  stroke-opacity 0.8
+  stroke-width 3
+
+#pc svg #languages g.highlight g.connection path,
+#pc svg #languages g.highlight g.connection.year path,
+#pc svg #labels g.highlight g.label path.label
+  stroke #333
+
+#pc svg #languages g.hover .marker rect,
+#pc svg #languages g.year .marker rect
+  stroke-width 1
+  stroke-opacity 1
+
+#app
+  margin 0 auto
+  width 65%
+
+#contents
+  width 100%
+  max-width 960px
+  margin 0 auto
+  overflow hidden
+  .description
+    margin 20px 100px
+    padding 10px
+    color #111
+    font-size 13px
+    h5
+      font-size 15px
+      color #000
+      font-weight 400
+      margin 0
+      text-align center
+      padding 0
+      text-transform uppercase
+
+#footer
+  width 600px
+  margin 0 auto 10px
+  padding-bottom 5px
+  font-size 12px
+  text-align center
+  #licence
+    font-size 10px
+    width 280px
+    margin 0 auto
+    text-align center
+    margin-top 20px
+    padding-top 10px
+    clear both
+    div
+      text-align left
+    a
+      color #000
+      text-decoration none
+      &.cc
+        float left
+        margin-right 10px
+  .social
+    position relative
+    margin 10px auto
+
+.no-touch
+  #footer
+    #licence
+      a
+        &:hover
+          color gold
+
+.social
+  text-align center
+  font-size 23px
+  width 110px
+  height 23px
+  &.social-top
+    position absolute
+    right 20px
+    top 5px
+    font-size 20px
+
+#footer .social a,
+.social-top a
+  color #666
+  background-color transparent
+  width 19px
+  height 20px
+  float left
+  margin 0 20px
+
+.social-top
+  a
+    background-color transparent
+
+#footer .social a:hover,
+.social-top a:hover
+  color #000
+
+#footer .social a span,
+.social-top a span
+  display block
+  font-size 10px
+  font-weight normal
