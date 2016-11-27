@@ -1,5 +1,6 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 module.exports = {
@@ -27,6 +28,10 @@ module.exports = {
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
-  ]
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new HtmlWebpackPlugin({
+      title: 'GitHut 2.0',
+      filename: 'src/index.ejs'
+    })
+   ]
 };
