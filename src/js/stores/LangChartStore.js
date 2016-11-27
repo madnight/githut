@@ -5,7 +5,16 @@ export class LangChartStore {
         credits: { enabled: false },
         chart: { type: 'spline', backgroundColor: 'transparent' },
         title: { text: '' },
-        yAxis: { title: { text: 'Pull Request %' } },
+        yAxis: {
+          title: {
+            text: 'Total Pull Requests'
+          },
+          labels: {
+                formatter: function() {
+                    return (this.value * 100) + "%"
+                  }
+            }
+        },
         plotOptions: {
             spline: { lineWidth: 4,
                 states: { hover: { lineWidth: 5 } },
