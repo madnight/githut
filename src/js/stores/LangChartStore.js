@@ -6,9 +6,6 @@ export class LangChartStore {
         chart: { type: 'spline', backgroundColor: 'transparent' },
         title: { text: '' },
         yAxis: {
-          title: {
-            text: 'Total Pull Requests'
-          },
           labels: {
                 formatter: function() {
                     return (this.value * 100) + "%"
