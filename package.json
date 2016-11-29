@@ -9,11 +9,16 @@
     "type": "git",
     "url": "git+https://github.com/madnight/github-stats.git"
   },
+  "scripts": {
+    "build": "NODE_ENV=production webpack --content-base src",
+    "deploy": "npm run build && gulp deploy",
+    "dev": "webpack-dev-server --content-base src --inline --hot"
+  },
   "dependencies": {
     "axios": "^0.15.2",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.0",
-    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-class-properties": "^6.3.13",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -21,16 +26,11 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "lodash": "^4.16.4",
-    "react": "^0.14.8",
+    "react": "^15.4.1",
     "react-bootstrap": "^0.30.5",
-    "react-dom": "^0.14.6",
+    "react-dom": "^15.4.1",
     "react-highcharts": "^11.0.0",
     "webpack": "^1.12.9"
-  },
-  "scripts": {
-    "build": "NODE_ENV=production webpack --content-base src",
-    "deploy": "npm run build && gulp deploy",
-    "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "devDependencies": {
     "extract-text-webpack-plugin": "^1.0.1",

@@ -1,9 +1,10 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require('path');
+import webpack from "webpack"
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import WebpackCleanupPlugin from "webpack-cleanup-plugin"
+import ExtractTextPlugin from "extract-text-webpack-plugin"
+import path from "path"
+
+const debug = process.env.NODE_ENV !== "production"
 
 module.exports = {
   context: path.join(__dirname, "src"),
