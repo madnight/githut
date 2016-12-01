@@ -29,6 +29,7 @@
     "lodash": "^4.16.4",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.5",
+    "react-data-components": "^1.1.0",
     "react-dom": "^15.4.1",
     "react-highcharts": "^11.0.0",
     "style-loader": "^0.13.1",

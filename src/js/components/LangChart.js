@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import data from './data.json';
+import data from './data.json'
 import ReactHighcharts from 'react-highcharts'
 import { map, first } from 'lodash'
 import { LangChartStore } from '../stores/LangChartStore'
