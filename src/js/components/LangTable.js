@@ -1,8 +1,24 @@
 import React from 'react'
 import axios from 'axios'
 import data from './data.json'
-var DataTable = require('react-data-components').DataTable;
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 
+
+const products = [];
+
+function addProducts(quantity) {
+  const startId = products.length;
+  for (let i = 0; i < quantity; i++) {
+    const id = startId + i;
+    products.push({
+      id: id,
+      name: 'Item name ' + id,
+      price: 2100 + i
+    });
+  }
+}
+
+addProducts(30)
 
 export default class LangTable extends React.Component {
 
@@ -20,50 +36,22 @@ this.data = [
   { name: 'name value', city: 'city value', address: 'address value', phone: 'phone value' },
   { name: 'value', city: 'city value', address: 'address value', phone: 'phone value' }
 ];
+
+this.options = {
+  defaultSortName: 'name',  // default sort column name
+  defaultSortOrder: 'desc'  // default sort order
+};
 }
 
     render() {
         return (
-
-<table id="example" class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009/01/12</td>
-                <td>$86,000</td>
-            </tr>
-          </tbody>
-    </table>
-
+      <div>
+        <BootstrapTable data={ products } ref='table' bordered={ false } options={ this.options } >
+          <TableHeaderColumn dataField='id' isKey={ true } dataSort>Product ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='name' dataSort>Product Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
+        </BootstrapTable>
+      </div>
         );
     }
 
