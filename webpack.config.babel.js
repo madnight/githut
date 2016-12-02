@@ -22,6 +22,10 @@ module.exports = {
         }
       },
       {
+       test: /\.css$/,
+       loader: "style-loader!css-loader"
+      },
+      {
         test: /\.json$/,
         loader: "file-loader?name=[name]_[hash:6].[ext]"
       },

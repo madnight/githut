@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import data from './data.json'
+import TableStyles from './LangTable.styl';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 
 
@@ -41,18 +42,23 @@ this.options = {
   defaultSortName: 'name',  // default sort column name
   defaultSortOrder: 'desc'  // default sort order
 };
+
+this.table = (
+  <BootstrapTable
+    data={ products }
+    bordered={ false }
+    options={ this.options } >
+      <TableHeaderColumn dataField='id' isKey={ true } dataSort># Rank</TableHeaderColumn>
+      <TableHeaderColumn dataField='name' dataSort>Language</TableHeaderColumn>
+      <TableHeaderColumn dataField='price'>Tend</TableHeaderColumn>
+    </BootstrapTable>
+)
+
+
 }
 
     render() {
-        return (
-      <div>
-        <BootstrapTable data={ products } ref='table' bordered={ false } options={ this.options } >
-          <TableHeaderColumn dataField='id' isKey={ true } dataSort>Product ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='name' dataSort>Product Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
-        </BootstrapTable>
-      </div>
-        );
+        return ( this.table );
     }
 
 }
