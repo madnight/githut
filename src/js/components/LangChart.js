@@ -11,11 +11,28 @@ export default class LangChart extends React.Component {
         super()
         const store = new LangChartStore
         this.config = store.getConfig()
+        this.topProgrammingLanguages = []
+    }
+
+    getTopLanguages({data}) {
+        const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX']
+        this.topProgrammingLanguages = _.chain(data)
+        .reduce((res, value) => {
+            res[value.lang] = { count: 0, name: value.lang }
+            res[value] && res[value].push(res[value.lang])
+            res[value.lang].count += value.count
+            return res
+        }, {})
+        .sortBy(o => o.count)
+        .reverse()
+        .reject(o => _.includes(nonProgrammingLanguage, o.name))
+        .map(d => d.name)
+        .take(10)
+        .value()
     }
 
     isTopLanguage(name) {
-        return _.includes(['C++', 'C', 'Objective-C', 'Ruby', 'Java',
-            'JavaScript', 'Go', 'PHP', 'Python', 'Shell' ], name)
+        return _.includes(this.topProgrammingLanguages, name)
     }
 
     categories() {
@@ -47,6 +64,7 @@ export default class LangChart extends React.Component {
         const series = _.flow(this.createSeries,
             this.sumQuarters, this.percentageData).bind(this)
         axios.get(data).then(d => {
+            this.getTopLanguages(d)
             _.map(series(d), s => chart.addSeries(s, false))
             _.first(chart.xAxis).setCategories(this.categories())
             chart.redraw()
