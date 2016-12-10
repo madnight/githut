@@ -16,19 +16,23 @@ export default class LangChart extends React.Component {
 
     getTopLanguages({data}) {
         const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX']
+        const sumPullRequests = d => {
+            return _.reduce(d, (res, val) => {
+                res[val.lang] = { count: 0, name: val.lang }
+                res[val] && res[val].push(res[val.lang]);
+                res[val.lang].count += val.count
+                return res
+            }, {})
+        }
+        _.mixin({ sumPullRequests: sumPullRequests })
         this.topProgrammingLanguages = _.chain(data)
-        .reduce((res, value) => {
-            res[value.lang] = { count: 0, name: value.lang }
-            res[value] && res[value].push(res[value.lang])
-            res[value.lang].count += value.count
-            return res
-        }, {})
-        .sortBy('count')
-        .reverse()
-        .reject(o => _.includes(nonProgrammingLanguage, o.name))
-        .map('name')
-        .take(10)
-        .value()
+          .sumPullRequests(data)
+          .sortBy('count')
+          .reverse()
+          .reject(o => _.includes(nonProgrammingLanguage, o.name))
+          .map('name')
+          .take(10)
+          .value()
     }
 
     isTopLanguage(name) {
@@ -52,11 +56,11 @@ export default class LangChart extends React.Component {
 
     createSeries({data}) {
         return _.chain(data)
-        .filter(d => this.isTopLanguage(d.lang))
-        .map(d => ({ name: d.lang,
+          .filter(d => this.isTopLanguage(d.lang))
+          .map(d => ({ name: d.lang,
             data: _.map(_.filter(data, { 'lang': d.lang }), d => d.count) }))
-        .uniqBy('name')
-        .value()
+          .uniqBy('name')
+          .value()
     }
 
     componentDidMount() {

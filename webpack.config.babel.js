@@ -32,7 +32,7 @@ module.exports = {
       {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
-      },
+      }
     ]
   },
   output: {
@@ -49,6 +49,6 @@ module.exports = {
     new WebpackCleanupPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
   ])
 };

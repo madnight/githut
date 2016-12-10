@@ -20,12 +20,12 @@ export default class LangTable extends React.Component {
         axios.get(data).then(d => {
             const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX', 'ApacheConf', 'CMAKE', 'Groff', 'XSLT', 'CMake', 'Nginx', 'QMake', 'Yacc', 'Lex', 'Protocol Buffer', 'Batchfile', 'Smarty', 'Scilab', 'PLpgSQL', 'Perl6', 'Handlebars', 'NSIS', 'M4', 'PLSQL']
             const langranking = _.chain(d.data)
-            .split('\n')
-            .map(JSON.parse)
-            .reject(o => _.includes(nonProgrammingLanguage, o.language_name))
-            .take(50)
-            .map((o, i) => _.assign(o, {id: ++i}))
-            .value()
+              .split('\n')
+              .map(JSON.parse)
+              .reject(o => _.includes(nonProgrammingLanguage, o.language_name))
+              .take(50)
+              .map((o, i) => _.assign(o, {id: ++i}))
+              .value()
             this.setState({data: langranking});
         })
     }

@@ -6,8 +6,8 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div>
-        <LangChart />
-        <LangTable />
+        <LangChart/>
+        <LangTable/>
       </div>
     );
   }
