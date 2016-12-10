@@ -23,10 +23,10 @@ export default class LangChart extends React.Component {
             res[value.lang].count += value.count
             return res
         }, {})
-        .sortBy(o => o.count)
+        .sortBy('count')
         .reverse()
         .reject(o => _.includes(nonProgrammingLanguage, o.name))
-        .map(d => d.name)
+        .map('name')
         .take(10)
         .value()
     }
