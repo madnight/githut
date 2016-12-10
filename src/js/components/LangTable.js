@@ -35,8 +35,7 @@ export default class LangTable extends React.Component {
         return (
             <BootstrapTable
                 condensed
-                // pagination
-                tableStyle={ { margin: '0 auto', marginBottom: '0px', width: '50%' } }
+                tableStyle={ { margin: '30px auto 30px auto', width: '50%' } }
                 data={this.state.data}
                 bordered={false}
                 options={this.options}>
@@ -51,7 +50,7 @@ export default class LangTable extends React.Component {
                 <TableHeaderColumn
                     dataAlign="center"
                     dataField='language_name'
-                    dataSort>
+                    >
                     Programming Language
                 </TableHeaderColumn>
             </BootstrapTable>
