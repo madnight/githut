@@ -16,6 +16,11 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
+    "bootstrap": "^3.3.7",
+    "lodash": "^4.16.4",
+    "react-highcharts": "^11.0.0"
+  },
+  "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -25,20 +30,15 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "bootstrap": "^3.3.7",
-    "file-loader": "^0.9.0",
-    "lodash": "^4.16.4",
+    "babel-preset-stage-1": "^6.16.0",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.5",
     "react-bootstrap-table": "^2.6.0",
     "react-data-components": "^1.1.0",
     "react-dom": "^15.4.1",
-    "react-highcharts": "^11.0.0",
+    "webpack": "^1.12.9",
+    "file-loader": "^0.9.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.12.9"
-  },
-  "devDependencies": {
-    "babel-preset-stage-1": "^6.16.0",
     "css-loader": "^0.26.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp-gh-pages": "^0.5.4",
