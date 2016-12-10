@@ -4,6 +4,22 @@ import data from './toplang-2016-12.json'
 import TableStyles from './LangTable.styl';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
+function sortStringAsInt(a, b, order) {
+    a = parseInt(a);
+    b = parseInt(b);
+    if (order === 'desc') {
+        return b - a;
+    } else {
+        return a - b;
+    }
+}
+function sortCountStringAsInt(a, b, order) {
+    return sortStringAsInt(a.count, b.count, order);
+}
+function sortBytesStringAsInt(a, b, order) {
+    return sortStringAsInt(a.bytes, b.bytes, order);
+}
+
 export default class LangTable extends React.Component {
 
     constructor() {
@@ -35,7 +51,7 @@ export default class LangTable extends React.Component {
         return (
             <BootstrapTable
                 condensed
-                tableStyle={ { margin: '30px auto 30px auto', width: '50%' } }
+                tableStyle={ { margin: '30px auto 30px auto', width: '80%' } }
                 data={this.state.data}
                 bordered={false}
                 options={this.options}>
@@ -43,8 +59,7 @@ export default class LangTable extends React.Component {
                     width='150'
                     dataAlign="center"
                     dataField='id'
-                    isKey={true}
-                    dataSort>
+                    isKey>
                     # Ranking
                 </TableHeaderColumn>
                 <TableHeaderColumn
@@ -52,6 +67,20 @@ export default class LangTable extends React.Component {
                     dataField='language_name'
                     >
                     Programming Language
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                    dataAlign="center"
+                    dataField='count'
+                    dataSort
+                    sortFunc={ sortCountStringAsInt }>
+                    Number of repository
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                    dataAlign="center"
+                    dataField='bytes'
+                    dataSort
+                    sortFunc={ sortBytesStringAsInt }>
+                    Number of bytes
                 </TableHeaderColumn>
             </BootstrapTable>
         );
