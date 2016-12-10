@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import data from './toplang-2016-12.json'
-import TableStyles from './LangTable.styl';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 export default class LangTable extends React.Component {
