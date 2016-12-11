@@ -1,0 +1,242 @@
+{"pull_request":"\"JavaScript\"","count":"354213"}
+{"pull_request":"\"Java\"","count":"167784"}
+{"pull_request":"\"Python\"","count":"163124"}
+{"pull_request":"\"Ruby\"","count":"128734"}
+{"pull_request":"\"HTML\"","count":"112249"}
+{"pull_request":"\"PHP\"","count":"89807"}
+{"pull_request":"\"C++\"","count":"66998"}
+{"pull_request":"\"CSS\"","count":"54598"}
+{"pull_request":"\"C#\"","count":"51793"}
+{"pull_request":"\"Go\"","count":"42172"}
+{"pull_request":"\"C\"","count":"39369"}
+{"pull_request":"\"Shell\"","count":"30859"}
+{"pull_request":"\"TypeScript\"","count":"24291"}
+{"pull_request":"\"Swift\"","count":"16298"}
+{"pull_request":"\"Scala\"","count":"16045"}
+{"pull_request":"\"Objective-C\"","count":"10972"}
+{"pull_request":"\"PowerShell\"","count":"8970"}
+{"pull_request":"\"Rust\"","count":"7294"}
+{"pull_request":"\"CoffeeScript\"","count":"6779"}
+{"pull_request":"\"Jupyter Notebook\"","count":"6252"}
+{"pull_request":"\"Perl\"","count":"5755"}
+{"pull_request":"\"Lua\"","count":"5633"}
+{"pull_request":"\"R\"","count":"5335"}
+{"pull_request":"\"Makefile\"","count":"4512"}
+{"pull_request":"\"TeX\"","count":"3453"}
+{"pull_request":"\"DM\"","count":"3407"}
+{"pull_request":"\"Elixir\"","count":"3367"}
+{"pull_request":"\"Groovy\"","count":"3161"}
+{"pull_request":"\"Clojure\"","count":"2975"}
+{"pull_request":"\"OCaml\"","count":"2866"}
+{"pull_request":"\"Haskell\"","count":"2677"}
+{"pull_request":"\"Julia\"","count":"2503"}
+{"pull_request":"\"GCC Machine Description\"","count":"2494"}
+{"pull_request":"\"Matlab\"","count":"2335"}
+{"pull_request":"\"Erlang\"","count":"2221"}
+{"pull_request":"\"Puppet\"","count":"2118"}
+{"pull_request":"\"Visual Basic\"","count":"1773"}
+{"pull_request":"\"VimL\"","count":"1759"}
+{"pull_request":"\"Emacs Lisp\"","count":"1626"}
+{"pull_request":"\"Dart\"","count":"1580"}
+{"pull_request":"\"Vue\"","count":"1567"}
+{"pull_request":"\"Nix\"","count":"1408"}
+{"pull_request":"\"Kotlin\"","count":"1372"}
+{"pull_request":"\"XSLT\"","count":"1322"}
+{"pull_request":"\"PLpgSQL\"","count":"1285"}
+{"pull_request":"\"Arduino\"","count":"1197"}
+{"pull_request":"\"CMake\"","count":"1069"}
+{"pull_request":"\"Elm\"","count":"1007"}
+{"pull_request":"\"HCL\"","count":"1002"}
+{"pull_request":"\"Batchfile\"","count":"925"}
+{"pull_request":"\"F#\"","count":"913"}
+{"pull_request":"\"SaltStack\"","count":"863"}
+{"pull_request":"\"FORTRAN\"","count":"823"}
+{"pull_request":"\"Assembly\"","count":"819"}
+{"pull_request":"\"SQF\"","count":"776"}
+{"pull_request":"\"PLSQL\"","count":"719"}
+{"pull_request":"\"Smarty\"","count":"696"}
+{"pull_request":"\"MAXScript\"","count":"655"}
+{"pull_request":"\"Perl6\"","count":"611"}
+{"pull_request":"\"D\"","count":"599"}
+{"pull_request":"\"Haxe\"","count":"592"}
+{"pull_request":"\"Common Lisp\"","count":"534"}
+{"pull_request":"\"QML\"","count":"525"}
+{"pull_request":"\"PureScript\"","count":"472"}
+{"pull_request":"\"Pascal\"","count":"460"}
+{"pull_request":"\"ASP\"","count":"458"}
+{"pull_request":"\"Crystal\"","count":"425"}
+{"pull_request":"\"Modelica\"","count":"408"}
+{"pull_request":"\"Nginx\"","count":"377"}
+{"pull_request":"\"GLSL\"","count":"375"}
+{"pull_request":"\"Verilog\"","count":"363"}
+{"pull_request":"\"Processing\"","count":"360"}
+{"pull_request":"\"Groff\"","count":"359"}
+{"pull_request":"\"ColdFusion\"","count":"351"}
+{"pull_request":"\"Eagle\"","count":"350"}
+{"pull_request":"\"Standard ML\"","count":"343"}
+{"pull_request":"\"Apex\"","count":"341"}
+{"pull_request":"\"Protocol Buffer\"","count":"330"}
+{"pull_request":"\"Web Ontology Language\"","count":"327"}
+{"pull_request":"\"Mathematica\"","count":"325"}
+{"pull_request":"\"RobotFramework\"","count":"323"}
+{"pull_request":"\"Tcl\"","count":"306"}
+{"pull_request":"\"Cucumber\"","count":"305"}
+{"pull_request":"\"BitBake\"","count":"297"}
+{"pull_request":"\"ApacheConf\"","count":"281"}
+{"pull_request":"\"Prolog\"","count":"277"}
+{"pull_request":"\"Objective-C++\"","count":"277"}
+{"pull_request":"\"Racket\"","count":"275"}
+{"pull_request":"\"DIGITAL Command Language\"","count":"272"}
+{"pull_request":"\"Chapel\"","count":"258"}
+{"pull_request":"\"SQLPL\"","count":"236"}
+{"pull_request":"\"Nimrod\"","count":"229"}
+{"pull_request":"\"LiveScript\"","count":"227"}
+{"pull_request":"\"Scheme\"","count":"227"}
+{"pull_request":"\"KiCad\"","count":"219"}
+{"pull_request":"\"RAML\"","count":"201"}
+{"pull_request":"\"Coq\"","count":"199"}
+{"pull_request":"\"NSIS\"","count":"198"}
+{"pull_request":"\"Liquid\"","count":"193"}
+{"pull_request":"\"VHDL\"","count":"190"}
+{"pull_request":"\"PostScript\"","count":"185"}
+{"pull_request":"\"Cuda\"","count":"180"}
+{"pull_request":"\"Hack\"","count":"170"}
+{"pull_request":"\"Gosu\"","count":"169"}
+{"pull_request":"\"SourcePawn\"","count":"169"}
+{"pull_request":"\"ActionScript\"","count":"154"}
+{"pull_request":"\"API Blueprint\"","count":"153"}
+{"pull_request":"\"Xtend\"","count":"145"}
+{"pull_request":"\"Game Maker Language\"","count":"144"}
+{"pull_request":"\"FreeMarker\"","count":"141"}
+{"pull_request":"\"Logos\"","count":"135"}
+{"pull_request":"\"Smalltalk\"","count":"130"}
+{"pull_request":"\"XQuery\"","count":"129"}
+{"pull_request":"\"AMPL\"","count":"128"}
+{"pull_request":"\"Vala\"","count":"128"}
+{"pull_request":"\"M4\"","count":"122"}
+{"pull_request":"\"OpenEdge ABL\"","count":"121"}
+{"pull_request":"\"ooc\"","count":"120"}
+{"pull_request":"\"1C Enterprise\"","count":"112"}
+{"pull_request":"\"AutoHotkey\"","count":"111"}
+{"pull_request":"\"LLVM\"","count":"110"}
+{"pull_request":"\"GAP\"","count":"102"}
+{"pull_request":"\"AGS Script\"","count":"95"}
+{"pull_request":"\"PureBasic\"","count":"95"}
+{"pull_request":"\"GDScript\"","count":"93"}
+{"pull_request":"\"Ren'Py\"","count":"86"}
+{"pull_request":"\"Gnuplot\"","count":"84"}
+{"pull_request":"\"Slash\"","count":"78"}
+{"pull_request":"\"LilyPond\"","count":"71"}
+{"pull_request":"\"CartoCSS\"","count":"67"}
+{"pull_request":"\"Ada\"","count":"64"}
+{"pull_request":"\"ABAP\"","count":"60"}
+{"pull_request":"\"PAWN\"","count":"53"}
+{"pull_request":"\"Stan\"","count":"52"}
+{"pull_request":"\"Alloy\"","count":"50"}
+{"pull_request":"\"SMT\"","count":"49"}
+{"pull_request":"\"Thrift\"","count":"49"}
+{"pull_request":"\"SystemVerilog\"","count":"47"}
+{"pull_request":"\"Eiffel\"","count":"44"}
+{"pull_request":"\"MoonScript\"","count":"43"}
+{"pull_request":"\"NetLogo\"","count":"42"}
+{"pull_request":"\"SAS\"","count":"42"}
+{"pull_request":"\"Smali\"","count":"38"}
+{"pull_request":"\"Turing\"","count":"38"}
+{"pull_request":"\"Stata\"","count":"38"}
+{"pull_request":"\"SuperCollider\"","count":"35"}
+{"pull_request":"\"Pan\"","count":"34"}
+{"pull_request":"\"ANTLR\"","count":"34"}
+{"pull_request":"\"Objective-J\"","count":"33"}
+{"pull_request":"\"Grammatical Framework\"","count":"32"}
+{"pull_request":"\"Brightscript\"","count":"32"}
+{"pull_request":"\"Papyrus\"","count":"32"}
+{"pull_request":"\"COBOL\"","count":"30"}
+{"pull_request":"\"Component Pascal\"","count":"26"}
+{"pull_request":"\"Yacc\"","count":"26"}
+{"pull_request":"\"Inno Setup\"","count":"25"}
+{"pull_request":"\"AutoIt\"","count":"25"}
+{"pull_request":"\"Idris\"","count":"25"}
+{"pull_request":"\"POV-Ray SDL\"","count":"23"}
+{"pull_request":"\"IDL\"","count":"20"}
+{"pull_request":"\"Red\"","count":"19"}
+{"pull_request":"\"Bro\"","count":"18"}
+{"pull_request":"\"HLSL\"","count":"18"}
+{"pull_request":"\"LookML\"","count":"18"}
+{"pull_request":"\"OpenSCAD\"","count":"18"}
+{"pull_request":"\"Uno\"","count":"18"}
+{"pull_request":"\"Squirrel\"","count":"17"}
+{"pull_request":"\"Inform 7\"","count":"17"}
+{"pull_request":"\"LabVIEW\"","count":"16"}
+{"pull_request":"\"XC\"","count":"16"}
+{"pull_request":"\"Propeller Spin\"","count":"16"}
+{"pull_request":"\"AppleScript\"","count":"15"}
+{"pull_request":"\"Agda\"","count":"15"}
+{"pull_request":"\"Lex\"","count":"14"}
+{"pull_request":"\"E\"","count":"12"}
+{"pull_request":"\"LSL\"","count":"12"}
+{"pull_request":"\"Brainfuck\"","count":"12"}
+{"pull_request":"\"QMake\"","count":"11"}
+{"pull_request":"\"Max\"","count":"11"}
+{"pull_request":"\"Ceylon\"","count":"11"}
+{"pull_request":"\"Oz\"","count":"11"}
+{"pull_request":"\"Isabelle\"","count":"10"}
+{"pull_request":"\"UnrealScript\"","count":"10"}
+{"pull_request":"\"Pure Data\"","count":"10"}
+{"pull_request":"\"Awk\"","count":"9"}
+{"pull_request":"\"Xojo\"","count":"9"}
+{"pull_request":"\"X10\"","count":"9"}
+{"pull_request":"\"Augeas\"","count":"9"}
+{"pull_request":"\"Factor\"","count":"9"}
+{"pull_request":"\"Mako\"","count":"8"}
+{"pull_request":"\"Self\"","count":"8"}
+{"pull_request":"\"Scilab\"","count":"7"}
+{"pull_request":"\"LoomScript\"","count":"7"}
+{"pull_request":"\"Rebol\"","count":"7"}
+{"pull_request":"\"Parrot\"","count":"6"}
+{"pull_request":"\"CLIPS\"","count":"6"}
+{"pull_request":"\"Modula-2\"","count":"6"}
+{"pull_request":"\"Golo\"","count":"6"}
+{"pull_request":"\"Limbo\"","count":"5"}
+{"pull_request":"\"Io\"","count":"5"}
+{"pull_request":"\"M\"","count":"5"}
+{"pull_request":"\"XML\"","count":"5"}
+{"pull_request":"\"NCL\"","count":"5"}
+{"pull_request":"\"Nemerle\"","count":"5"}
+{"pull_request":"\"BlitzMax\"","count":"5"}
+{"pull_request":"\"Cirru\"","count":"4"}
+{"pull_request":"\"NewLisp\"","count":"4"}
+{"pull_request":"\"Diff\"","count":"4"}
+{"pull_request":"\"Ecl\"","count":"4"}
+{"pull_request":"\"IGOR Pro\"","count":"4"}
+{"pull_request":"\"Bluespec\"","count":"4"}
+{"pull_request":"\"Forth\"","count":"4"}
+{"pull_request":"\"xBase\"","count":"4"}
+{"pull_request":"\"Lasso\"","count":"4"}
+{"pull_request":"\"Volt\"","count":"3"}
+{"pull_request":"\"Shen\"","count":"3"}
+{"pull_request":"\"PogoScript\"","count":"3"}
+{"pull_request":"\"VCL\"","count":"3"}
+{"pull_request":"\"DTrace\"","count":"3"}
+{"pull_request":"\"RenderScript\"","count":"3"}
+{"pull_request":"\"XPages\"","count":"3"}
+{"pull_request":"\"Nit\"","count":"3"}
+{"pull_request":"\"MQL4\"","count":"3"}
+{"pull_request":"\"EmberScript\"","count":"2"}
+{"pull_request":"\"Terra\"","count":"2"}
+{"pull_request":"\"REALbasic\"","count":"2"}
+{"pull_request":"\"TI Program\"","count":"2"}
+{"pull_request":"\"MQL5\"","count":"2"}
+{"pull_request":"\"PicoLisp\"","count":"2"}
+{"pull_request":"\"wisp\"","count":"2"}
+{"pull_request":"\"Handlebars\"","count":"2"}
+{"pull_request":"\"TLA\"","count":"2"}
+{"pull_request":"\"nesC\"","count":"2"}
+{"pull_request":"\"BlitzBasic\"","count":"1"}
+{"pull_request":"\"Delphi\"","count":"1"}
+{"pull_request":"\"Genshi\"","count":"1"}
+{"pull_request":"\"Monkey\"","count":"1"}
+{"pull_request":"\"AspectJ\"","count":"1"}
+{"pull_request":"\"HyPhy\"","count":"1"}
+{"pull_request":"\"XS\"","count":"1"}
+{"pull_request":"\"Mercury\"","count":"1"}
+{"pull_request":"\"LOLCODE\"","count":"1"}
