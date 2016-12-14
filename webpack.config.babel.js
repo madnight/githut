@@ -30,6 +30,10 @@ module.exports = {
         loader: "file-loader?name=[name]_[hash:6].[ext]"
       },
       {
+        test: /\.md$/,
+        loader: "html"
+      },
+      {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
       }

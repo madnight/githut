@@ -8,7 +8,7 @@
 
 ## Data Generation
 ### Languages
-Get language top list for Github that is used for the ranking
+Get language top list for Github
 ```SQL
 SELECT language.name, COUNT(language.name)
 AS count FROM [bigquery-public-data:github_repos.languages]
@@ -57,7 +57,7 @@ Full result
 ```
 
 ### Pull Requests
-Get the number of Pull Requests per day/month/year that is used for the chart
+Get the number of Pull Requests per day/month/year
 ```Javascript
 SELECT event as pull_request, COUNT(*) as count FROM (
   SELECT type,
