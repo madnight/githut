@@ -54,8 +54,7 @@ export default class LangTable extends React.Component {
                 </TableHeaderColumn>
                 <TableHeaderColumn
                     dataAlign="center"
-                    dataField='pull_request'
-                    >
+                    dataField='pull_request'>
                     Programming Language
                 </TableHeaderColumn>
             </BootstrapTable>

@@ -7,8 +7,8 @@ gulp.task('deploy', () => {
     .pipe(ghPages())
 })
 
-gulp.task('minify', function() {
+gulp.task('minify', () => {
   return gulp.src('./public/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('public'));
-});
+    .pipe(gulp.dest('public'))
+})
