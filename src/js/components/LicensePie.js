@@ -4,7 +4,7 @@ import data from '../../data/github-licenses.json'
 import ReactHighcharts from 'react-highcharts'
 import { map, first } from 'lodash'
 
-export default class LangChart extends React.Component {
+export default class LicensePie extends React.Component {
 
     constructor() {
         super()
@@ -18,8 +18,8 @@ export default class LangChart extends React.Component {
                         + this.point.name + '</span>: <b>'
                         + (this.percentage).toFixed(2) + '%</b>'
                 }
-            },
-        };
+            }
+        }
     }
 
     componentDidMount() {
@@ -28,7 +28,7 @@ export default class LangChart extends React.Component {
             const licenses = _.chain(d.data)
               .split('\n')
               .map(JSON.parse)
-              .map(d => _.mapKeys(d, (val, key) => key == 'license' ? 'name' : 'y'))
+              .map(d => _.mapKeys(d, (val, key) => key === 'license' ? 'name' : 'y'))
               .each(o => o.y = Math.floor(o.y))
               .take(5)
               .value()

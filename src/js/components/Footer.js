@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Content extends React.Component {
+export default class Footer extends React.Component {
     render() {
         return (
             <div id="footer">
@@ -12,6 +12,6 @@ export default class Content extends React.Component {
                     GNU Affero General Public License</a>
                 </div>
             </div>
-        );
+        )
     }
 }

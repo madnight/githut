@@ -14,8 +14,8 @@ export default class Content extends React.Component {
             padding: '10px',
             color: '#111',
             fontSize: 13
-        };
-    };
+        }
+    }
 
     render() {
         return (
@@ -25,7 +25,7 @@ export default class Content extends React.Component {
                     <div dangerouslySetInnerHTML={ { __html: content } }/>
                 </div>
             </div>
-        );
+        )
     }
 
 }
