@@ -38,6 +38,6 @@ export default class LangChart extends React.Component {
     }
 
     render() {
-        return (<ReactHighcharts config={ this.config }/>);
+        return (<ReactHighcharts config={ this.config } ref="chart"/>);
     }
 }

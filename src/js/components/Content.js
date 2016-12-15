@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactMarkdown from "react-markdown"
 import content from "../../content/content.md"
 
 export default class Content extends React.Component {
@@ -19,11 +18,11 @@ export default class Content extends React.Component {
     };
 
     render() {
-        console.log(content)
         return (
             <div style={this.contentStyle}>
                 <div style={ { margin: '20px 100px' } }>
-                    <ReactMarkdown source={content}/>
+                    {/* only dangerously if content is loaded from external ressource */}
+                    <div dangerouslySetInnerHTML={ { __html: content } }/>
                 </div>
             </div>
         );

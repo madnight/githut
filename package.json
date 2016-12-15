@@ -18,9 +18,7 @@
     "axios": "^0.15.2",
     "bootstrap": "^3.3.7",
     "lodash": "^4.16.4",
-    "react-highcharts": "^11.0.0",
-    "react-markdown": "^2.4.2",
-    "react-markdown-to-html": "^1.0.11"
+    "react-highcharts": "^11.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: "html"
+        loader: "html!markdown"
       },
       {
         test: /\.styl$/,

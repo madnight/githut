@@ -45,8 +45,8 @@ export default class LangTable extends React.Component {
                 bordered={false}
                 options={this.options}>
                 <TableHeaderColumn
-                    width='150'
-                    dataAlign="center"
+                    width='150px'
+                    dataAlign='center'
                     dataField='id'
                     isKey={true}
                     dataSort>
