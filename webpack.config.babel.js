@@ -43,6 +43,12 @@ module.exports = {
     path: path.join(__dirname, "public"),
     filename: "client_[hash:6].min.js"
   },
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
   plugins: [
     new ExtractTextPlugin("styles_[hash:6].css", { allChunks: false }),
     new HtmlWebpackPlugin({
