@@ -13,7 +13,7 @@
     "build": "NODE_ENV=production webpack --content-base src && gulp minify",
     "deploy": "npm run build && npm version patch && gulp deploy",
     "lint": "eslint -c .eslintrc src",
-    "babel": "./node_modules/.bin/babel-node --presets es2015",
+    "babel": "babel-node --presets es2015",
     "test": "NODE_ENV=test npm run babel -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
@@ -45,6 +45,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-mocha": "^4.7.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.8.0",
     "eslint-plugin-standard": "^2.0.1",

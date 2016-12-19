@@ -15,25 +15,13 @@ describe('Test LangChart', () => {
   })
 
   it('categories generates YEAR/QUARTER (12/Q1, 12/Q2, ...)', () => {
-    _.mixin({
-      contain: (a, b) => {
-        expect(a).to.contain(b)
-        return a
-      },
-      notcontain: (a, b) => {
-        expect(a).to.not.contain(b)
-        return a
-      }
-    })
-    return _.chain((new LangChart()).categories())
-            .contain('12/Q1')
-            .contain('12/Q2')
-            .contain('13/Q3')
-            .contain('16/Q4')
-            .notcontain('11/Q1')
-            .notcontain('101/Q1')
-            .notcontain('Q1/15')
-            .value()
+    const cats = new LangChart().categories()
+    _.each(['12/Q1', '13/Q3', '16/Q4'], (date) =>
+      expect(cats).to.contain(date)
+    )
+    _.each(['11/Q1', '101/Q1', '14/Q5', 'Q1/15'], (date) =>
+      expect(cats).to.not.contain(date)
+    )
   })
 
   it('sumQuarters summarize monthly data to quarters', () => {
