@@ -3,7 +3,13 @@ webpackConfig.entry = {}
 
 module.exports = config => {
   config.set({
-    browsers: [process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome'],
+    browsers: ['Chrome'],
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['mocha'],
     singleRun: true,
     frameworks: ['mocha'],
@@ -16,4 +22,7 @@ module.exports = config => {
       noInfo: true
     }
   })
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci']
+  }
 }
