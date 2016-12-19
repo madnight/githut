@@ -13,7 +13,7 @@ describe('Test Content', () => {
     shallow(<Content/>)
   })
 
-  it('content should contain ', () => {
+  it('content should contain some content text, PYPL', () => {
     const html = shallow(<Content/>).html()
     expect(html).to.contain('By analyzing how languages are used in GitHub')
     expect(html).to.contain('Related Work')
