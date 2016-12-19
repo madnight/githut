@@ -12,6 +12,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --content-base src && gulp minify",
     "deploy": "npm run build && gulp deploy",
+    "lint": "eslint -c .eslintrc src",
     "test": "export CHROME_BIN=/usr/bin/chromium && karma start",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
@@ -37,6 +38,14 @@
     "babel-preset-stage-1": "^6.16.0",
     "css-loader": "^0.26.0",
     "enzyme": "^2.6.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-standard": "^2.0.1",
     "expect.js": "^0.3.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
