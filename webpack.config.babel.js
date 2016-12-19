@@ -1,15 +1,15 @@
-import webpack from "webpack"
-import HtmlWebpackPlugin from "html-webpack-plugin"
-import WebpackCleanupPlugin from "webpack-cleanup-plugin"
-import ExtractTextPlugin from "extract-text-webpack-plugin"
-import path from "path"
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import path from 'path'
 
-const debug = process.env.NODE_ENV !== "production"
+const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  context: path.join(__dirname, "src"),
-  devtool: debug ? "inline-sourcemap" : null,
-  entry: "./js/client.js",
+  context: path.join(__dirname, 'src'),
+  devtool: debug ? 'inline-sourcemap' : null,
+  entry: './js/client.js',
   module: {
     loaders: [
       {
@@ -23,15 +23,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.json$/,
-        loader: "file-loader?name=[name]_[hash:6].[ext]"
+        loader: 'file-loader?name=[name]_[hash:6].[ext]'
       },
       {
         test: /\.md$/,
-        loader: "html!markdown"
+        loader: 'html!markdown'
       },
       {
         test: /\.styl$/,
@@ -40,17 +40,17 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, "public"),
-    filename: "client_[hash:6].min.js"
+    path: path.join(__dirname, 'public'),
+    filename: 'client_[hash:6].min.js'
   },
   externals: {
     'cheerio': 'window',
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
+    'react/lib/ReactContext': true
   },
   plugins: [
-    new ExtractTextPlugin("styles_[hash:6].css", { allChunks: false }),
+    new ExtractTextPlugin('styles_[hash:6].css', { allChunks: false }),
     new HtmlWebpackPlugin({
       title: 'GitHut 2.0',
       template: 'index.ejs'
@@ -61,4 +61,4 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
   ])
-};
+}

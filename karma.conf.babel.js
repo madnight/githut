@@ -1,6 +1,6 @@
 import webpackConfig from './webpack.config.babel.js'
-webpackConfig.entry = {}
 
+webpackConfig.entry = {}
 module.exports = config => {
   config.set({
     browsers: ['Chrome'],
@@ -13,9 +13,12 @@ module.exports = config => {
     reporters: ['mocha'],
     singleRun: true,
     frameworks: ['mocha'],
-    files: ['tests.webpack.js'],
+    files: [
+      'test/**/*.js'
+    ],
     preprocessors: {
-      'tests.webpack.js': ['webpack', 'sourcemap']
+      'test/**/*.js': ['webpack'],
+      'src/**/*.js': ['webpack']
     },
     webpack: webpackConfig,
     webpackServer: {
