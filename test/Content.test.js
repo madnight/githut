@@ -2,7 +2,6 @@ import React from 'react'
 import expect from 'expect.js'
 import Content from '../src/js/components/Content'
 import { shallow } from 'enzyme'
-import _ from 'lodash'
 
 describe('Test Content', () => {
   it('component import should work', () => {
