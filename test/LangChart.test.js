@@ -1,8 +1,8 @@
 import React from 'react'
 import expect from 'expect.js'
 import LangChart from '../src/js/components/LangChart'
-import {mount} from 'enzyme'
-import {map, first} from 'lodash'
+import { mount } from 'enzyme'
+import _ from 'lodash'
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
 describe('Test LangChart', () => {
