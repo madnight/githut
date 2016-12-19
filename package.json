@@ -13,7 +13,8 @@
     "build": "NODE_ENV=production webpack --content-base src && gulp minify",
     "deploy": "npm run build && gulp deploy",
     "lint": "eslint -c .eslintrc src",
-    "test": "export CHROME_BIN=/usr/bin/chromium && karma start",
+    "babel": "./node_modules/.bin/babel-node --presets es2015",
+    "test": "export CHROME_BIN=/usr/bin/chromium && NODE_ENV=test npm run babel -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "dependencies": {
