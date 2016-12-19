@@ -2,7 +2,7 @@
   "name": "githut2",
   "author": "beuke",
   "license": "ISC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "githut2",
   "main": "webpack.config.js",
   "repository": {
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --content-base src && gulp minify",
-    "deploy": "npm run build && gulp deploy",
+    "deploy": "npm run build && npm version patch && gulp deploy",
     "lint": "eslint -c .eslintrc src",
     "babel": "./node_modules/.bin/babel-node --presets es2015",
     "test": "export CHROME_BIN=/usr/bin/chromium && NODE_ENV=test npm run babel -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
