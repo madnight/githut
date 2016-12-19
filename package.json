@@ -2,7 +2,7 @@
   "name": "githut2",
   "author": "beuke",
   "license": "ISC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "githut2",
   "main": "webpack.config.js",
   "repository": {
