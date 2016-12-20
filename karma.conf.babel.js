@@ -1,6 +1,10 @@
-import webpackConfig from './webpack.config.babel.js'
+import wpConf from './webpack.config.babel.js'
 
-webpackConfig.entry = {}
+wpConf.entry = {}
+
+// filter out WebpackBrowserPlugin for tests
+wpConf.plugins = wpConf.plugins.filter(e => e.options.port != "8080")
+
 module.exports = config => {
   config.set({
     browsers: ['Chrome'],
@@ -20,7 +24,7 @@ module.exports = config => {
       'test/**/*.js': ['webpack'],
       'src/**/*.js': ['webpack']
     },
-    webpack: webpackConfig,
+    webpack: wpConf,
     webpackServer: {
       noInfo: true
     }

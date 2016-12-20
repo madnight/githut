@@ -2,6 +2,8 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import WebpackBrowserPlugin from 'webpack-browser-plugin'
+
 import path from 'path'
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -54,7 +56,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'GitHut 2.0'
     })
-  ].concat(debug ? [] : [
+  ].concat(debug ?
+  [
+     new WebpackBrowserPlugin()
+  ] : [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
