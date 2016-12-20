@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import data from '../../data/github-licenses.json'
+import licenses from '../../data/github-licenses.json'
 import ReactHighcharts from 'react-highcharts'
 import _ from 'lodash'
 
@@ -22,19 +22,18 @@ export default class LicensePie extends React.Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const chart = this.refs.chart.getChart()
-        axios.get(data).then(d => {
-            const licenses = _.chain(d.data)
-              .split('\n')
-              .map(JSON.parse)
-              .map(d => _.mapKeys(d, (val, key) => key === 'license' ? 'name' : 'y'))
-              .each(o => o.y = Math.floor(o.y))
-              .take(5)
-              .value()
-            chart.addSeries({ data: licenses }, false)
-            chart.redraw()
-        })
+        const { data } = await axios.get(licenses)
+        const lic = _.chain(data)
+          .split('\n')
+          .map(JSON.parse)
+          .map(d => _.mapKeys(d, (val, key) => key === 'license' ? 'name' : 'y'))
+          .each(o => o.y = Math.floor(o.y))
+          .take(5)
+          .value()
+        chart.addSeries({ data: lic }, false)
+        chart.redraw()
     }
 
     render() {

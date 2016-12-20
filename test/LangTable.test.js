@@ -14,24 +14,22 @@ describe('Test LangTable', () => {
     mount(<LangTable/>)
   })
 
-  it('chart should contain top 50 languages', () => {
+  it('chart should contain top 50 languages', async () => {
     const wrapper = mount(<LangTable/>)
-    return sleep(500).then(() => {
-      const html = wrapper.html()
-      _.each(['Ranking', 'Python', 'TypeScript',
+    await sleep(500)
+    const html = wrapper.html()
+    _.each(['Ranking', 'Python', 'TypeScript',
         'CoffeeScript', 'Haskell'], (lang) =>
-      expect(html).to.contain(lang)
-      )
-    })
+        expect(html).to.contain(lang)
+    )
   })
 
-  it('chart should not contain non programming languages', () => {
+  it('chart should not contain non programming languages', async () => {
     const wrapper = mount(<LangTable/>)
-    return sleep(500).then(() => {
-      const html = wrapper.html()
-      _.each(['Makefile', 'Jupyter Notebook', 'Smalltalk'], (lang) =>
+    await sleep(500)
+    const html = wrapper.html()
+    _.each(['Makefile', 'Jupyter Notebook', 'Smalltalk'], (lang) =>
         expect(html).to.not.contain(lang)
-      )
-    })
+    )
   })
 })

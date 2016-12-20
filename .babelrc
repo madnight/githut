@@ -1,11 +1,15 @@
 {
   "plugins": [
     "add-module-exports",
-    "transform-class-properties"
+    "transform-class-properties",
+    ["transform-runtime", {
+     "polyfill": false,
+     "regenerator": true
+   }]
   ],
   "presets": [
     "es2015",
-    "stage-1",
+    "stage-0",
     "react"
   ]
 }

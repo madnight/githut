@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import data from '../../data/github-pr-all.json'
+import pullRequests from '../../data/github-pr-all.json'
 import ReactHighcharts from 'react-highcharts'
 import _ from 'lodash'
 import { LangChartStore } from '../stores/LangChartStore'
@@ -14,7 +14,7 @@ export default class LangChart extends React.Component {
         this.topProgrammingLanguages = []
     }
 
-    getTopLanguages({data}) {
+    getTopLanguages(data) {
         const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX']
         const sumPullRequests = d => {
             return _.reduce(d, (res, val) => {
@@ -54,7 +54,7 @@ export default class LangChart extends React.Component {
         return _.each(data, v => v.data = _.zipWith(v.data, sum, _.divide))
     }
 
-    createSeries({data}) {
+    createSeries(data) {
         return _.chain(data)
           .filter(d => this.isTopLanguage(d.lang))
           .map(d => ({ name: d.lang,
@@ -63,16 +63,18 @@ export default class LangChart extends React.Component {
           .value()
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const { data } = await axios.get(pullRequests)
+        const series = _.flow(
+            this.createSeries,
+            this.sumQuarters,
+            this.percentageData
+        ).bind(this)
+        this.getTopLanguages(data)
         let chart = this.refs.chart.getChart()
-        const series = _.flow(this.createSeries,
-            this.sumQuarters, this.percentageData).bind(this)
-        axios.get(data).then(d => {
-            this.getTopLanguages(d)
-            _.map(series(d), s => chart.addSeries(s, false))
-            _.first(chart.xAxis).setCategories(this.categories())
-            chart.redraw()
-        })
+        _.map(series(data), s => chart.addSeries(s, false))
+        _.first(chart.xAxis).setCategories(this.categories())
+        chart.redraw()
     }
 
     render() {

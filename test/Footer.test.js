@@ -2,7 +2,6 @@ import React from 'react'
 import expect from 'expect.js'
 import Footer from '../src/js/components/Footer'
 import { shallow } from 'enzyme'
-import _ from 'lodash'
 
 describe('Test Footer', () => {
   it('component import should work', () => {
