@@ -52,8 +52,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('styles_[hash:6].css', { allChunks: false }),
     new HtmlWebpackPlugin({
-      title: 'GitHut 2.0',
-      template: 'index.ejs'
+      title: 'GitHut 2.0'
     })
   ].concat(debug ? [] : [
     new WebpackCleanupPlugin(),
