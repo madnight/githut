@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import data from '../../data/github-pr-2016-11.json'
+import pullRequests from '../../data/github-pr-2016-11.json'
 import _ from 'lodash'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
@@ -23,18 +23,17 @@ export default class LangTable extends React.Component {
             'ApacheConf', 'XML', 'SaltStack', 'Vue', 'GCC Machine Description']
     }
 
-    componentDidMount() {
-        axios.get(data).then(d => {
-            const langranking = _.chain(d.data)
-              .split('\n')
-              .map(JSON.parse)
-              .each(o => o.pull_request = JSON.parse(o.pull_request))
-              .reject(o => _.includes(this.nonProgrammingLanguage, o.pull_request))
-              .take(50)
-              .map((o, i) => _.assign(o, {id: ++i}))
-              .value()
-            this.setState({data: langranking});
-        })
+    async componentDidMount() {
+        const { data } = await axios.get(pullRequests)
+        const langranking = _.chain(data)
+          .split('\n')
+          .map(JSON.parse)
+          .each(o => o.pull_request = JSON.parse(o.pull_request))
+          .reject(o => _.includes(this.nonProgrammingLanguage, o.pull_request))
+          .take(50)
+          .map((o, i) => _.assign(o, {id: ++i}))
+          .value()
+        this.setState({data: langranking});
     }
 
     render() {

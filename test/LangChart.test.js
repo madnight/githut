@@ -46,11 +46,10 @@ describe('Test LangChart', () => {
     mount(<LangChart/>)
   })
 
-  it('chart should contain JavaScript and Python', () => {
+  it('chart should contain JavaScript and Python', async () => {
     const wrapper = mount(<LangChart/>)
-    return sleep(1500).then(() => {
-      expect(wrapper.html()).to.contain('JavaScript')
-      expect(wrapper.html()).to.contain('Python')
-    })
+    await sleep(1500)
+    expect(wrapper.html()).to.contain('JavaScript')
+    expect(wrapper.html()).to.contain('Python')
   })
 })

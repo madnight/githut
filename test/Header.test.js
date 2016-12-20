@@ -2,7 +2,6 @@ import React from 'react'
 import expect from 'expect.js'
 import Header from '../src/js/components/Header'
 import { shallow } from 'enzyme'
-import _ from 'lodash'
 
 describe('Test Header', () => {
   it('component import should work', () => {

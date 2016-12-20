@@ -14,23 +14,21 @@ describe('Test LicensePie', () => {
     mount(<LicensePie/>)
   })
 
-  it('pie should contain top licenses', () => {
+  it('pie should contain top licenses', async () => {
     const wrapper = mount(<LicensePie/>)
-    return sleep(500).then(() => {
-      const html = wrapper.html()
-      _.each(['gpl-2.0', 'mit', 'bsd-3-clause'], (lang) =>
+    await sleep(500)
+    const html = wrapper.html()
+    _.each(['gpl-2.0', 'mit', 'bsd-3-clause'], (lang) =>
         expect(html).to.contain(lang)
-      )
-    })
+    )
   })
 
-  it('pie should not contain non licenses', () => {
+  it('pie should not contain non licenses', async () => {
     const wrapper = mount(<LicensePie/>)
-    return sleep(500).then(() => {
-      const html = wrapper.html()
-      _.each(['lol', '42-license'], (lang) =>
+    await sleep(500)
+    const html = wrapper.html()
+    _.each(['lol', '42-license'], (lang) =>
         expect(html).to.not.contain(lang)
-      )
-    })
+    )
   })
 })
