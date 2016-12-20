@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import data from '../../data/github-pr-all.json'
 import ReactHighcharts from 'react-highcharts'
-import { map, first } from 'lodash'
+import _ from 'lodash'
 import { LangChartStore } from '../stores/LangChartStore'
 
 export default class LangChart extends React.Component {

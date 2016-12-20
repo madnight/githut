@@ -1,11 +1,25 @@
 {
-    "extends": "standard",
-    "plugins": [
-        "standard",
-        "mocha",
-        "promise"
-    ],
-    "rules": {
+  "extends": [
+    "standard",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "standard",
+    "mocha",
+    "react",
+    "promise"
+  ],
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "settings": {
+    "import/ignore": [
+      ".styl$"
+    ]
+  },
+  "rules": {
     "mocha/no-exclusive-tests": "error"
   }
 }

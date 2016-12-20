@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import data from '../../data/github-licenses.json'
 import ReactHighcharts from 'react-highcharts'
-import { map, first } from 'lodash'
+import _ from 'lodash'
 
 export default class LicensePie extends React.Component {
 

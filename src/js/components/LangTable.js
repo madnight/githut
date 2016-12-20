@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import data from '../../data/github-pr-2016-11.json'
+import _ from 'lodash'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 export default class LangTable extends React.Component {
@@ -58,7 +59,7 @@ export default class LangTable extends React.Component {
                     Programming Language
                 </TableHeaderColumn>
             </BootstrapTable>
-        );
+        )
     }
 
 }
