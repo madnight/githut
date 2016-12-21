@@ -3,7 +3,12 @@ import expect from 'expect.js'
 import LangTable from '../src/js/components/LangTable'
 import { mount } from 'enzyme'
 import _ from 'lodash'
+
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
+const waitFor = async (wrapper, str) => {
+  while (!_.includes(wrapper.html(), str))
+      await sleep(10)
+}
 
 describe('Test LangTable', () => {
   it('component import should work', () => {
@@ -16,7 +21,7 @@ describe('Test LangTable', () => {
 
   it('chart should contain top 50 languages', async () => {
     const wrapper = mount(<LangTable/>)
-    await sleep(500)
+    await waitFor(wrapper, "Python")
     const html = wrapper.html()
     _.each(['Ranking', 'Python', 'TypeScript',
         'CoffeeScript', 'Haskell'], (lang) =>
@@ -26,7 +31,7 @@ describe('Test LangTable', () => {
 
   it('chart should not contain non programming languages', async () => {
     const wrapper = mount(<LangTable/>)
-    await sleep(500)
+    await waitFor(wrapper, "Python")
     const html = wrapper.html()
     _.each(['Makefile', 'Jupyter Notebook', 'Smalltalk'], (lang) =>
         expect(html).to.not.contain(lang)

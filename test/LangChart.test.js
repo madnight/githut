@@ -3,7 +3,12 @@ import expect from 'expect.js'
 import LangChart from '../src/js/components/LangChart'
 import { mount } from 'enzyme'
 import _ from 'lodash'
+
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
+const waitFor = async (wrapper, str) => {
+  while (!_.includes(wrapper.html(), str))
+      await sleep(10)
+}
 
 describe('Test LangChart', () => {
   it('component import should work', () => {
@@ -48,7 +53,7 @@ describe('Test LangChart', () => {
 
   it('chart should contain JavaScript and Python', async () => {
     const wrapper = mount(<LangChart/>)
-    await sleep(1500)
+    await waitFor(wrapper, "Python")
     expect(wrapper.html()).to.contain('JavaScript')
     expect(wrapper.html()).to.contain('Python')
   })

@@ -2,7 +2,7 @@
   "name": "githut2",
   "author": "beuke",
   "license": "ISC",
-  "version": "0.1.3",
+  "version": "0.1.32",
   "description": "githut2",
   "main": "webpack.config.js",
   "repository": {
@@ -14,6 +14,10 @@
     "deploy": "npm run build && npm version patch && gulp deploy",
     "lint": "eslint -c .eslintrc src",
     "babel": "babel-node --presets es2015",
+    "ver": "npm version patch --git=true",
+    "test-browser": "BROWSERS=true npm run test",
+    "test-travis-chrome": "CHROME=true npm run test",
+    "test-loop": "LOOP=true npm run test",
     "test": "NODE_ENV=test npm run babel -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },
@@ -71,6 +75,7 @@
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.1",
     "karma-phantomjs-launcher": "^1.0.2",
