@@ -23,7 +23,7 @@ describe('Test LangTable', () => {
     const wrapper = mount(<LangTable/>)
     await waitFor(wrapper, "Python")
     const html = wrapper.html()
-    _.each(['Ranking', 'Python', 'TypeScript',
+    _.each(['Ranking', 'Trend', 'Python', 'TypeScript',
         'CoffeeScript', 'Haskell'], (lang) =>
         expect(html).to.contain(lang)
     )

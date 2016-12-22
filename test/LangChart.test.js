@@ -56,5 +56,5 @@ describe('Test LangChart', () => {
     await waitFor(wrapper, "Python")
     expect(wrapper.html()).to.contain('JavaScript')
     expect(wrapper.html()).to.contain('Python')
-  })
+  }).timeout(5000)
 })

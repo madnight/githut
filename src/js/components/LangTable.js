@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import pullRequests from '../../data/github-pr-2016-11.json'
+import lastYearPR from '../../data/github-pr-2015.json'
 import _ from 'lodash'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
@@ -23,17 +24,57 @@ export default class LangTable extends React.Component {
             'ApacheConf', 'XML', 'SaltStack', 'Vue', 'GCC Machine Description']
     }
 
-    async componentDidMount() {
-        const { data } = await axios.get(pullRequests)
-        const langranking = _.chain(data)
+    parseJSONData(data) {
+        return _.chain(data)
           .split('\n')
           .map(JSON.parse)
           .each(o => o.pull_request = JSON.parse(o.pull_request))
           .reject(o => _.includes(this.nonProgrammingLanguage, o.pull_request))
-          .take(50)
           .map((o, i) => _.assign(o, {id: ++i}))
           .value()
-        this.setState({data: langranking});
+    }
+
+    async getLastYearPR() {
+        const { data } = await axios.get(lastYearPR)
+        return this.parseJSONData(data)
+    }
+
+    trendFormatter(cell, row) {
+        const arrow = n => {
+            const angle = dir => `<i class='fa fa-angle-${dir}'></i>`
+            switch (true) {
+                case n == 0:
+                    return ''
+                case n > 2:
+                    return angle('double-up')
+                case n < -2:
+                    return angle('double-down')
+                case n < 1:
+                    return angle('down')
+                default:
+                    return angle('up')
+                }
+            }
+        return `${arrow(cell)}`
+    }
+
+    getTrend(current, last) {
+        return _.chain(current)
+          .each(l => _.each(last, y => {
+                if (y.pull_request == l.pull_request)
+                    _.assign(l, { trend: y.id - l.id })
+                }))
+          .take(50)
+          .value()
+    }
+
+    async componentDidMount() {
+        this.getLastYearPR()
+        const { data } = await axios.get(pullRequests)
+        const curYearRanking = this.parseJSONData(data)
+        const lastYearRanking = await this.getLastYearPR()
+        const langRanking = this.getTrend(curYearRanking, lastYearRanking)
+        this.setState({data: langRanking});
     }
 
     render() {
@@ -57,8 +98,13 @@ export default class LangTable extends React.Component {
                     dataField='pull_request'>
                     Programming Language
                 </TableHeaderColumn>
+                <TableHeaderColumn
+                    dataAlign="center"
+                    dataField='trend'
+                    dataFormat={ this.trendFormatter }>
+                    Trend
+                </TableHeaderColumn>
             </BootstrapTable>
         )
     }
-
 }
