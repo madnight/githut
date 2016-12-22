@@ -10,7 +10,7 @@
     "url": "git+https://github.com/madnight/github-stats.git"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack --content-base src && gulp minify",
+    "build": "NODE_ENV=production webpack --progress --colors --content-base src && gulp minify",
     "deploy": "npm run build && npm version patch && gulp deploy",
     "lint": "eslint -c .eslintrc src",
     "babel": "babel-node --presets es2015",
@@ -19,7 +19,7 @@
     "test-travis-chrome": "CHROME=true npm run test",
     "test-loop": "LOOP=true npm run test",
     "test": "NODE_ENV=test npm run babel -- ./node_modules/karma/bin/karma start karma.conf.babel.js",
-    "dev": "webpack-dev-server --content-base src --inline --hot"
+    "dev": "webpack-dev-server --progress --colors --content-base src --inline --hot"
   },
   "dependencies": {
     "axios": "^0.15.2",
