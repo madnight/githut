@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import _ from 'lodash'
+import { sortBy, reverse, reject, map, take } from 'lodash/fp'
 import pullRequests from '../../data/github-pr-all.json'
 import ReactHighcharts from 'react-highcharts'
-import _ from 'lodash'
 import { LangChartStore } from '../stores/LangChartStore'
 
 export default class LangChart extends React.Component {
@@ -24,15 +25,14 @@ export default class LangChart extends React.Component {
                 return res
             }, {})
         }
-        _.mixin({ sumPullRequests: sumPullRequests })
-        this.topProgrammingLanguages = _.chain(data)
-          .sumPullRequests(data)
-          .sortBy('count')
-          .reverse()
-          .reject(o => _.includes(nonProgrammingLanguage, o.name))
-          .map('name')
-          .take(10)
-          .value()
+        this.topProgrammingLanguages = _.flow(
+            sumPullRequests,
+            sortBy('count'),
+            reverse,
+            reject(o => _.includes(nonProgrammingLanguage, o.name)),
+            map('name'),
+            take(10)
+        )(data)
     }
 
     isTopLanguage(name) {
