@@ -45,9 +45,9 @@ export default class LangTable extends React.Component {
             switch (true) {
                 case n == 0:
                     return ''
-                case n > 2:
+                case n > 3:
                     return angle('double-up')
-                case n < -2:
+                case n < -3:
                     return angle('double-down')
                 case n < 1:
                     return angle('down')
