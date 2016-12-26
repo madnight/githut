@@ -69,7 +69,6 @@ export default class LangTable extends React.Component {
     }
 
     async componentDidMount() {
-        this.getLastYearPR()
         const { data } = await axios.get(pullRequests)
         const curYearRanking = this.parseJSONData(data)
         const lastYearRanking = await this.getLastYearPR()
