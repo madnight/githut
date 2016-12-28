@@ -1,18 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import _ from 'lodash'
-import {
-    sortBy,
-    reverse,
-    uniqBy,
-    reject,
-    map,
-    take,
-    groupBy,
-    sum,
-    filter
-} from 'lodash/fp'
-// import pullRequests from '../../data/github-pr-all.json'
+import { flow, first, range, includes, uniqBy, reject, flatten, map,
+    split, take, zipWith, divide, unzip, each, sum, filter } from 'lodash/fp'
 import pr from '../../data/gh-pull-request.json'
 import ReactHighcharts from 'react-highcharts'
 import {LangChartStore} from '../stores/LangChartStore'
@@ -27,42 +16,40 @@ export default class LangChart extends React.Component {
 
     getTopLanguages(data) {
         const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX']
-        return _.flow(
-            reject(o => _.includes(nonProgrammingLanguage, o.name)),
+        return flow(
+            reject(o => includes(nonProgrammingLanguage, o.name)),
             map('name'),
             take(10)
         )(data)
     }
 
     parseJSONData(data) {
-        return _.chain(data)
-            .split('\n')
-            .map(JSON.parse)
-            .each(o => o.count = Math.floor(o.count))
-            .value()
+        return flow(
+            split('\n'),
+            map(JSON.parse),
+            each(o => o.count = Math.floor(o.count))
+        )(data)
     }
 
     categories() {
-        return _.flatten(_.map(_.range(12, 99), year =>
-            _.map(_.range(1, 5), quarter => year + "/Q" + quarter)))
-    }
-
-    sumQuarters(data) {
-        return _.each(data, v => v.data = _.map(_.chunk(v.data, 3), _.sum))
+        return flatten(
+            map(year =>
+            map(quarter => year + "/Q" + quarter)(range(1, 5))
+        )(range(12, 99)))
     }
 
     percentageData(data) {
-        const sum = _.map(_.unzip(_.map(data, i => i.data)), _.sum)
-        return _.each(data, v => v.data = _.zipWith(v.data, sum, _.divide))
+        const s = map(sum)(unzip(map('data')(data)))
+        return each(v => v.data = zipWith(divide)(v.data)(s))(data)
     }
 
     createSeries(data) {
         const topLang = this.getTopLanguages(data)
-        return _.flow(
-            filter(o => _.includes(topLang, o.name)),
+        return flow(
+            filter(o => includes(o.name)(topLang)),
             map(d => ({
                 name: d.name,
-                data: _.map(_.filter(data, {'name': d.name}), d => d.count)
+                data: map(d => d.count)(filter({'name': d.name})(data))
             })),
             uniqBy('name'),
         ).bind(this)(data)
@@ -71,14 +58,13 @@ export default class LangChart extends React.Component {
     async componentDidMount() {
         const {data} = await axios.get(pr)
         const pullRequests = this.parseJSONData(data)
-        const series = _.flow(
+        const series = flow(
             this.createSeries,
-            // this.sumQuarters,
-            this.percentageData).bind(this)
-        console.log(this.createSeries(pullRequests))
+            this.percentageData
+        ).bind(this)
         let chart = this.refs.chart.getChart()
-        _.map(series(pullRequests), s => chart.addSeries(s, false))
-        _.first(chart.xAxis).setCategories(this.categories())
+        map(s => chart.addSeries(s, false))(series(pullRequests))
+        first(chart.xAxis).setCategories(this.categories())
         chart.redraw()
     }
 
