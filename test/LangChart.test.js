@@ -29,24 +29,6 @@ describe('Test LangChart', () => {
     )
   })
 
-  it('sumQuarters summarize monthly data to quarters', () => {
-    const sumQ = (new LangChart()).sumQuarters([
-            { data: [ 1, 2, 3 ] },
-            { data: [ 0, 5, 42 ] },
-            { data: [ -2, 2, 2, 50, 1, 2 ] }
-    ])
-    expect(sumQ).to.eql([
-            { data: [ 6 ] },
-            { data: [ 47 ] },
-            { data: [ 2, 53 ] }
-    ])
-    expect(sumQ).not.to.eql([
-            { data: [ 6 ] },
-            { data: [ 47 ] },
-            { data: [ 3, 53 ] }
-    ])
-  })
-
   it('render should work', () => {
     mount(<LangChart/>)
   })

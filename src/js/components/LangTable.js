@@ -2,9 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import pullRequests from '../../data/github-pr-2016-11.json'
 import lastYearPR from '../../data/github-pr-2015.json'
-import _ from 'lodash'
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-
+import { filter, assign, update, take, includes, reject, map, split } from 'lodash/fp'
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 export default class LangTable extends React.Component {
 
     constructor() {
@@ -16,7 +15,7 @@ export default class LangTable extends React.Component {
         this.state = {
             data: []
         };
-        this.nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog',
+        this.nonProgLang = ['HTML', 'CSS' ,'Gettext Catalog',
             'Jupyter Notebook', 'Makefile', 'TeX', 'ApacheConf', 'CMAKE',
             'Groff', 'XSLT', 'CMake', 'Nginx', 'QMake', 'Yacc', 'Lex',
             'Protocol Buffer', 'Batchfile', 'Smarty', 'Scilab', 'PLpgSQL',
@@ -25,13 +24,12 @@ export default class LangTable extends React.Component {
     }
 
     parseJSONData(data) {
-        return _.chain(data)
-          .split('\n')
-          .map(JSON.parse)
-          .each(o => o.pull_request = JSON.parse(o.pull_request))
-          .reject(o => _.includes(this.nonProgrammingLanguage, o.pull_request))
-          .map((o, i) => _.assign(o, {id: ++i}))
-          .value()
+        return data
+          | split('\n')
+          | map(JSON.parse)
+          | map(update('name')(JSON.parse))
+          | reject(o => includes(o.name)(this.nonProgLang))
+          | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
     }
 
     async getLastYearPR() {
@@ -59,13 +57,13 @@ export default class LangTable extends React.Component {
     }
 
     getTrend(current, last) {
-        return _.chain(current)
-          .each(l => _.each(last, y => {
-                if (y.pull_request == l.pull_request)
-                    _.assign(l, { trend: y.id - l.id })
-                }))
-          .take(50)
-          .value()
+        return current
+          | map(cur => {
+              const last = filter({ name: cur.name })(last)
+              return assign({ trend: cur.id - last.id })(cur)
+          })
+          | take(50)
+
     }
 
     async componentDidMount() {
@@ -94,7 +92,7 @@ export default class LangTable extends React.Component {
                 </TableHeaderColumn>
                 <TableHeaderColumn
                     dataAlign="center"
-                    dataField='pull_request'>
+                    dataField='name'>
                     Programming Language
                 </TableHeaderColumn>
                 <TableHeaderColumn

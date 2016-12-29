@@ -2,6 +2,7 @@
   "plugins": [
     "add-module-exports",
     "transform-class-properties",
+    "pipe-operator-curry",
     ["transform-runtime", {
      "polyfill": false,
      "regenerator": true

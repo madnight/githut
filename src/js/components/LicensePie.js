@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import licenses from '../../data/github-licenses.json'
 import ReactHighcharts from 'react-highcharts'
-import _ from 'lodash'
+import { mapKeys, update, take, map, split, each } from 'lodash/fp'
 
 export default class LicensePie extends React.Component {
 
@@ -25,13 +25,12 @@ export default class LicensePie extends React.Component {
     async componentDidMount() {
         const chart = this.refs.chart.getChart()
         const { data } = await axios.get(licenses)
-        const lic = _.chain(data)
-          .split('\n')
-          .map(JSON.parse)
-          .map(d => _.mapKeys(d, (val, key) => key === 'license' ? 'name' : 'y'))
-          .each(o => o.y = Math.floor(o.y))
-          .take(5)
-          .value()
+        const lic = data
+          | split('\n')
+          | map(JSON.parse)
+          | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
+          | map(update('y')(Math.floor))
+          | take(5)
         chart.addSeries({ data: lic }, false)
         chart.redraw()
     }
