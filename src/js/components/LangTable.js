@@ -4,6 +4,8 @@ import pullRequests from '../../data/github-pr-2016-11.json'
 import lastYearPR from '../../data/github-pr-2015.json'
 import { filter, assign, update, take, includes, reject, map, split } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
+import { NonLangStore } from '../stores/NonLangStore'
+
 export default class LangTable extends React.Component {
 
     constructor() {
@@ -15,20 +17,15 @@ export default class LangTable extends React.Component {
         this.state = {
             data: []
         };
-        this.nonProgLang = ['HTML', 'CSS' ,'Gettext Catalog',
-            'Jupyter Notebook', 'Makefile', 'TeX', 'ApacheConf', 'CMAKE',
-            'Groff', 'XSLT', 'CMake', 'Nginx', 'QMake', 'Yacc', 'Lex',
-            'Protocol Buffer', 'Batchfile', 'Smarty', 'Scilab', 'PLpgSQL',
-            'Perl6', 'Handlebars', 'NSIS', 'M4', 'PLSQL', 'Arduino', 'CMake',
-            'ApacheConf', 'XML', 'SaltStack', 'Vue', 'GCC Machine Description']
     }
 
     parseJSONData(data) {
+        const nonLang = new NonLangStore().getConfig()
         return data
           | split('\n')
           | map(JSON.parse)
           | map(update('name')(JSON.parse))
-          | reject(o => includes(o.name)(this.nonProgLang))
+          | reject(o => includes(o.name)(nonLang.lang))
           | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
     }
 
@@ -61,7 +58,7 @@ export default class LangTable extends React.Component {
           | map(cur => {
               const last = filter({ name: cur.name })(last)
               return assign({ trend: cur.id - last.id })(cur)
-          })
+            })
           | take(50)
 
     }

@@ -1,10 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import { update, first, range, includes, uniqBy, reject, flatten, map,
-    split, take, zipWith, divide, unzip, sum, filter } from 'lodash/fp'
+    split, take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
 import pr from '../../data/gh-pull-request.json'
 import ReactHighcharts from 'react-highcharts'
-import {LangChartStore} from '../stores/LangChartStore'
+import { LangChartStore } from '../stores/LangChartStore'
+import { NonLangStore } from '../stores/NonLangStore'
 
 export default class LangChart extends React.Component {
 
@@ -15,10 +16,10 @@ export default class LangChart extends React.Component {
     }
 
     getTopLanguages(data) {
-        const nonProgrammingLanguage = ['HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook', 'Makefile', 'TeX']
+        const nonLang = new NonLangStore().getConfig()
         return data
             | map('name')
-            | reject(includes(nonProgrammingLanguage))
+            | reject(includes(nonLang.lang))
             | take(10)
     }
 
@@ -34,6 +35,7 @@ export default class LangChart extends React.Component {
                map(q => y + "/Q" + q)(range(1, 5))
                )(range(12, 99))
             | flatten
+            | drop(1)
     }
 
     percentageData(data) {
