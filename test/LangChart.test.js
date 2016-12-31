@@ -21,7 +21,7 @@ describe('Test LangChart', () => {
 
   it('categories generates YEAR/QUARTER (12/Q1, 12/Q2, ...)', () => {
     const cats = new LangChart().categories()
-    _.each(['12/Q1', '13/Q3', '16/Q4'], (date) =>
+    _.each(['12/Q2', '13/Q3', '16/Q4'], (date) =>
       expect(cats).to.contain(date)
     )
     _.each(['11/Q1', '101/Q1', '14/Q5', 'Q1/15'], (date) =>
