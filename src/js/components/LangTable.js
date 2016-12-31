@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import pullRequests from '../../data/github-pr-2016-11.json'
 import lastYearPR from '../../data/github-pr-2015.json'
-import { filter, assign, update, take, includes, reject, map, split } from 'lodash/fp'
+import { filter, first, assign, update, take, includes, reject, map, split } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 
@@ -56,8 +56,8 @@ export default class LangTable extends React.Component {
     getTrend(current, last) {
         return current
           | map(cur => {
-              const last = filter({ name: cur.name })(last)
-              return assign({ trend: cur.id - last.id })(cur)
+              const l = filter({ name: cur.name })(last) | first
+              return l ? assign({ trend: l.id - cur.id })(cur) : cur
             })
           | take(50)
 
