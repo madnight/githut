@@ -5,6 +5,7 @@ export class LangChartStore {
         credits: { enabled: false },
         chart: { type: 'spline', backgroundColor: 'transparent' },
         title: { text: '' },
+        xAxis: { categories: [] },
         yAxis: {
           title: {
             text: ''

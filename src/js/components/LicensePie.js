@@ -8,7 +8,7 @@ export default class LicensePie extends React.Component {
 
     constructor() {
         super()
-        this.config = {
+        this.state = {
         credits: { enabled: false },
         chart: { type: 'pie', backgroundColor: 'transparent' },
         title: { text: 'Top 5 Open Source Licenses' },
@@ -23,19 +23,17 @@ export default class LicensePie extends React.Component {
     }
 
     async componentDidMount() {
-        const chart = this.refs.chart.getChart()
         const { data } = await axios.get(licenses)
-        const lic = data
+        const series = data
           | split('\n')
           | map(JSON.parse)
           | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
           | map(update('y')(Math.floor))
           | take(5)
-        chart.addSeries({ data: lic }, false)
-        chart.redraw()
+        this.setState({series: [{data: series}]})
     }
 
     render() {
-        return (<ReactHighcharts config={ this.config } ref="chart"/>);
+        return (<ReactHighcharts config={ this.state }/>);
     }
 }

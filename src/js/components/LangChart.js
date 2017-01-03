@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { update, first, range, includes, uniqBy, reject, flatten, map,
+import { update, range, includes, uniqBy, reject, flatten, map,
     split, take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
 import pr from '../../data/gh-pull-request.json'
 import ReactHighcharts from 'react-highcharts'
@@ -12,7 +12,7 @@ export default class LangChart extends React.Component {
     constructor() {
         super()
         const store = new LangChartStore
-        this.config = store.getConfig()
+        this.state = store.getConfig()
     }
 
     getTopLanguages(data) {
@@ -56,16 +56,17 @@ export default class LangChart extends React.Component {
 
     async componentDidMount() {
         const {data} = await axios.get(pr)
-        const chart = this.refs.chart.getChart()
-        this.parseJSONData(data)
+        const series = this.parseJSONData(data)
             | this.createSeries
             | this.percentageData
-            | map(s => chart.addSeries(s, false))
-        first(chart.xAxis).setCategories(this.categories())
-        chart.redraw()
+        this.setState(
+          { series: series,
+            xAxis: { categories: this.categories() }
+          }
+        );
     }
 
     render() {
-        return (<ReactHighcharts config={this.config} ref="chart"/>);
+        return (<ReactHighcharts config={ this.state }/>);
     }
 }
