@@ -1,8 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import pullRequests from '../../data/github-pr-2016-11.json'
-import lastYearPR from '../../data/github-pr-2015.json'
-import { filter, first, assign, update, take, includes, reject, map, split } from 'lodash/fp'
+import pullRequests from '../../data/gh-pull-request.json'
+import { filter, toString, omitBy, isNil, first, assign, take, includes, reject, pick, map, split } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 
@@ -19,19 +18,16 @@ export default class LangTable extends React.Component {
         };
     }
 
-    parseJSONData(data) {
+    parseJSONData(data, year, quarter) {
         const nonLang = new NonLangStore().getConfig()
         return data
           | split('\n')
           | map(JSON.parse)
-          | map(update('name')(JSON.parse))
+          | filter({year: year})
+          | filter({quarter: quarter})
+          | map(pick(['name', 'count']))
           | reject(o => includes(o.name)(nonLang.lang))
           | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
-    }
-
-    async getLastYearPR() {
-        const { data } = await axios.get(lastYearPR)
-        return this.parseJSONData(data)
     }
 
     trendFormatter(cell, row) {
@@ -44,10 +40,12 @@ export default class LangTable extends React.Component {
                     return angle('double-up')
                 case n < -3:
                     return angle('double-down')
-                case n < 1:
+                case n < 0:
                     return angle('down')
-                default:
+                case n > 0:
                     return angle('up')
+                default:
+                    return 'error'
                 }
             }
         return `${arrow(cell)}`
@@ -56,19 +54,23 @@ export default class LangTable extends React.Component {
     getTrend(current, last) {
         return current
           | map(cur => {
-              const l = filter({ name: cur.name })(last) | first
-              return l ? assign({ trend: l.id - cur.id })(cur) : cur
+              const l = last
+                | filter({ name: cur.name })
+                | first
+                | omitBy(isNil)
+              return assign({ trend: l.id - cur.id })(cur)
             })
           | take(50)
-
     }
 
     async componentDidMount() {
         const { data } = await axios.get(pullRequests)
-        const curYearRanking = this.parseJSONData(data)
-        const lastYearRanking = await this.getLastYearPR()
+        const { year, quarter } = { year:'2016', quarter:'4' }
+        const dec = i => --i | toString
+        const curYearRanking = this.parseJSONData(data, year, quarter)
+        const lastYearRanking = this.parseJSONData(data, dec(year), quarter)
         const langRanking = this.getTrend(curYearRanking, lastYearRanking)
-        this.setState({data: langRanking});
+        this.setState({data: langRanking})
     }
 
     render() {

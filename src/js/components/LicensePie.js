@@ -9,11 +9,11 @@ export default class LicensePie extends React.Component {
     constructor() {
         super()
         this.state = {
-        credits: { enabled: false },
-        chart: { type: 'pie', backgroundColor: 'transparent' },
-        title: { text: 'Top 5 Open Source Licenses' },
-        tooltip: {
-            formatter: function() {
+            credits: { enabled: false },
+            chart: { type: 'pie', backgroundColor: 'transparent' },
+            title: { text: 'Top 5 Open Source Licenses' },
+            tooltip: {
+                formatter: function() {
                     return '<span style="color:' + this.series.color + '">'
                         + this.point.name + '</span>: <b>'
                         + (this.percentage).toFixed(2) + '%</b>'

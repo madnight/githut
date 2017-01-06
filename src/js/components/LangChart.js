@@ -19,7 +19,7 @@ export default class LangChart extends React.Component {
         const nonLang = new NonLangStore().getConfig()
         return data
             | map('name')
-            | reject(includes(nonLang.lang))
+            | reject(o => includes(o)(nonLang.lang))
             | take(10)
     }
 
@@ -55,7 +55,7 @@ export default class LangChart extends React.Component {
     }
 
     async componentDidMount() {
-        const {data} = await axios.get(pr)
+        const { data } = await axios.get(pr)
         const series = this.parseJSONData(data)
             | this.createSeries
             | this.percentageData
@@ -63,10 +63,10 @@ export default class LangChart extends React.Component {
           { series: series,
             xAxis: { categories: this.categories() }
           }
-        );
+        )
     }
 
     render() {
-        return (<ReactHighcharts config={ this.state }/>);
+        return (<ReactHighcharts config={ this.state }/>)
     }
 }
