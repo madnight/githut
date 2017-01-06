@@ -31,9 +31,10 @@ export default class LangChart extends React.Component {
     }
 
     categories() {
-        return map(y =>
-               map(q => y + "/Q" + q)(range(1, 5))
-               )(range(12, 99))
+        return range(12, 30)
+            | map(y => range(1, 5)
+                | map(q => y + "/Q" + q)
+              )
             | flatten
             | drop(1)
     }

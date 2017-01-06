@@ -10,7 +10,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  devtool: debug ? 'cheap-module-eval-source-map' : null,
+  devtool: debug ? 'source-map' : null,
   entry: './js/client.js',
   module: {
     loaders: [
