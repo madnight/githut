@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import pullRequests from '../../data/gh-pull-request.json'
-import { filter, toString, omitBy, isNil, first, assign, take, includes, reject, pick, map, split } from 'lodash/fp'
+import { filter, sortBy, reverse, toString, omitBy, isNil, first, assign, take, includes, reject, pick, map, split } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 
@@ -18,11 +18,23 @@ export default class LangTable extends React.Component {
         };
     }
 
-    parseJSONData(data, year, quarter) {
-        const nonLang = new NonLangStore().getConfig()
+    parseJSON(data) {
         return data
           | split('\n')
           | map(JSON.parse)
+    }
+
+    latestDate(data) {
+        return data
+          | map(pick(['year', 'quarter']))
+          | sortBy(['year', 'quarter'])
+          | reverse
+          | first
+    }
+
+    filterDate(data, year, quarter) {
+        const nonLang = new NonLangStore().getConfig()
+        return data
           | filter({year: year})
           | filter({quarter: quarter})
           | map(pick(['name', 'count']))
@@ -65,10 +77,11 @@ export default class LangTable extends React.Component {
 
     async componentDidMount() {
         const { data } = await axios.get(pullRequests)
-        const { year, quarter } = { year:'2016', quarter:'4' }
+        const d = data | this.parseJSON
+        const { year, quarter } = d | this.latestDate
         const dec = i => --i | toString
-        const curYearRanking = this.parseJSONData(data, year, quarter)
-        const lastYearRanking = this.parseJSONData(data, dec(year), quarter)
+        const curYearRanking = this.filterDate(d, year, quarter)
+        const lastYearRanking = this.filterDate(d, dec(year), quarter)
         const langRanking = this.getTrend(curYearRanking, lastYearRanking)
         this.setState({data: langRanking})
     }
