@@ -56,8 +56,8 @@ export default class LangTable extends React.Component {
                     return angle('down')
                 case n > 0:
                     return angle('up')
-                default:
-                    return 'error'
+                default: // direct jump to top 50 and previously unkown
+                    return angle('double-up')
                 }
             }
         return `${arrow(cell)}`
