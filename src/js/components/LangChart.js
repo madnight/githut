@@ -1,12 +1,12 @@
 import React from 'react'
-import axios from 'axios'
-import { update, range, includes, uniqBy, reject, flatten, map,
-    split, take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
-import pr from '../../data/gh-pull-request.json'
+import { observer } from 'mobx-react'
+import { update, range, sortBy, includes, uniqBy, reject, flatten, map,
+    take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
 import ReactHighcharts from 'react-highcharts'
 import { LangChartStore } from '../stores/LangChartStore'
 import { NonLangStore } from '../stores/NonLangStore'
 
+@observer
 export default class LangChart extends React.Component {
 
     constructor() {
@@ -21,13 +21,6 @@ export default class LangChart extends React.Component {
             | map('name')
             | reject(o => includes(o)(nonLang.lang))
             | take(10)
-    }
-
-    parseJSONData(data) {
-        return data
-            | split('\n')
-            | map(JSON.parse)
-            | map(update('count')(Math.floor))
     }
 
     categories() {
@@ -53,21 +46,29 @@ export default class LangChart extends React.Component {
                 data: map('count')(filter({'name': d.name})(data))
               }))
             | uniqBy('name')
+            | sortBy('name')
     }
 
-    async componentDidMount() {
-        const { data } = await axios.get(pr)
-        const series = this.parseJSONData(data)
-            | this.createSeries
-            | this.percentageData
+    static propTypes = {
+        store: React.PropTypes.any.isRequired
+    }
+
+    componentWillReact() {
+        const d = this.props.store.getData
+        const series = d
+        | map(update('count')(Math.floor))
+        | this.createSeries
+        | this.percentageData
         this.setState(
-          { series: series,
-            xAxis: { categories: this.categories() }
-          }
+            { series: series,
+                xAxis: { categories: this.categories() }
+            }
         )
     }
 
     render() {
+        if (!this.props.store.getData)
+            return null
         return (<ReactHighcharts config={ this.state }/>)
     }
 }

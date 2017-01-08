@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-import pullRequests from '../../data/gh-pull-request.json'
-import { filter, sortBy, reverse, toString, omitBy, isNil, first, assign, take, includes, reject, pick, map, split } from 'lodash/fp'
+import { filter, sortBy, reverse, toString, omitBy, isNil, first,
+    assign, take, includes, reject, pick, map } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 import { observer } from 'mobx-react'
@@ -81,7 +80,9 @@ export default class LangTable extends React.Component {
         this.setState({data: langRanking})
     }
 
-
+    static propTypes = {
+            store: React.PropTypes.any.isRequired
+    }
 
     render() {
         if (!this.props.store.getData)

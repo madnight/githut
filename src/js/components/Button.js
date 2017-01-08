@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import { update, range, includes, uniqBy, reject, flatten, map, split, take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
+import { first, keys } from 'lodash/fp'
 
 @observer
 export default class Button extends React.Component {
@@ -9,13 +9,17 @@ export default class Button extends React.Component {
         super()
     }
 
+    static propTypes = {
+        store: React.PropTypes.any.isRequired
+    }
+
     render() {
         const next = () => this.props.store.next()
         return (
             <div>
                 <center>
                     <button onClick={next}>
-                        { this.props.store.id }
+                        { this.props.store.event | first | keys }
                     </button>
                 </center>
             </div>

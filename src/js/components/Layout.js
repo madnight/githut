@@ -15,7 +15,7 @@ export default class Layout extends React.Component {
       <div>
         <Head/>
         <Header/>
-        <LangChart/>
+        <LangChart store={EventStore}/>
         <Button store={EventStore}/>
         <LangTable store={EventStore}/>
         <LicensePie/>

@@ -20,6 +20,11 @@ export class LangChartStore {
             spline: { lineWidth: 4,
                 states: { hover: { lineWidth: 5 } },
                 marker: { enabled: false }
+            },
+            series: {
+              animation: {
+                  duration: 500,
+              }
             }
         },
         tooltip: {
