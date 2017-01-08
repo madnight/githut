@@ -26,12 +26,15 @@
     "babel-runtime": "^6.20.0",
     "bootstrap": "^3.3.7",
     "lodash": "^4.16.4",
+    "mobx": "^2.7.0",
+    "mobx-react": "^4.1.0",
     "react-helmet": "^3.2.3",
     "react-highcharts": "^11.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-add-module-exports": "^0.2.1",

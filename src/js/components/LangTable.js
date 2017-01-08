@@ -4,7 +4,9 @@ import pullRequests from '../../data/gh-pull-request.json'
 import { filter, sortBy, reverse, toString, omitBy, isNil, first, assign, take, includes, reject, pick, map, split } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
+import { observer } from 'mobx-react'
 
+@observer
 export default class LangTable extends React.Component {
 
     constructor() {
@@ -16,12 +18,6 @@ export default class LangTable extends React.Component {
         this.state = {
             data: []
         };
-    }
-
-    parseJSON(data) {
-        return data
-          | split('\n')
-          | map(JSON.parse)
     }
 
     latestDate(data) {
@@ -75,9 +71,8 @@ export default class LangTable extends React.Component {
           | take(50)
     }
 
-    async componentDidMount() {
-        const { data } = await axios.get(pullRequests)
-        const d = data | this.parseJSON
+    componentWillReact() {
+        const d = this.props.store.getData
         const { year, quarter } = d | this.latestDate
         const dec = i => --i | toString
         const curYearRanking = this.filterDate(d, year, quarter)
@@ -86,7 +81,11 @@ export default class LangTable extends React.Component {
         this.setState({data: langRanking})
     }
 
+
+
     render() {
+        if (!this.props.store.getData)
+            return null
         return (
             <BootstrapTable
                 condensed

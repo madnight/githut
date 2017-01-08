@@ -10,6 +10,11 @@
     "react",
     "promise"
   ],
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "env": {
     "node": true,
     "mocha": true

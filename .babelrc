@@ -1,6 +1,7 @@
 {
   "plugins": [
     "add-module-exports",
+    "transform-decorators-legacy",
     "transform-class-properties",
     "pipe-operator-curry",
     ["transform-runtime", {
