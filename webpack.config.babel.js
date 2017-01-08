@@ -46,6 +46,7 @@ module.exports = {
     filename: 'client_[hash:6].min.js'
   },
   externals: {
+    'materialize': 'materialize',
     'cheerio': 'window',
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
@@ -53,6 +54,10 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('styles_[hash:6].css', { allChunks: false }),
+    new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery"
+       }),
     new HtmlWebpackPlugin({
       title: 'GitHut 2.0'
     })

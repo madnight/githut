@@ -26,10 +26,10 @@ export class EventStore {
 
   @action async next() {
     const rotateRight = a => a.push(a.shift())
+    rotateRight(this.event)
     this.event
       | first
       | mapValues(e => this.fetchData(e))
-    rotateRight(this.event)
   }
 
   parseJSON(data) {
