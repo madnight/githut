@@ -20,7 +20,7 @@ export default class Button extends React.Component {
         return (
             <div>
                 <center>
-                    <MaterialButton className="waves-effect waves-light btn"  onClick={next}>
+                    <MaterialButton className="waves-effect waves-light blue-grey lighten-2 btn"  onClick={next}>
                         { this.props.store.event | first | keys }
                     </MaterialButton>
                 </center>
