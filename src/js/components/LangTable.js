@@ -81,7 +81,7 @@ export default class LangTable extends React.Component {
     }
 
     static propTypes = {
-            store: React.PropTypes.any.isRequired
+            store: React.PropTypes.any
     }
 
     render() {

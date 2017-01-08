@@ -50,10 +50,12 @@ export default class LangChart extends React.Component {
     }
 
     static propTypes = {
-        store: React.PropTypes.any.isRequired
+        store: React.PropTypes.any
     }
 
     componentWillReact() {
+        if (!this.props.store.getData)
+            return null
         const d = this.props.store.getData
         const series = d
         | map(update('count')(Math.floor))
