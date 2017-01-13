@@ -11,10 +11,6 @@ export default class LangTable extends React.Component {
 
     constructor(props) {
         super(props)
-        this.options = {
-            defaultSortName: 'count',
-            defaultSortOrder: 'asc'
-        };
         this.state = {
             data: []
         };
@@ -104,8 +100,7 @@ export default class LangTable extends React.Component {
                     width='150px'
                     dataAlign='center'
                     dataField='id'
-                    isKey={true}
-                    dataSort>
+                    isKey={true}>
                     # Ranking
                 </TableHeaderColumn>
                 <TableHeaderColumn
