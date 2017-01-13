@@ -4,12 +4,13 @@ import { filter, sortBy, reverse, toString, omitBy, isNil, first,
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 import { observer } from 'mobx-react'
+import { autorun } from 'mobx'
 
 @observer
 export default class LangTable extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.options = {
             defaultSortName: 'count',
             defaultSortOrder: 'asc'
@@ -70,22 +71,27 @@ export default class LangTable extends React.Component {
           | take(50)
     }
 
-    componentWillReact() {
-        const d = this.props.store.getData
-        const { year, quarter } = d | this.latestDate
-        const dec = i => --i | toString
-        const curYearRanking = this.filterDate(d, year, quarter)
-        const lastYearRanking = this.filterDate(d, dec(year), quarter)
-        const langRanking = this.getTrend(curYearRanking, lastYearRanking)
-        this.setState({data: langRanking})
+    componentDidMount() {
+    this.handler = autorun(() => {
+        const data = this.props.store.getData
+        if (data.length > 1000) {
+            const { year, quarter } = data | this.latestDate
+            const dec = i => --i | toString
+            const curYearRanking = this.filterDate(data, year, quarter)
+            const lastYearRanking = this.filterDate(data, dec(year), quarter)
+            const langRanking = this.getTrend(curYearRanking, lastYearRanking)
+            this.setState({data: langRanking})
+        }
+      })
     }
 
     static propTypes = {
-            store: React.PropTypes.any
+            store: React.PropTypes.object.isRequired
     }
 
     render() {
-        if (!this.props.store.getData)
+        if (this.props.store.getData.length < 1000
+            || this.state.data.length < 50)
             return null
         return (
             <BootstrapTable

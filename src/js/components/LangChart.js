@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import { autorun } from 'mobx'
 import { update, range, sortBy, includes, uniqBy, reject, flatten, map,
     take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
 import ReactHighcharts from 'react-highcharts'
@@ -9,8 +10,8 @@ import { NonLangStore } from '../stores/NonLangStore'
 @observer
 export default class LangChart extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         const store = new LangChartStore
         this.state = store.getConfig()
     }
@@ -50,27 +51,27 @@ export default class LangChart extends React.Component {
     }
 
     static propTypes = {
-        store: React.PropTypes.any
+        store: React.PropTypes.object.isRequired
     }
 
-    componentWillReact() {
-        if (!this.props.store.getData)
-            return null
-        const d = this.props.store.getData
-        const series = d
-        | map(update('count')(Math.floor))
-        | this.createSeries
-        | this.percentageData
-        this.setState(
-            { series: series,
+    componentWillMount() {
+    this.handler = autorun(() => {
+        const data = this.props.store.getData
+        if (data.length > 1000) {
+            const series = data
+            | map(update('count')(Math.floor))
+            | this.createSeries
+            | this.percentageData
+            this.setState({
+                series: series,
                 xAxis: { categories: this.categories() }
-            }
-        )
+            })
+          }
+        });
     }
+
 
     render() {
-        if (!this.props.store.getData)
-            return null
         return (<ReactHighcharts config={ this.state }/>)
     }
 }

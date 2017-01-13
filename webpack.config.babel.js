@@ -66,7 +66,8 @@ module.exports = {
        }),
     new HtmlWebpackPlugin({
       title: 'GitHut 2.0'
-    })
+    }),
+    new webpack.NoErrorsPlugin()
   ].concat(debug ?
   [
      new WebpackBrowserPlugin()

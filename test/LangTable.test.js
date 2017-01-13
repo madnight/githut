@@ -1,6 +1,7 @@
 import React from 'react'
 import expect from 'expect.js'
 import LangTable from '../src/js/components/LangTable'
+import EventStore from "../src/js/stores/EventStore"
 import { mount } from 'enzyme'
 import _ from 'lodash'
 
@@ -16,12 +17,11 @@ describe('Test LangTable', () => {
   })
 
   it('render should work', () => {
-    mount(<LangTable/>)
+    mount(<LangTable store={EventStore}/>)
   })
 
   it('chart should contain top 50 languages', async () => {
-    const wrapper = mount(<LangTable/>)
-    await waitFor(wrapper, "Python")
+    const wrapper = mount(<LangTable store={EventStore}/>)
     const html = wrapper.html()
     _.each(['Ranking', 'Trend', 'Python', 'TypeScript',
         'CoffeeScript', 'Haskell'], (lang) =>
@@ -30,8 +30,7 @@ describe('Test LangTable', () => {
   })
 
   it('chart should not contain non programming languages', async () => {
-    const wrapper = mount(<LangTable/>)
-    await waitFor(wrapper, "Python")
+    const wrapper = mount(<LangTable store={EventStore}/>)
     const html = wrapper.html()
     _.each(['Makefile', 'Jupyter Notebook', 'Smalltalk'], (lang) =>
         expect(html).to.not.contain(lang)

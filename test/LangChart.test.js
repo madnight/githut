@@ -1,14 +1,10 @@
 import React from 'react'
 import expect from 'expect.js'
 import LangChart from '../src/js/components/LangChart'
+import EventStore from "../src/js/stores/EventStore"
+// import {React as R} from 'react/addons'
 import { mount } from 'enzyme'
 import _ from 'lodash'
-
-const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
-const waitFor = async (wrapper, str) => {
-  while (!_.includes(wrapper.html(), str))
-      await sleep(10)
-}
 
 describe('Test LangChart', () => {
   it('component import should work', () => {
@@ -30,12 +26,11 @@ describe('Test LangChart', () => {
   })
 
   it('render should work', () => {
-    mount(<LangChart/>)
+    mount(<LangChart store={EventStore}/>)
   })
 
   it('chart should contain JavaScript and Python', async () => {
-    const wrapper = mount(<LangChart/>)
-    await waitFor(wrapper, "Python")
+    const wrapper = mount(<LangChart store={EventStore}/>)
     expect(wrapper.html()).to.contain('JavaScript')
     expect(wrapper.html()).to.contain('Python')
   }).timeout(5000)
