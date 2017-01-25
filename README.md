@@ -16,7 +16,7 @@ group by language.name order by count DESC
 ```
 
 Result of first 10 from 322
-```Javascript
+```JavaScript
 {"language_name":"JavaScript","count":"1006022"}
 {"language_name":"CSS","count":"745573"}
 {"language_name":"HTML","count":"663315"}
@@ -38,7 +38,7 @@ group by license order by count DESC
 ```
 
 Full result
-```Javascript
+```JavaScript
 {"license":"mit","count":"1551711"}
 {"license":"apache-2.0","count":"455316"}
 {"license":"gpl-2.0","count":"376453"}
@@ -58,7 +58,7 @@ Full result
 
 ### Pull Requests
 Get the number of Pull Requests per day/month/year
-```Javascript
+```SQL
 SELECT language as name, year, quarter, count FROM (
 SELECT * FROM (
 SELECT lang as language,
