@@ -9,7 +9,7 @@ export default class Content extends React.Component {
       width: '100%',
       margin: 'auto',
       maxWidth: 960,
-      align: 'center',
+      textAlign: 'justify',
       overflow: 'hidden',
       padding: '10px',
       color: '#111',
