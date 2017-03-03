@@ -1,4 +1,5 @@
 import React from 'react'
+import GitHubForkRibbon from 'react-github-fork-ribbon'
 
 export default class Header extends React.Component {
 
@@ -12,10 +13,14 @@ export default class Header extends React.Component {
                 <div id="header">
                     <h1>Git<b>Hut 2.0</b></h1>
                     <h2>A small place to discover languages in GitHub</h2>
-                    <div className="social social-top">
-                        <a href="//github.com/madnight/githut/" target="_blank" title="GitHub Repository"> <i className="fa fa-github"></i></a>
-                    </div>
                 </div>
+                <GitHubForkRibbon
+                href="//github.com/madnight/githut"
+                color="black"
+                target="_blank"
+                position="right">
+                Fork me on GitHub
+                </GitHubForkRibbon>
             </div>
         )
     }

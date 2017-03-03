@@ -29,6 +29,7 @@
     "lodash": "^4.16.4",
     "mobx": "^2.7.0",
     "mobx-react": "^4.1.0",
+    "react-github-fork-ribbon": "^0.4.4",
     "react-helmet": "^3.2.3",
     "react-highcharts": "^11.0.0"
   },
