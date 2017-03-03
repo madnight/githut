@@ -31,6 +31,8 @@ describe('Test LangChart', () => {
 
   it('chart should contain JavaScript and Python', async () => {
     const wrapper = mount(<LangChart store={EventStore}/>)
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+    await sleep(3000)
     expect(wrapper.html()).to.contain('JavaScript')
     expect(wrapper.html()).to.contain('Python')
   }).timeout(5000)

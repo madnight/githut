@@ -22,12 +22,14 @@ describe('Test LangTable', () => {
 
   it('chart should contain top 50 languages', async () => {
     const wrapper = mount(<LangTable store={EventStore}/>)
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+    await sleep(3000)
     const html = wrapper.html()
     _.each(['Ranking', 'Trend', 'Python', 'TypeScript',
         'CoffeeScript', 'Haskell'], (lang) =>
         expect(html).to.contain(lang)
-    )
-  })
+      )
+  }).timeout(5000)
 
   it('chart should not contain non programming languages', async () => {
     const wrapper = mount(<LangTable store={EventStore}/>)
