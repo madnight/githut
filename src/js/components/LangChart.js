@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import { update, range, sortBy, includes, uniqBy, reject, flatten, map,
-    take, zipWith, divide, unzip, sum, filter, drop } from 'lodash/fp'
+    take, zipWith, divide, unzip, sum, filter, drop, first, keys, isEqual } from 'lodash/fp'
 import ReactHighcharts from 'react-highcharts'
 import { LangChartStore } from '../stores/LangChartStore'
 import { NonLangStore } from '../stores/NonLangStore'
@@ -57,16 +57,23 @@ export default class LangChart extends React.Component {
     componentWillMount() {
     this.handler = autorun(() => {
         const data = this.props.store.getData
-        if (data.length > 1000) {
-            const series = data
+        const title = this.props.store.event | first | keys
+        const series = data
             | map(update('count')(Math.floor))
             | this.createSeries
             | this.percentageData
-            this.setState({
-                series: series,
-                xAxis: { categories: this.categories() }
-            })
-          }
+
+        const newState = {
+            ...this.state,
+            yAxis: {
+                ...this.state.yAxis, title: { text: title }
+            },
+            series: series,
+            xAxis: { categories: this.categories() }
+        }
+
+        if (!isEqual(this.state, newState))
+            this.setState(newState)
         });
     }
 
