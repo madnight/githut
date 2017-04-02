@@ -19,6 +19,8 @@ export default class LangChart extends React.Component {
     getTopLanguages(data) {
         const nonLang = new NonLangStore().getConfig()
         return data
+            | sortBy(['year', 'quarter', 'count'])
+            | reverse
             | map('name')
             | reject(o => includes(o)(nonLang.lang))
             | take(10)
