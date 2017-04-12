@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
-import { update, range, sortBy, includes, uniqBy, reject, flatten, map,
+import { update, range, sortBy, reverse, includes, uniqBy, reject, flatten, map,
     take, zipWith, divide, unzip, sum, filter, drop, first, keys, isEqual } from 'lodash/fp'
 import ReactHighcharts from 'react-highcharts'
 import { LangChartStore } from '../stores/LangChartStore'
@@ -19,6 +19,8 @@ export default class LangChart extends React.Component {
     getTopLanguages(data) {
         const nonLang = new NonLangStore().getConfig()
         return data
+            | sortBy(['year', 'quarter', 'count'])
+            | reverse
             | map('name')
             | reject(o => includes(o)(nonLang.lang))
             | take(10)
