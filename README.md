@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/madnight/githut/badges/gpa.svg)](https://codeclimate.com/github/madnight/githut)
 [![Issue Count](https://codeclimate.com/github/madnight/githut/badges/issue_count.svg)](https://codeclimate.com/github/madnight/githut)
 [![dependencies Status](https://david-dm.org/madnight/githut/status.svg)](https://david-dm.org/madnight/githut)
+[![Known Vulnerabilities](https://snyk.io/test/github/madnight/githut/badge.svg)](https://snyk.io/test/github/madnight/githut)
 ![](https://i.imgur.com/WK7zKol.png)
 
 ## Data Generation
