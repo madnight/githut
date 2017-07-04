@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --progress --colors --content-base src && gulp minify",
-    "deploy": "npm run build && npm version patch && gulp deploy",
+    "deploy": "npm run build && gulp deploy",
     "lint": "eslint -c .eslintrc src",
     "babel": "babel-node --presets es2015",
     "ver": "npm version patch --git=true",
