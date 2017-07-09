@@ -1,0 +1,18 @@
+{
+  "name": "query",
+  "version": "1.0.0",
+  "description": "",
+  "main": "query.js",
+  "scripts": {
+    "start": "node query.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/bigquery": "0.9.3",
+    "@google-cloud/storage": "1.1.0",
+    "lodash": "^4.17.4",
+    "yargs": "7.1.0"
+  }
+}
