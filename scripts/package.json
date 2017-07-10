@@ -12,6 +12,7 @@
   "dependencies": {
     "@google-cloud/bigquery": "0.9.3",
     "@google-cloud/storage": "1.1.0",
+    "commander": "^2.11.0",
     "lodash": "^4.17.4",
     "yargs": "7.1.0"
   }
