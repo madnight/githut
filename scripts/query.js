@@ -20,9 +20,9 @@ const writeJsonToFile = q => async (json) => {
     const lineEndings = (json) => String(json).replace(/},{/g, '}\r\n{')
     await fs.writeFile(fileName, lineEndings(json), (err) => {
         if (err)
-            console.log('Could not write to ' + fileName + ' File ' + err)
+            process.stdout.write('Could not write to ' + fileName + ' File ' + err + '\n')
         else
-            console.log(fileName + ' successfully written')
+            process.stdout.write(fileName + ' successfully written\n')
     }
   )
 }
@@ -79,7 +79,7 @@ const main = async () => {
     try {
         await Promise.all(map(exec)(queries))
     } catch (err) {
-        console.log('Error while querying the BigQuery Google API ' + err)
+        process.stdout.write('Error while querying the BigQuery Google API ' + err + '\n')
     }
 }
 

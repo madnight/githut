@@ -8,7 +8,7 @@ gulp.task('deploy', () => {
     return gulp.src('./public/**/*')
     .pipe(ghPages())
   }, () => {
-    console.log('deploy aborted')
+    process.stdout.write('deploy aborted\n')
   })
 })
 
