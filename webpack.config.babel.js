@@ -12,6 +12,11 @@ module.exports = {
   context: path.join(__dirname, 'src'),
   devtool: debug ? 'source-map' : null,
   entry: './js/client.js',
+  resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+  },
   module: {
     loaders: [
       {

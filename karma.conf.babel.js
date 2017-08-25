@@ -7,7 +7,7 @@ wpConf.plugins = wpConf.plugins | initial
 
 module.exports = config => {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Firefox'],
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
@@ -34,12 +34,11 @@ module.exports = config => {
     config.browsers = [
       // 'Chrome_travis_ci',
       // Chrome is atm buggy https://github.com/karma-runner/karma/issues/1656
-      'PhantomJS',
       'Firefox']
   if (process.env['CHROME'])
     config.browsers = ['Chrome_travis_ci']
   if (process.env['BROWSERS'])
-    config.browsers = ['Chrome', 'PhantomJS', 'Firefox']
+    config.browsers = ['Chrome', 'Firefox']
   if (process.env['LOOP'])
     config.singleRun = false
 }
