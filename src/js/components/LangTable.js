@@ -92,7 +92,8 @@ export default class LangTable extends React.Component {
         return (
             <BootstrapTable
                 condensed
-                tableStyle={ { margin: '30px auto 30px auto', width: '50%' } }
+                striped
+                tableStyle={ { margin: '30px auto 30px auto', width: '70%' } }
                 data={this.state.data}
                 bordered={false}
                 options={this.options}>
@@ -109,6 +110,7 @@ export default class LangTable extends React.Component {
                     Programming Language
                 </TableHeaderColumn>
                 <TableHeaderColumn
+                    width='150px'
                     dataAlign="center"
                     dataField='trend'
                     dataFormat={ this.trendFormatter }>
