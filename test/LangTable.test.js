@@ -2,14 +2,11 @@ import React from 'react'
 import expect from 'expect.js'
 import LangTable from '../src/js/components/LangTable'
 import EventStore from "../src/js/stores/EventStore"
+import HistStore from "../src/js/stores/HistStore"
 import { mount } from 'enzyme'
 import _ from 'lodash'
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
-const waitFor = async (wrapper, str) => {
-  while (!_.includes(wrapper.html(), str))
-      await sleep(10)
-}
 
 describe('Test LangTable', () => {
   it('component import should work', () => {
@@ -17,11 +14,11 @@ describe('Test LangTable', () => {
   })
 
   it('render should work', () => {
-    mount(<LangTable store={EventStore}/>)
+    mount(<LangTable store={EventStore} hist={HistStore}/>)
   })
 
   it('chart should contain top 50 languages', async () => {
-    const wrapper = mount(<LangTable store={EventStore}/>)
+    const wrapper = mount(<LangTable store={EventStore} hist={HistStore}/>)
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     await sleep(3000)
     const html = wrapper.html()
@@ -32,7 +29,7 @@ describe('Test LangTable', () => {
   }).timeout(5000)
 
   it('chart should not contain non programming languages', async () => {
-    const wrapper = mount(<LangTable store={EventStore}/>)
+    const wrapper = mount(<LangTable store={EventStore} hist={HistStore}/>)
     const html = wrapper.html()
     _.each(['Makefile', 'Jupyter Notebook', 'Smalltalk'], (lang) =>
         expect(html).to.not.contain(lang)

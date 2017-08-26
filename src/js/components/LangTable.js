@@ -1,5 +1,5 @@
 import React from 'react'
-import { filter, sortBy, reverse, toString, omitBy, isNil, first,
+import { filter, toString, omitBy, isNil, first,
     assign, take, includes, reject, pick, map } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
@@ -14,14 +14,6 @@ export default class LangTable extends React.Component {
         this.state = {
             data: []
         };
-    }
-
-    latestDate(data) {
-        return data
-          | map(pick(['year', 'quarter']))
-          | sortBy(['year', 'quarter'])
-          | reverse
-          | first
     }
 
     filterDate(data, year, quarter) {
@@ -70,8 +62,9 @@ export default class LangTable extends React.Component {
     componentDidMount() {
     this.handler = autorun(() => {
         const data = this.props.store.getData
+        const hist = this.props.hist.getData
         if (data.length > 1000) {
-            const { year, quarter } = data | this.latestDate
+            const {year, quarter} = hist
             const dec = i => --i | toString
             const curYearRanking = this.filterDate(data, year, quarter)
             const lastYearRanking = this.filterDate(data, dec(year), quarter)
@@ -82,13 +75,18 @@ export default class LangTable extends React.Component {
     }
 
     static propTypes = {
-            store: React.PropTypes.object.isRequired
+            store: React.PropTypes.object.isRequired,
+            hist: React.PropTypes.object.isRequired
     }
 
     render() {
         if (this.props.store.getData.length < 1000
             || this.state.data.length < 50)
-            return null
+            return (
+                <div className="emptyTable">
+                    <h2>No data available for this time period yet</h2>
+                </div>
+            )
         return (
             <BootstrapTable
                 condensed
