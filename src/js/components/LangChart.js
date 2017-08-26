@@ -55,25 +55,28 @@ export default class LangChart extends React.Component {
     }
 
     componentWillMount() {
-    this.handler = autorun(() => {
-        const data = this.props.store.getData
-        const title = this.props.store.event | first | keys
-        const series = data
-            | map(update('count')(Math.floor))
-            | this.createSeries
-            | this.percentageData
+        this.handler = autorun(() => {
+            const data = this.props.store.getData
+            const title = this.props.store.event | first | keys | first
+            if (data.length > 1000 &&
+                this.state.yAxis.title.text != title) {
+                const series = data
+                    | map(update('count')(Math.floor))
+                    | this.createSeries
+                    | this.percentageData
 
-        const newState = {
-            ...this.state,
-            yAxis: {
-                ...this.state.yAxis, title: { text: title }
-            },
-            series: series,
-            xAxis: { categories: this.categories() }
-        }
+                const newState = {
+                    ...this.state,
+                    yAxis: {
+                        ...this.state.yAxis, title: { text: title }
+                    },
+                    series: series,
+                    xAxis: { categories: this.categories() }
+                }
 
-        if (!isEqual(this.state, newState))
-            this.setState(newState)
+                if (!isEqual(this.state, newState))
+                    this.setState(newState)
+            }
         });
     }
 
