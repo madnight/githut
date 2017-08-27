@@ -1,6 +1,7 @@
 import React from 'react'
-import { filter, toString, omitBy, isNil, first,
-    assign, take, includes, reject, pick, map } from 'lodash/fp'
+import { filter, toString, omitBy, isNil,
+    first, sum, update, isNaN, assign, take,
+    includes, reject, pick, map } from 'lodash/fp'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import { NonLangStore } from '../stores/NonLangStore'
 import { observer } from 'mobx-react'
@@ -23,7 +24,6 @@ export default class LangTable extends React.Component {
           | filter({quarter: quarter})
           | map(pick(['name', 'count']))
           | reject(o => includes(o.name)(nonLang.lang))
-          | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
     }
 
     trendFormatter(cell, row) {
@@ -59,6 +59,24 @@ export default class LangTable extends React.Component {
           | take(50)
     }
 
+    getChange(current, last) {
+        return current
+          | map(cur => {
+              const l = last
+                | filter({ name: cur.name })
+                | first
+                | omitBy(isNil)
+              return assign({ change: cur.count - l.count })(cur)
+            })
+          | take(50)
+    }
+
+
+    percentageData(data) {
+        const total = data | map('count') | map(Number) | sum
+        return data | map(update('count')(d => d/total))
+    }
+
     componentDidMount() {
     this.handler = autorun(() => {
         const data = this.props.store.getData
@@ -66,9 +84,19 @@ export default class LangTable extends React.Component {
         if (data.length > 1000) {
             const {year, quarter} = hist
             const dec = i => --i | toString
-            const curYearRanking = this.filterDate(data, year, quarter)
-            const lastYearRanking = this.filterDate(data, dec(year), quarter)
-            const langRanking = this.getTrend(curYearRanking, lastYearRanking)
+
+            const addSortId = i => i
+                | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
+
+            const createTable = (d, y, q) =>
+                this.filterDate(d, y, q)
+                    | addSortId
+                    | this.percentageData
+
+            const curYearRanking = createTable(data, year, quarter)
+            const lastYearRanking = createTable(data, dec(year), quarter)
+            const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
+            const langRanking = this.getChange(trendRanking, lastYearRanking)
             this.setState({data: langRanking})
         }
       })
@@ -77,6 +105,18 @@ export default class LangTable extends React.Component {
     static propTypes = {
             store: React.PropTypes.object.isRequired,
             hist: React.PropTypes.object.isRequired
+    }
+
+    percentFormatter(cell, row) {
+        const font = (i, color) => `<font size="1">(<font color="${color}">${i}%</font>)</font>`
+        const colorize = i => i > 0
+            ? font(('+' + i), "green")
+            : font(i, "chrimson")
+        const percent = i => ((i * 100).toFixed(3))
+        const countPercent = (row.count | percent) + "%"
+        // NaN can happen in case of name changes such as FORTRAN to Fortran ()
+        if (row.id > 30 || isNaN(row.change)) return countPercent
+        return `${ countPercent + "  " + (row.change | percent | colorize) }`
     }
 
     render() {
@@ -106,6 +146,13 @@ export default class LangTable extends React.Component {
                     dataAlign="center"
                     dataField='name'>
                     Programming Language
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                    width='200px'
+                    dataAlign="center"
+                    dataField='count'
+                    dataFormat={ this.percentFormatter }>
+                    Percentage (Change)
                 </TableHeaderColumn>
                 <TableHeaderColumn
                     width='150px'
