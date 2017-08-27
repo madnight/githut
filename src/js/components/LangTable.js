@@ -136,26 +136,27 @@ export default class LangTable extends React.Component {
                 bordered={false}
                 options={this.options}>
                 <TableHeaderColumn
-                    width='150px'
+                    width='50px'
                     dataAlign='center'
                     dataField='id'
                     isKey={true}>
                     # Ranking
                 </TableHeaderColumn>
                 <TableHeaderColumn
+                    width='150px'
                     dataAlign="center"
                     dataField='name'>
                     Programming Language
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width='200px'
+                    width='100px'
                     dataAlign="center"
                     dataField='count'
                     dataFormat={ this.percentFormatter }>
                     Percentage (Change)
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width='150px'
+                    width='50px'
                     dataAlign="center"
                     dataField='trend'
                     dataFormat={ this.trendFormatter }>
