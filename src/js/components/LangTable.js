@@ -25,12 +25,22 @@ export default class LangTable extends React.Component {
           | map(pick(['name', 'count']))
     }
 
+    /**
+     * The Github API keeps track of languages such as
+     * Jupyter Notebook in which we are not interested,
+     * since these are no programming languages
+     */
     filterNonProgrammingLanguages(data) {
         const nonLang = new NonLangStore().getConfig()
         return data
             | reject(o => includes(o.name)(nonLang.lang))
     }
 
+    /**
+     * The Github API changes names (language renamings), therefore we keep
+     * track of them and always choose the latest name (replace old names) to
+     * keep consistency
+     */
     applyLanguageRenamings(data) {
         const renameLang = new RenameLangStore().getConfig()
         const rename = (name) => {
@@ -41,6 +51,13 @@ export default class LangTable extends React.Component {
             | map(update('name')(rename))
     }
 
+    /**
+     * Two up arrows: more than 3 ranks up or previoulsy unkown
+     * Two down arrorw: more than 3 ranks down
+     * One up arrow: 1-3 ranks up
+     * One down arrow: 1-3 ranks down
+     * Nothing: no change
+     */
     trendFormatter(cell, row) {
         const arrow = n => {
             const angle = dir => `<i class='fa fa-angle-${dir}'></i>`

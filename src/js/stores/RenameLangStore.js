@@ -4,7 +4,7 @@
  * to keep consistency we always choose the latest name and
  * replace all older names
  * @class
- * @classdesc This Store keeps language renamings
+ * @classdesc This Store keeps track of language renamings
  */
 export class RenameLangStore {
 
