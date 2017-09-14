@@ -16,6 +16,11 @@ export default class LangTable extends React.Component {
         this.state = {
             data: []
         };
+        this.style = {
+          width: '100%',
+          margin: 'auto',
+          maxWidth: 1160
+        }
     }
 
     filterDate(data, year, quarter) {
@@ -170,41 +175,43 @@ export default class LangTable extends React.Component {
     render() {
         if (this.state.data.length < 50) return this.noDataAvailableYet()
         return (
-            <BootstrapTable
-                condensed
-                striped
-                tableStyle={ { margin: '30px auto 30px auto', width: '70%' } }
-                data={this.state.data}
-                bordered={false}
-                options={this.options}>
-                <TableHeaderColumn
-                    width='50px'
-                    dataAlign='center'
-                    dataField='id'
-                    isKey={true}>
-                    # Ranking
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                    width='150px'
-                    dataAlign="center"
-                    dataField='name'>
-                    Programming Language
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                    width='100px'
-                    dataAlign="center"
-                    dataField='count'
-                    dataFormat={ this.percentFormatter }>
-                    Percentage (Change)
-                </TableHeaderColumn>
-                <TableHeaderColumn
-                    width='50px'
-                    dataAlign="center"
-                    dataField='trend'
-                    dataFormat={ this.trendFormatter }>
-                    Trend
-                </TableHeaderColumn>
-            </BootstrapTable>
+            <div style={this.style}>
+                <BootstrapTable
+                    condensed
+                    striped
+                    tableStyle={ { margin: '30px auto 30px auto', width: '70%' } }
+                    data={this.state.data}
+                    bordered={false}
+                    options={this.options}>
+                    <TableHeaderColumn
+                        width='50px'
+                        dataAlign='center'
+                        dataField='id'
+                        isKey={true}>
+                        # Ranking
+                    </TableHeaderColumn>
+                    <TableHeaderColumn
+                        width='150px'
+                        dataAlign="center"
+                        dataField='name'>
+                        Programming Language
+                    </TableHeaderColumn>
+                    <TableHeaderColumn
+                        width='100px'
+                        dataAlign="center"
+                        dataField='count'
+                        dataFormat={ this.percentFormatter }>
+                        Percentage (Change)
+                    </TableHeaderColumn>
+                    <TableHeaderColumn
+                        width='50px'
+                        dataAlign="center"
+                        dataField='trend'
+                        dataFormat={ this.trendFormatter }>
+                        Trend
+                    </TableHeaderColumn>
+                </BootstrapTable>
+            </div>
         )
     }
 }

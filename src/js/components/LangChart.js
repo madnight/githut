@@ -14,6 +14,11 @@ export default class LangChart extends React.Component {
         super(props)
         const store = new LangChartStore
         this.state = store.getConfig()
+        this.style = {
+          width: '100%',
+          margin: 'auto',
+          maxWidth: 1360
+        }
     }
 
     getTopLanguages(data) {
@@ -82,6 +87,10 @@ export default class LangChart extends React.Component {
 
 
     render() {
-        return (<ReactHighcharts config={ this.state }/>)
+        return (
+            <div style={this.style}>
+                <ReactHighcharts config={ this.state }/>
+            </div>
+        )
     }
 }
