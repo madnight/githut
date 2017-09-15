@@ -6,47 +6,66 @@ import starEvent from '../../data/gh-star-event.json'
 import issueEvent from '../../data/gh-issue-event.json'
 import { mapValues, first, map, split } from 'lodash/fp'
 
+/**
+ * This Store keeps the GitHub api data for
+ * Pull Request, Pushes, Stars or Issues depending on users choice
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
 export class EventStore {
 
-  @observable data = {}
-  @observable event = [
-    {"Pull Requests": pullRequests},
-    {"Pushes": pushEvent},
-    {"Stars": starEvent},
-    {"Issues": issueEvent}
-  ]
+    @observable data = {}
+    @observable event = [
+      {"Pull Requests": pullRequests},
+      {"Pushes": pushEvent},
+      {"Stars": starEvent},
+      {"Issues": issueEvent}
+    ]
 
-  constructor() {
-    this.fetchData(pullRequests)
-  }
+    constructor() {
+        this.fetchData(pullRequests)
+    }
 
-  @action async prev() {
-    // const rotateLeft = a => a.unshift(a.pop())
-  }
+  // @action async prev() {
+  //    const rotateLeft = a => a.unshift(a.pop())
+  // }
 
-  @action async next() {
-    const rotateRight = a => a.push(a.shift())
-    rotateRight(this.event)
-    this.event
-      | first
-      | mapValues(e => this.fetchData(e))
-  }
+    /**
+     * Selects next data set by rotation
+     * @returns {Object} next GitHub api data set
+     */
+    @action async next() {
+        const rotateRight = a => a.push(a.shift())
+        rotateRight(this.event)
+        this.event
+          | first
+          | mapValues(e => this.fetchData(e))
+    }
 
-  parseJSON(data) {
-    return data
-      | split('\n')
-      | map(JSON.parse)
-  }
+    /**
+     * Parse raw GitHub api data
+     * @param {Object} data - GitHub api data set
+     * @returns {Object} JSON parsed result
+     */
+    parseJSON(data) {
+        return data
+          | split('\n')
+          | map(JSON.parse)
+    }
 
-  @action async fetchData(json) {
-    const { data } = await axios.get(json)
-    this.data = data | this.parseJSON
-  }
+    /**
+     * Fetches GitHub api data
+     * @param {Object} json - GitHub api data set to fetch
+     * @returns {Object} JSON parsed result
+     */
+    @action async fetchData(json) {
+        const { data } = await axios.get(json)
+        this.data = data | this.parseJSON
+    }
 
-  @computed get getData() {
-    return this.data
-  }
-
+    @computed get getData() {
+        return this.data
+    }
 }
 
 export default new EventStore

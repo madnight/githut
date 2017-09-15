@@ -3,26 +3,25 @@
  * when the github api decides to change the language name,
  * to keep consistency we always choose the latest name and
  * replace all older names
- * @class
- * @classdesc This Store keeps track of language renamings
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
  */
 export class RenameLangStore {
 
-  constructor() {
-    this.config = {
-        vim : {
-          before: ["VimL"],
-          after: "Vim script"
-        },
-        fortran : {
-          before: ["FORTRAN"],
-          after: "Fortran"
+    constructor() {
+        this.config = {
+            vim : {
+                before: ["VimL"],
+                after: "Vim script"
+            },
+            fortran : {
+                before: ["FORTRAN"],
+                after: "Fortran"
+            }
         }
-      }
-  }
+    }
 
-  getConfig() {
-    return this.config;
-  }
-
+    getConfig() {
+        return this.config;
+    }
 }

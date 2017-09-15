@@ -3,6 +3,11 @@ import { observer } from 'mobx-react'
 import { first, keys } from 'lodash/fp'
 import { Button as MaterialButton } from 'react-materialize';
 
+/**
+ * Fancy material button to select the data set
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
 @observer
 export default class Button extends React.Component {
 
@@ -14,18 +19,19 @@ export default class Button extends React.Component {
         store: React.PropTypes.any.isRequired
     }
 
-
     render() {
         const next = () => this.props.store.next()
+        const buttonClass= "waves-effect waves-light blue-grey lighten-2 btn"
         return (
             <div>
                 <center>
-                    <MaterialButton className="waves-effect waves-light blue-grey lighten-2 btn"  onClick={next}>
+                    <MaterialButton
+                        className={buttonClass}
+                        onClick={next}>
                         { this.props.store.event | first | keys }
                     </MaterialButton>
                 </center>
             </div>
         )
     }
-
 }

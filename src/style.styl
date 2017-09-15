@@ -8,16 +8,17 @@ html, body
   height 100%
   font-family 'Open Sans', sans-serif
   font-weight 300
-  background -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,bg-color))
-  background -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,bg-color 100%)
-  background -o-radial-gradient(center, ellipse cover,  #ffffff 0%,bg-color 100%)
-  background -ms-radial-gradient(center, ellipse cover,  #ffffff 0%,bg-color 100%)
+  background -webkit-gradient(radial, center center, 0px,
+    center center, 100%, color-stop(0%,#ffffff), color-stop(100%,bg-color))
+  background -webkit-radial-gradient(center, ellipse cover,
+    #ffffff 0%, bg-color 100%)
+  background -o-radial-gradient(center,
+    ellipse cover,  #ffffff 0%,bg-color 100%)
+  background -ms-radial-gradient(center,
+    ellipse cover,  #ffffff 0%,bg-color 100%)
   background radial-gradient(ellipse at center,  #ffffff 0%,bg-color 100%)
 
 h1,h2,h3,h4,h5,h6
-  text-rendering optimizeLegibility
-  margin-top 30px
-  margin-bottom 15px
   text-align center
 
 #githut-2-0
@@ -54,27 +55,6 @@ a
     text-align center
     padding 0
     text-transform uppercase
-
-#contents
-  width 100%
-  margin auto
-  margin-top 20px
-  max-width 960px
-  align center
-  overflow hidden
-  .description
-    margin 20px 100px
-    padding 10px
-    color #111
-    font-size 13px
-    h5
-      font-size 15px
-      color #000
-      font-weight 400
-      margin 0
-      text-align center
-      padding 0
-      text-transform uppercase
 
 #footer
   width 600px
@@ -121,10 +101,11 @@ a
   font-weight 400
   font-size 15px
 
-.react-bs-table .react-bs-container-header>table>thead>tr>th
+.react-bs-table .react-bs-container-header > table > thead > tr > th
   font-size 16px
 
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th
+.table-striped > tbody > tr:nth-child(2n+1) > td
+.table-striped > tbody > tr:nth-child(2n+1) > th
   background-color #F7FCFF
 
 .rowCenter

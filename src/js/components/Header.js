@@ -1,6 +1,13 @@
 import React from 'react'
 import GitHubForkRibbon from 'react-github-fork-ribbon'
 
+/**
+ * Contains everything that belongs into the page header
+ * Please note this class is not to be confused with Head.js (html head)
+ * Fork me ribbon, page title and desc
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
 export default class Header extends React.Component {
 
     constructor() {
