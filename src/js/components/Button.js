@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { first, keys } from 'lodash/fp'
 import { Button as MaterialButton } from 'react-materialize';
 
 /**
@@ -28,7 +27,7 @@ export default class Button extends React.Component {
                     <MaterialButton
                         className={buttonClass}
                         onClick={next}>
-                        { this.props.store.event | first | keys }
+                        { this.props.store.getEventName }
                     </MaterialButton>
                 </center>
             </div>

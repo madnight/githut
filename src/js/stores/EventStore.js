@@ -4,7 +4,7 @@ import pullRequests from '../../data/gh-pull-request.json'
 import pushEvent from '../../data/gh-push-event.json'
 import starEvent from '../../data/gh-star-event.json'
 import issueEvent from '../../data/gh-issue-event.json'
-import { mapValues, first, map, split } from 'lodash/fp'
+import { mapValues, first, map, split, keys } from 'lodash/fp'
 
 /**
  * This Store keeps the GitHub api data for
@@ -14,7 +14,7 @@ import { mapValues, first, map, split } from 'lodash/fp'
  */
 export class EventStore {
 
-    @observable data = {}
+    @observable.ref data = {}
     @observable event = [
       {"Pull Requests": pullRequests},
       {"Pushes": pushEvent},
@@ -66,6 +66,11 @@ export class EventStore {
     @computed get getData() {
         return this.data
     }
+
+    @computed get getEventName() {
+        return this.event | first | keys | first
+    }
+
 }
 
 export default new EventStore

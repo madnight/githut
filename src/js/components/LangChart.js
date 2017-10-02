@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import { update, range, sortBy, includes, uniqBy, reject,
     flatten, map, take, zipWith, divide, unzip, sum, filter,
-    drop, first, keys, isEqual } from 'lodash/fp'
+    drop, isEqual } from 'lodash/fp'
 import { LangChartStore } from '../stores/LangChartStore'
 import { NonLangStore } from '../stores/NonLangStore'
 import ReactHighcharts from 'react-highcharts'
@@ -31,6 +31,7 @@ export default class LangChart extends React.Component {
         super(props)
         const store = new LangChartStore
         this.state = store.getConfig()
+        this.dataLength = 0
         this.style = {
             width: '100%',
             margin: 'auto',
@@ -97,8 +98,9 @@ export default class LangChart extends React.Component {
     componentWillMount() {
         this.handler = autorun(() => {
             const data = this.props.store.getData
-            const title = this.props.store.event | first | keys | first
-            if (data.length > 1000) {
+            const title = this.props.store.getEventName
+            if (data.length != this.dataLength) {
+                this.dataLength = data.length
                 const series = data
                     | map(update('count')(Math.floor))
                     | this.createSeries
