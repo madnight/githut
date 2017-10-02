@@ -27,7 +27,7 @@ describe('Test LangChart', () => {
 
   it('render should work', () => {
     mount(<LangChart store={EventStore}/>)
-  })
+  }).timeout(10000)
 
   it('chart should contain JavaScript and Python', async () => {
     const wrapper = mount(<LangChart store={EventStore}/>)
@@ -36,5 +36,5 @@ describe('Test LangChart', () => {
     const html = wrapper.children().html()
     expect(html).to.contain('JavaScript')
     expect(html).to.contain('Python')
-  }).timeout(5000)
+  }).timeout(10000)
 })
