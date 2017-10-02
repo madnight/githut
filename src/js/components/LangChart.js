@@ -98,8 +98,7 @@ export default class LangChart extends React.Component {
         this.handler = autorun(() => {
             const data = this.props.store.getData
             const title = this.props.store.event | first | keys | first
-            if (data.length > 1000 &&
-                this.state.yAxis.title.text != title) {
+            if (data.length > 1000) {
                 const series = data
                     | map(update('count')(Math.floor))
                     | this.createSeries
