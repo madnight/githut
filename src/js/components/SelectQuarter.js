@@ -21,7 +21,7 @@ export default class SelectQuarter extends React.Component {
                   { value: '3', label: '3' },
                   { value: '4', label: '4' }
             ],
-            value: '2'
+            value: '3'
         }
         this.onChange = this.onChange.bind(this)
     }
