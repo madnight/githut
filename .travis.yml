@@ -12,8 +12,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm run test
-  - npm run test-travis-chrome
-  # chrome test needs to be seperate cause of bug with karma:
+  - travis_retry npm run test
+  - travis_retry npm run test-travis-chrome
+  # chrome test needs to run in separate, because of a bug in karma:
   # https://github.com/karma-runner/karma/issues/1656
   - npm run lint
