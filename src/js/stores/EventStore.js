@@ -26,10 +26,6 @@ export class EventStore {
         this.fetchData(pullRequests)
     }
 
-  // @action async prev() {
-  //    const rotateLeft = a => a.unshift(a.pop())
-  // }
-
     /**
      * Selects next data set by rotation
      * @returns {Object} next GitHub api data set
@@ -37,6 +33,16 @@ export class EventStore {
     @action async next() {
         const rotateRight = a => a.push(a.shift())
         rotateRight(this.event)
+        this.event
+          | first
+          | mapValues(e => this.fetchData(e))
+    }
+
+    @action async set(event) {
+        const rotateRight = a => a.push(a.shift())
+        if ((this.event | first | keys).includes(event))
+            while((this.event | first | keys | first) != event)
+                rotateRight(this.event)
         this.event
           | first
           | mapValues(e => this.fetchData(e))

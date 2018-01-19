@@ -13,7 +13,7 @@ import 'react-select/dist/react-select.css';
 export default class SelectQuarter extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             options: [
                   { value: '1', label: '1' },
@@ -21,18 +21,33 @@ export default class SelectQuarter extends React.Component {
                   { value: '3', label: '3' },
                   { value: '4', label: '4' }
             ],
-            value: '4'
+            value: this.props.match.params.quarter
         }
         this.onChange = this.onChange.bind(this)
     }
 
     static propTypes = {
-        hist: React.PropTypes.any.isRequired
+        hist: React.PropTypes.any.isRequired,
+        match: React.PropTypes.any.isRequired,
+        history: React.PropTypes.any.isRequired,
+        location: React.PropTypes.any.isRequired
     }
 
     onChange(value) {
+        const { match } = this.props
         this.props.hist.data.quarter = value
-        this.setState({ value });
+        this.setState({ value })
+        this.props.history.push(
+              "/" + match.params.event
+            + "/" + match.params.year
+            + "/" + value)
+    }
+
+    componentWillMount() {
+        const { match } = this.props
+        const value = match.params.quarter
+        this.props.hist.data.quarter = value
+        this.setState({ value })
     }
 
     render () {

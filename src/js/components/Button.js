@@ -10,23 +10,47 @@ import { Button as MaterialButton } from 'react-materialize';
 @observer
 export default class Button extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
     }
 
     static propTypes = {
-        store: React.PropTypes.any.isRequired
+        store: React.PropTypes.any.isRequired,
+        match: React.PropTypes.any.isRequired,
+        history: React.PropTypes.any.isRequired,
+        location: React.PropTypes.any.isRequired
+    }
+
+    componentWillMount() {
+        const { match, store } = this.props
+        const value = match.params.event
+        const urlToEvent = url => url
+            .replace(/_/g," ")
+            .replace(/\b[a-z]/g, f => f.toUpperCase())
+        store.set(urlToEvent(value))
+    }
+
+    next() {
+        const { match } = this.props
+        this.props.store.next()
+        const event = this.props.store.getEventName
+        const eventToUrl = event => event
+            .toLowerCase()
+            .replace(/ /g,"_")
+        this.props.history.push(
+              "/" + eventToUrl(event)
+            + "/" + match.params.year
+            + "/" + match.params.quarter)
     }
 
     render() {
-        const next = () => this.props.store.next()
         const buttonClass= "waves-effect waves-light blue-grey lighten-2 btn"
         return (
             <div>
                 <center>
                     <MaterialButton
                         className={buttonClass}
-                        onClick={next}>
+                        onClick={this.next.bind(this)}>
                         { this.props.store.getEventName }
                     </MaterialButton>
                 </center>

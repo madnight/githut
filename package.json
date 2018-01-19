@@ -36,6 +36,7 @@
     "react-helmet": "^5.1.3",
     "react-highcharts": "^13.0.0",
     "react-materialize": "1.0.16",
+    "react-router-dom": "^4.2.2",
     "react-select": "^1.0.0-rc.5"
   },
   "devDependencies": {

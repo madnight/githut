@@ -21,18 +21,33 @@ export default class SelectYear extends React.Component {
                   { value: '2015', label: '2015' },
                   { value: '2014', label: '2014' }
             ],
-            value: '2017'
+            value: this.props.match.params.year
         }
         this.onChange = this.onChange.bind(this)
     }
 
     static propTypes = {
-        hist: React.PropTypes.any.isRequired
+        hist: React.PropTypes.any.isRequired,
+        match: React.PropTypes.any.isRequired,
+        history: React.PropTypes.any.isRequired,
+        location: React.PropTypes.any.isRequired
     }
 
     onChange(value) {
+        const { match } = this.props
         this.props.hist.data.year = value
-        this.setState({ value });
+        this.setState({ value })
+        this.props.history.push(
+              "/" + match.params.event
+            + "/" + value
+            + "/" + match.params.quarter)
+    }
+
+    componentWillMount() {
+        const { match } = this.props
+        const value = match.params.year
+        this.props.hist.data.year = value
+        this.setState({ value })
     }
 
     render () {

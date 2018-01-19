@@ -1,4 +1,5 @@
 import React from "react"
+import { Route } from 'react-router-dom'
 import LangChart from "./LangChart"
 import LangTable from "./LangTable"
 import LicensePie from "./LicensePie"
@@ -22,16 +23,23 @@ import HistStore from "../stores/HistStore"
  * @license AGPL-3.0
  */
 export default class Layout extends React.Component {
+
     render() {
         return (
           <div>
             <Head/>
             <Header/>
             <LangChart store={EventStore}/>
-            <Button store={EventStore}/>
+            <Route path="/:event?/:year?/:quarter?"
+                     render={ route =>
+                          (<Button {...route} store={EventStore}/>) } />
             <div className='rowCenter'>
-              <SelectYear hist={HistStore}/>
-              <SelectQuarter hist={HistStore}/>
+            <Route path="/:event?/:year?/:quarter?"
+                     render={ route =>
+                          (<SelectYear {...route} hist={HistStore}/>) } />
+            <Route path="/:event?/:year?/:quarter?"
+                     render={ route =>
+                          (<SelectQuarter {...route} hist={HistStore}/>) } />
             </div>
             <LangTable store={EventStore} hist={HistStore}/>
             <LicensePie/>
