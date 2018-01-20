@@ -40,7 +40,8 @@ export class EventStore {
 
     @action async set(event) {
         const rotateRight = a => a.push(a.shift())
-        if ((this.event | first | keys).includes(event))
+        if ((this.event | map(x => (x | keys)
+            .includes(event))).includes(true))
             while((this.event | first | keys | first) != event)
                 rotateRight(this.event)
         this.event
