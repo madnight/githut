@@ -1,8 +1,10 @@
 import React from 'react'
 import expect from 'expect.js'
+import LangTable from '../src/js/components/LangTable'
 import LangChart from '../src/js/components/LangChart'
 import EventStore from "../src/js/stores/EventStore"
-// import {React as R} from 'react/addons'
+import TableStore from "../src/js/stores/TableStore"
+import HistStore from "../src/js/stores/HistStore"
 import { mount } from 'enzyme'
 import _ from 'lodash'
 
@@ -26,11 +28,19 @@ describe('Test LangChart', () => {
     })
 
     it('render should work', () => {
-        mount(<LangChart store={EventStore}/>)
+        mount(<LangChart store={EventStore} table={TableStore}/>)
     }).timeout(10000)
 
     it('chart should contain JavaScript and Python', async () => {
-        const wrapper = mount(<LangChart store={EventStore}/>)
+
+        mount(<LangChart store={EventStore} table={TableStore}/>)
+
+        const wrapper = mount(
+            <LangTable store={EventStore} hist={HistStore} table={TableStore}>
+                <LangChart store={EventStore} table={TableStore}/>
+            </LangTable>
+        )
+
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
         await sleep(3000)
         const html = wrapper.children().html()

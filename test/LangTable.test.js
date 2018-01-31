@@ -3,6 +3,7 @@ import expect from 'expect.js'
 import LangTable from '../src/js/components/LangTable'
 import EventStore from "../src/js/stores/EventStore"
 import HistStore from "../src/js/stores/HistStore"
+import TableStore from "../src/js/stores/TableStore"
 import { mount } from 'enzyme'
 import _ from 'lodash'
 
@@ -16,7 +17,7 @@ describe('Test LangTable', () => {
     })
 
     it('chart should contain top 50 languages', async () => {
-        const wrapper = mount(<LangTable store={EventStore} hist={HistStore}/>)
+        const wrapper = mount(<LangTable store={EventStore} hist={HistStore} table={TableStore}/>)
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
         await sleep(3000)
         const html = wrapper.html()
