@@ -13,6 +13,7 @@ import SelectYear from "./SelectYear"
 import SelectQuarter from "./SelectQuarter"
 import EventStore from "../stores/EventStore"
 import HistStore from "../stores/HistStore"
+import TableStore from "../stores/TableStore"
 
 /**
  * Layout class that is used to compose all react
@@ -29,7 +30,7 @@ export default class Layout extends React.Component {
           <div>
             <Head/>
             <Header/>
-            <LangChart store={EventStore}/>
+            <LangChart store={EventStore} table={TableStore}/>
             <Route path="/:event?/:year?/:quarter?"
                      render={ route =>
                           (<Button {...route} store={EventStore}/>) } />
@@ -41,7 +42,7 @@ export default class Layout extends React.Component {
                      render={ route =>
                           (<SelectQuarter {...route} hist={HistStore}/>) } />
             </div>
-            <LangTable store={EventStore} hist={HistStore}/>
+            <LangTable store={EventStore} hist={HistStore} table={TableStore}/>
             <LicensePie/>
             <Content/>
             <Comments/>

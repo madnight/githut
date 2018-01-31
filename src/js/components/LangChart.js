@@ -1,11 +1,10 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
-import { update, range, sortBy, includes, uniqBy, reject,
+import { update, range, sortBy, includes, uniqBy, reject, size, max,
     flatten, map, take, zipWith, divide, unzip, sum, filter,
     drop, isEqual } from 'lodash/fp'
 import { LangChartStore } from '../stores/LangChartStore'
-import { NonLangStore } from '../stores/NonLangStore'
 import ReactHighcharts from 'react-highcharts'
 
 /**
@@ -32,6 +31,7 @@ export default class LangChart extends React.Component {
         const store = new LangChartStore
         this.state = store.getConfig()
         this.dataLength = 0
+        this.top10 = []
         this.style = {
             width: '100%',
             margin: 'auto',
@@ -40,7 +40,9 @@ export default class LangChart extends React.Component {
     }
 
     static propTypes = {
-        store: React.PropTypes.object.isRequired
+        store: React.PropTypes.object.isRequired,
+        table: React.PropTypes.object.isRequired,
+        hist: React.PropTypes.object.isRequired
     }
 
     /**
@@ -69,23 +71,34 @@ export default class LangChart extends React.Component {
     }
 
     /**
+     * Adds zeros if we dont have enough historical data. For example,
+     * there is no data for Typescript in 2012/Q2. We fill missing data
+     * with zeros.
+     * @param {Object} current - GitHub api data set
+     * @returns {Object} Data series filled with zeros if required
+     */
+    fillZeros(data) {
+        const HistSize = data | map('data') | map(size) | max
+        const fill = (d) => (new Array(HistSize - size(d)).fill(0)).concat(d)
+        return data | map(d => ({ name: d.name, data: fill(d.data) }))
+    }
+
+    /**
      * Creates a data series for highcharts based on GitHub raw api data
-     * Removes languages that are not programming lanuages
      * Filters top 10 languages
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series for top 10 languages
      */
     createSeries(data) {
-        const nonLang = new NonLangStore().getConfig()
         return data
-            | reject(o => includes(o.name)(nonLang.lang))
-            | take(10)
+            | reject(o => !includes(o.name)(this.top10))
             | map(d => ({
                 name: d.name,
                 data: map('count')(filter({'name': d.name})(data))
             }))
             | uniqBy('name')
             | sortBy('name')
+            | this.fillZeros
     }
 
     /**
@@ -99,7 +112,11 @@ export default class LangChart extends React.Component {
         this.handler = autorun(() => {
             const data = this.props.store.getData
             const title = this.props.store.getEventName
-            if (data.length != this.dataLength) {
+            const top = this.props.table.data | take(10) | sortBy('name') | map('name')
+            if ((data.length != this.dataLength
+                || !isEqual(this.top10, top))
+                && size(top) > 0) {
+                this.top10 = top
                 this.dataLength = data.length
                 const series = data
                     | map(update('count')(Math.floor))

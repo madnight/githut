@@ -181,6 +181,7 @@ export default class LangTable extends React.Component {
         const lastYearRanking = this.createTable(data, dec(year), quarter)
         const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
         const langRanking = this.getChange(trendRanking, lastYearRanking)
+        this.props.table.set(langRanking)
         this.setState({data: langRanking})
     }
 
@@ -205,7 +206,8 @@ export default class LangTable extends React.Component {
 
     static propTypes = {
         store: React.PropTypes.object.isRequired,
-        hist: React.PropTypes.object.isRequired
+        hist: React.PropTypes.object.isRequired,
+        table: React.PropTypes.object.isRequired
     }
 
     /**
