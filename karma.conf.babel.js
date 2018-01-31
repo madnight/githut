@@ -5,31 +5,33 @@ wpConf.entry = {}
 // filter out WebpackBrowserPlugin for tests
 wpConf.plugins = wpConf.plugins | initial
 
-module.exports = config => {
-    config.set({
-        browsers: ['Firefox'],
-        customLaunchers: {
-            Chrome_travis_ci: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
-        },
-        reporters: ['mocha'],
-        singleRun: true,
-        frameworks: ['mocha'],
-        files: [
-            'node_modules/babel-polyfill/dist/polyfill.js',
-            'test/**/*.js'
-        ],
-        preprocessors: {
-            'test/**/*.js': ['webpack'],
-            'src/**/*.js': ['webpack']
-        },
-        webpack: wpConf,
-        webpackServer: {
-            noInfo: true
+const karma_config = {
+    browsers: ['Firefox'],
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
         }
-    })
+    },
+    reporters: ['mocha'],
+    singleRun: true,
+    frameworks: ['mocha'],
+    files: [
+        'node_modules/babel-polyfill/dist/polyfill.js',
+        'test/**/*.js'
+    ],
+    preprocessors: {
+        'test/**/*.js': ['webpack'],
+        'src/**/*.js': ['webpack']
+    },
+    webpack: wpConf,
+    webpackServer: {
+        noInfo: true
+    }
+}
+
+module.exports = config => {
+    config.set(karma_config)
     if (process.env.TRAVIS)
         config.browsers = [
             // 'Chrome_travis_ci',
