@@ -49,6 +49,22 @@ const queryBuilder = (tables) => {
     return map(sqlQuery)(types)
 }
 
+const numToStrReplacer = (key, value) => isNumber(value) ? JSON.stringify(value) : value
+const stringifyFP = x => y => JSON.stringify(y, x)
+
+const stringify = flow(
+      JSON.stringify,
+      JSON.parse,
+      stringifyFP(numToStrReplacer)
+  )
+
+const exec = async (q) =>
+      flow(
+          first,
+          map(stringify),
+          writeJsonToFile(q)
+      )(await query(q))
+
 const main = async () => {
     param
       .version('1.0.0')
@@ -59,21 +75,6 @@ const main = async () => {
 
     const tables = defaultTo('[githubarchive:day.20130118], [githubarchive:day.20140118]')(param.tables)
     const queries = queryBuilder(tables)
-    const numToStrReplacer = (key, value) => isNumber(value) ? JSON.stringify(value) : value
-    const stringifyFP = x => y => JSON.stringify(y, x)
-
-    const stringify = x => flow(
-          JSON.stringify,
-          JSON.parse,
-          stringifyFP(numToStrReplacer)
-          )(x)
-
-    const exec = async (q) =>
-      flow(
-          first,
-          map(stringify),
-          writeJsonToFile(q)
-      )(await query(q))
 
     try {
         await Promise.all(map(exec)(queries))
