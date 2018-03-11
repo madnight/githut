@@ -1,0 +1,75 @@
+import React from 'react'
+import ReactSelect from 'react-select'
+const { range, toString } = require("lodash/fp")
+
+export default class Select extends React.Component {
+
+    static propTypes = {
+        hist: React.PropTypes.any.isRequired,
+        match: React.PropTypes.any.isRequired,
+        history: React.PropTypes.any.isRequired,
+        location: React.PropTypes.any.isRequired
+    }
+
+    vals(start, end) {
+        return range(--start, end).map(i =>
+            ({
+                value: toString(i + 1),
+                label: toString(i + 1)
+            }))
+    }
+
+    constructor(props) {
+        super(props)
+        this.year = false
+        this.onChange = this.onChange.bind(this)
+    }
+
+    setValue(value) {
+        if (this.year)
+            this.props.hist.data.year = value
+        else
+            this.props.hist.data.quarter = value
+        this.setState({ value })
+    }
+
+    componentWillMount() {
+        const { params } = this.props.match
+        const value = this.year ? params.year : params.quarter
+        this.setValue(value)
+    }
+
+    histPush(x, y, z) {
+        this.props.history.push(
+            "/" + x
+          + "/" + y
+          + "/" + z)
+    }
+
+    onChange(value) {
+        const { params } = this.props.match
+        this.setValue(value)
+        if (this.year)
+            this.histPush(params.event, value, params.quarter)
+        else
+            this.histPush(params.event, params.year, value)
+    }
+
+    render(x) {
+        return (
+            <div>
+                <h4 className="section-heading">
+                    {this.year ? "Year" : "Quarter"}</h4>
+                <ReactSelect
+                    label="States"
+                    onChange={this.onChange}
+                    options={this.state.options}
+                    simpleValue
+                    searchable={false}
+                    clearable={false}
+                    value={this.state.value}
+                />
+            </div>
+        );
+    }
+}

@@ -1,11 +1,12 @@
-import React from 'react'
-
 /**
  * Contains everything that belongs into the html footer
  * License, Credits
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
+
+import React from 'react'
+
 export default class Footer extends React.Component {
     render () {
         return (

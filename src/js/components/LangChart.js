@@ -1,12 +1,3 @@
-import React from 'react'
-import { observer } from 'mobx-react'
-import { autorun } from 'mobx'
-import { update, range, sortBy, includes, uniqBy, reject, size, max,
-    flatten, map, take, zipWith, divide, unzip, sum, filter,
-    drop, isEqual } from 'lodash/fp'
-import { LangChartStore } from '../stores/LangChartStore'
-import ReactHighcharts from 'react-highcharts'
-
 /**
  * Programming language popularity chart based on Highcharts
  * Please note that this file is dual licensed since Highcharts
@@ -18,8 +9,19 @@ import ReactHighcharts from 'react-highcharts'
  * @license CC BY-NC 3.0 Highcharts
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
+
+import React from 'react'
+import { observer } from 'mobx-react'
+import { autorun } from 'mobx'
+import { update, range, sortBy, includes, uniqBy, reject, size, max,
+    flatten, map, take, zipWith, divide, unzip, sum, filter,
+    drop, isEqual } from 'lodash/fp'
+import { LangChartStore } from '../stores/LangChartStore'
+import ReactHighcharts from 'react-highcharts'
+import Lang from './Lang'
+
 @observer
-export default class LangChart extends React.Component {
+export default class LangChart extends Lang {
 
     /**
      * Contains react state and react inline style
@@ -37,12 +39,6 @@ export default class LangChart extends React.Component {
             margin: 'auto',
             maxWidth: 1360
         }
-    }
-
-    static propTypes = {
-        store: React.PropTypes.object.isRequired,
-        table: React.PropTypes.object.isRequired,
-        hist: React.PropTypes.object.isRequired
     }
 
     /**
@@ -101,6 +97,45 @@ export default class LangChart extends React.Component {
             | this.fillZeros
     }
 
+    /*
+     * Updates react state if the new state is different than the old state
+     */
+    updateState(newState) {
+        if (!isEqual(this.state, newState))
+            this.setState(newState)
+    }
+
+    /*
+     * Creates a new percentage series of data
+     */
+    createSeriesPercentage(data) {
+        return data
+            | map(update('count')(Math.floor))
+            | this.createSeries
+            | this.percentageData
+    }
+
+    /**
+     * Creates a new chart if necessary
+     */
+    constructChart(data, title, top) {
+        if ((data.length != this.dataLength
+            || !isEqual(this.top10, top))
+            && size(top) > 0) {
+            this.top10 = top
+            this.dataLength = data.length
+            const newState = {
+                ...this.state,
+                yAxis: {
+                    ...this.state.yAxis, title: { text: title }
+                },
+                series: this.createSeriesPercentage(data),
+                xAxis: { categories: this.categories() }
+            }
+            this.updateState(newState)
+        }
+    }
+
     /**
      * Native react function, called on component mount and
      * on every prop change event via mobx autorun
@@ -113,28 +148,7 @@ export default class LangChart extends React.Component {
             const data = this.props.store.getData
             const title = this.props.store.getEventName
             const top = this.props.table.data | take(10) | sortBy('name') | map('name')
-            if ((data.length != this.dataLength
-                || !isEqual(this.top10, top))
-                && size(top) > 0) {
-                this.top10 = top
-                this.dataLength = data.length
-                const series = data
-                    | map(update('count')(Math.floor))
-                    | this.createSeries
-                    | this.percentageData
-
-                const newState = {
-                    ...this.state,
-                    yAxis: {
-                        ...this.state.yAxis, title: { text: title }
-                    },
-                    series: series,
-                    xAxis: { categories: this.categories() }
-                }
-
-                if (!isEqual(this.state, newState))
-                    this.setState(newState)
-            }
+            this.constructChart(data, title, top)
         });
     }
 

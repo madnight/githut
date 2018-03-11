@@ -1,11 +1,12 @@
-import React from 'react'
-import ReactDisqusThread from 'react-disqus-thread'
-
 /**
  * Simple discussion box
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
+
+import React from 'react'
+import ReactDisqusThread from 'react-disqus-thread'
+
 export default class Comments extends React.Component {
 
     constructor () {

@@ -1,3 +1,12 @@
+/**
+ * The LangTable contains the top 50 programming languages
+ * for a given quarter, e.g. 2017/Q2
+ * Features: Trend, Percentage & Change, History, different data sets
+ * PR/Push/Stars ...
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
+
 import React from 'react'
 import { filter, toString, omitBy, isNil, find,
     first, sum, update, isNaN, assign, take,
@@ -7,17 +16,10 @@ import { NonLangStore } from '../stores/NonLangStore'
 import { RenameLangStore } from '../stores/RenameLangStore'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
+import Lang from './Lang'
 
-/**
- * The LangTable contains the top 50 programming languages
- * for a given quarter, e.g. 2017/Q2
- * Features: Trend, Percentage & Change, History, different data sets
- * PR/Push/Stars ...
- * @author Fabian Beuke <mail@beuke.org>
- * @license AGPL-3.0
- */
 @observer
-export default class LangTable extends React.Component {
+export default class LangTable extends Lang {
 
     /**
      * Sets inital state and react inline style
@@ -202,12 +204,6 @@ export default class LangTable extends React.Component {
      */
     componentDidMount() {
         autorun(() => this.mountTable())
-    }
-
-    static propTypes = {
-        store: React.PropTypes.object.isRequired,
-        hist: React.PropTypes.object.isRequired,
-        table: React.PropTypes.object.isRequired
     }
 
     /**

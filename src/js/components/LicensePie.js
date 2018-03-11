@@ -1,9 +1,3 @@
-import React from 'react'
-import axios from 'axios'
-import licenses from '../../data/github-licenses.json'
-import ReactHighcharts from 'react-highcharts'
-import { mapKeys, update, take, map, split } from 'lodash/fp'
-
 /**
  * A Highcharts chart that shows the top five licenses on GitHub
  * Please note that the license for this file is
@@ -14,6 +8,13 @@ import { mapKeys, update, take, map, split } from 'lodash/fp'
  * @license CC BY-NC 3.0
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
+
+import React from 'react'
+import axios from 'axios'
+import licenses from '../../data/github-licenses.json'
+import ReactHighcharts from 'react-highcharts'
+import { mapKeys, update, take, map, split } from 'lodash/fp'
+
 export default class LicensePie extends React.Component {
 
     constructor() {

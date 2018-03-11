@@ -1,12 +1,13 @@
-import React from 'react'
-import { observer } from 'mobx-react'
-import { Button as MaterialButton } from 'react-materialize';
-
 /**
  * Fancy material button to select the data set
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
+
+import React from 'react'
+import { observer } from 'mobx-react'
+import { Button as MaterialButton } from 'react-materialize';
+
 @observer
 export default class Button extends React.Component {
 
@@ -15,10 +16,10 @@ export default class Button extends React.Component {
     }
 
     static propTypes = {
-        store: React.PropTypes.any.isRequired,
         match: React.PropTypes.any.isRequired,
-        history: React.PropTypes.any.isRequired,
-        location: React.PropTypes.any.isRequired
+        store: React.PropTypes.any.isRequired,
+        location: React.PropTypes.any.isRequired,
+        history: React.PropTypes.any.isRequired
     }
 
     componentWillMount() {

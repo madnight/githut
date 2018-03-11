@@ -1,6 +1,3 @@
-import React from 'react'
-import content from '../../content/content.md'
-
 /**
  * The description / explanation of the chart and table, explains
  * data source, data aggregation, trend calculation, ...
@@ -8,6 +5,10 @@ import content from '../../content/content.md'
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
+
+import React from 'react'
+import content from '../../content/content.md'
+
 export default class Content extends React.Component {
 
     constructor () {
