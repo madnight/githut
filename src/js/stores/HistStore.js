@@ -10,7 +10,7 @@ export class HistStore {
     @observable data = {}
 
     constructor() {
-        this.data = { year: '2017', quarter: '4' }
+        this.data = { year: '2018', quarter: '1' }
     }
 
     @computed get getData() {

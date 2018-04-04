@@ -16,7 +16,7 @@ export default class SelectYear extends Select {
         super(props)
         this.year = true
         this.state = {
-            options: this.vals(2014, 2017),
+            options: this.vals(2014, 2018),
             value: this.props.match.params.year
         }
     }

@@ -17,9 +17,9 @@ const production = window.location.href.includes("madnight.github.io")
 
 if (!(window.location.href).includes("#")) {
     if (production)
-        window.location.href = "/githut/#/pull_requests/2017/4"
+        window.location.href = "/githut/#/pull_requests/2018/1"
     else
-        window.location.href = "/#/pull_requests/2017/4"
+        window.location.href = "/#/pull_requests/2018/1"
 }
 
 const app = document.createElement('div')
