@@ -23,14 +23,29 @@ const writeJsonToFile = q => async (json) => {
             process.stdout.write('Could not write to ' + fileName + ' File ' + err + '\n')
         else
             process.stdout.write(fileName + ' successfully written\n')
+    })
+
+    const getAppendFileName = fileName => {
+        if (fileName == 'PullRequestEvent.json')
+            return 'gh-pull-request.json'
+        if (fileName == 'PushEvent.json')
+            return 'gh-push-event.json'
+        if (fileName == 'IssuesEvent.json')
+            return 'gh-issue-event.json'
+        if (fileName == 'WatchEvent.json')
+            return 'gh-star-event.json'
+        throw 'cannot find append file'
     }
-  )
+
+    await fs.appendFile('../src/data/' + getAppendFileName(fileName), "\n" + lineEndings(json), (err) => {
+        if (err) throw 'could not append file'
+    })
 }
 
 const queryBuilder = (tables) => {
     const types = ['PullRequestEvent', 'IssuesEvent', 'PushEvent', 'WatchEvent']
     const sqlQuery = (type) =>
-          `SELECT language as name, year, quarter, count FROM ( SELECT * FROM (
+        `SELECT language as name, year, quarter, count FROM ( SELECT * FROM (
           SELECT lang as language, y as year, q as quarter, type,
           COUNT(*) as count FROM (SELECT a.type type, b.lang lang, a.y y, a.q q FROM (
           SELECT type, YEAR(created_at) as y, QUARTER(created_at) as q,
@@ -53,25 +68,25 @@ const numToStrReplacer = (key, value) => isNumber(value) ? JSON.stringify(value)
 const stringifyFP = x => y => JSON.stringify(y, x)
 
 const stringify = flow(
-      JSON.stringify,
-      JSON.parse,
-      stringifyFP(numToStrReplacer)
-  )
+    JSON.stringify,
+    JSON.parse,
+    stringifyFP(numToStrReplacer)
+)
 
 const exec = async (q) =>
-      flow(
-          first,
-          map(stringify),
-          writeJsonToFile(q)
-      )(await query(q))
+    flow(
+        first,
+        map(stringify),
+        writeJsonToFile(q)
+    )(await query(q))
 
 const main = async () => {
     param
-      .version('1.0.0')
-      .option('-t, --tables <string>',
-        'The GitHub Archive tables that you want query example usage:' +
-        'node query.js -t "[githubarchive:day.20130818], [githubarchive:day.20140118]"')
-      .parse(process.argv)
+        .version('1.0.0')
+        .option('-t, --tables <string>',
+            'The GitHub Archive tables that you want query example usage:' +
+            'node query.js -t "[githubarchive:day.20130818], [githubarchive:day.20140118]"')
+        .parse(process.argv)
 
     const tables = defaultTo('[githubarchive:day.20130118], [githubarchive:day.20140118]')(param.tables)
     const queries = queryBuilder(tables)
