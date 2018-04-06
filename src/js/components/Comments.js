@@ -17,6 +17,10 @@ export default class Comments extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false
+    }
+
     render () {
         return (
           <div style={this.style}>

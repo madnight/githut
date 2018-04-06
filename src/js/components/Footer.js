@@ -8,6 +8,11 @@
 import React from 'react'
 
 export default class Footer extends React.Component {
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return false
+    }
+
     render () {
         return (
                 <div id="footer">

@@ -26,6 +26,10 @@ export default class Select extends React.Component {
         this.onChange = this.onChange.bind(this)
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state !== nextState
+    }
+
     setValue(value) {
         if (this.year)
             this.props.hist.data.year = value

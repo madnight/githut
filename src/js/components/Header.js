@@ -15,6 +15,10 @@ export default class Header extends React.Component {
         super()
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        return false
+    }
+
     render() {
         return (
             <div id="wrapper">

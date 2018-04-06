@@ -23,6 +23,10 @@ export default class Content extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false
+    }
+
     /**
      * Please note that dangerouslySetInnerHTM is only dangerously
      * if content is loaded from external ressource, thats not the case here
@@ -31,9 +35,9 @@ export default class Content extends React.Component {
      */
     render () {
         return (
-          <div style={this.contentStyle}>
-              <div dangerouslySetInnerHTML={ { __html: content } }/>
-          </div>
+            <div style={this.contentStyle}>
+                <div dangerouslySetInnerHTML={ { __html: content } }/>
+            </div>
         )
     }
 }

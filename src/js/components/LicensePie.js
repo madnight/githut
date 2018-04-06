@@ -33,14 +33,18 @@ export default class LicensePie extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.series !== nextState.series
+    }
+
     async componentDidMount() {
         const { data } = await axios.get(licenses)
         const series = data
-          | split('\n')
-          | map(JSON.parse)
-          | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
-          | map(update('y')(Math.floor))
-          | take(5)
+            | split('\n')
+            | map(JSON.parse)
+            | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
+            | map(update('y')(Math.floor))
+            | take(5)
         this.setState({series: [{data: series}]})
     }
 
