@@ -22,9 +22,5 @@ export default class SelectQuarter extends Select {
 
     constructor(props) {
         super(props)
-        this.state = {
-            options: this.vals(1, 4),
-            value: this.props.match.params.quarter
-        }
     }
 }

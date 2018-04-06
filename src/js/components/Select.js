@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactSelect from 'react-select'
 const { range, toString } = require("lodash/fp")
+import { getMaxDataDate } from '../utils.js'
 
 export default class Select extends React.Component {
 
@@ -34,6 +35,13 @@ export default class Select extends React.Component {
     }
 
     componentWillMount() {
+        getMaxDataDate().then( maxDate => {
+            this.setState({
+                options: this.year ? this.vals(2014, maxDate.year) : this.vals(1, 4),
+                value: this.year ? this.props.match.params.year : this.props.match.params.quarter
+            })
+        } )
+
         const { params } = this.props.match
         const value = this.year ? params.year : params.quarter
         this.setValue(value)
@@ -42,8 +50,8 @@ export default class Select extends React.Component {
     histPush(x, y, z) {
         this.props.history.push(
             "/" + x
-          + "/" + y
-          + "/" + z)
+            + "/" + y
+            + "/" + z)
     }
 
     onChange(value) {
