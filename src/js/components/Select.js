@@ -4,6 +4,8 @@ const { range, toString } = require("lodash/fp")
 import { getMaxDataDate } from '../utils.js'
 import PropTypes from 'prop-types'
 
+import 'react-select/dist/react-select.css';
+
 export default class Select extends React.Component {
 
     static propTypes = {
@@ -27,9 +29,9 @@ export default class Select extends React.Component {
         this.onChange = this.onChange.bind(this)
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state !== nextState
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+        // return this.state !== nextState
+    // }
 
     setValue(value) {
         if (this.year)
@@ -45,8 +47,7 @@ export default class Select extends React.Component {
                 options: this.year ? this.vals(2014, maxDate.year) : this.vals(1, 4),
                 value: this.year ? this.props.match.params.year : this.props.match.params.quarter
             })
-        } )
-
+        })
         const { params } = this.props.match
         const value = this.year ? params.year : params.quarter
         this.setValue(value)

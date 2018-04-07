@@ -32,7 +32,7 @@ const chart_config = {
         },
         series: {
             animation: {
-                duration: 300,
+                duration: 200,
             }
         }
     },

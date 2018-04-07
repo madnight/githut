@@ -17,6 +17,7 @@ import { RenameLangStore } from '../stores/RenameLangStore'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import Lang from './Lang'
+import lscache from 'lscache'
 
 @observer
 export default class LangTable extends Lang {
@@ -45,9 +46,9 @@ export default class LangTable extends Lang {
      */
     filterDate(data, year, quarter) {
         return data
-          | filter({year: year})
-          | filter({quarter: quarter})
-          | map(pick(['name', 'count']))
+            | filter({year: year})
+            | filter({quarter: quarter})
+            | map(pick(['name', 'count']))
     }
 
     /**
@@ -117,9 +118,9 @@ export default class LangTable extends Lang {
      */
     findByName(data, name) {
         return data
-          | filter({ name: name })
-          | first
-          | omitBy(isNil)
+            | filter({ name: name })
+            | first
+            | omitBy(isNil)
     }
 
     /**
@@ -133,7 +134,7 @@ export default class LangTable extends Lang {
             | map(c => assign({
                 trend: this.findByName(last, c.name).id - c.id
             })(c))
-          | take(50)
+            | take(50)
     }
 
     /**
@@ -147,7 +148,7 @@ export default class LangTable extends Lang {
             | map(c => assign({
                 change: c.count - this.findByName(last, c.name).count
             })(c))
-          | take(50)
+            | take(50)
     }
 
     /**
@@ -175,16 +176,27 @@ export default class LangTable extends Lang {
      */
     mountTable() {
         const data = this.props.store.getData
+        const name = this.props.store.getEventName
         const hist = this.props.hist.getData
         if (data.length < 1000) return
         const {year, quarter} = hist
+        const cacheKey = year + quarter + name + "table"
         const dec = i => --i | toString
-        const curYearRanking = this.createTable(data, year, quarter)
-        const lastYearRanking = this.createTable(data, dec(year), quarter)
-        const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
-        const langRanking = this.getChange(trendRanking, lastYearRanking)
-        this.props.table.set(langRanking)
-        this.setState({data: langRanking})
+
+        if (!lscache.get(cacheKey)) {
+            const curYearRanking = this.createTable(data, year, quarter)
+            const lastYearRanking = this.createTable(data, dec(year), quarter)
+            const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
+            const langRanking = this.getChange(trendRanking, lastYearRanking)
+
+            lscache.set(cacheKey, { langRanking: langRanking })
+            this.props.table.set(langRanking)
+            this.setState({data: langRanking})
+        } else {
+            const { langRanking } = lscache.get(cacheKey)
+            this.props.table.set(langRanking)
+            this.setState({data: langRanking})
+        }
     }
 
     /**
@@ -227,9 +239,9 @@ export default class LangTable extends Lang {
         if (row.id > 30 ) return countPercent
         return `${ countPercent + "  " +
             (row.change
-            | normalize
-            | percent
-            | colorize) }`
+                | normalize
+                | percent
+                | colorize) }`
     }
 
     /**

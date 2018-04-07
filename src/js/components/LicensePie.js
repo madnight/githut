@@ -33,9 +33,9 @@ export default class LicensePie extends React.Component {
         }
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-        // return this.state.series !== nextState.series
-   // }
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.series !== nextState.series
+    }
 
     async componentWillMount() {
         const { data } = await axios.get(licenses)

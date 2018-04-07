@@ -15,5 +15,4 @@ export default class SelectYear extends Select {
         super(props)
         this.year = true
     }
-
 }
