@@ -6,18 +6,18 @@
  */
 
 import { observer } from 'mobx-react'
-import 'react-select/dist/react-select.css'
 import Select from './Select'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 @observer
 export default class SelectQuarter extends Select {
 
     static propTypes = {
-        hist: React.PropTypes.any.isRequired,
-        match: React.PropTypes.any.isRequired,
-        history: React.PropTypes.any.isRequired,
-        location: React.PropTypes.any.isRequired
+        hist: PropTypes.any.isRequired,
+        match: PropTypes.any.isRequired,
+        history: PropTypes.any.isRequired,
+        location: PropTypes.any.isRequired
     }
 
     constructor(props) {

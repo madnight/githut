@@ -202,7 +202,7 @@ export default class LangTable extends Lang {
      * Native react function, called on component mount and
      * on every prop change event via mobx autorun
      */
-    componentDidMount() {
+    componentWillMount() {
         autorun(() => this.mountTable())
     }
 

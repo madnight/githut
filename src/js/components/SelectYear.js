@@ -6,7 +6,6 @@
  */
 
 import { observer } from 'mobx-react'
-import 'react-select/dist/react-select.css'
 import Select from './Select'
 
 @observer

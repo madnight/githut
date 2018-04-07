@@ -26,7 +26,9 @@ export default class Application extends React.Component {
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//fonts.googleapis.com/icon?family=Material+Icons'},
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//allenfang.github.io/react-bootstrap-table/css/react-bootstrap-table-all.min.css'},
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'},
-                        {'rel': 'stylesheet', 'type': 'text/css', 'href': '//fonts.googleapis.com/css?family=Open+Sans:400,300,700'}
+                        {'rel': 'stylesheet', 'type': 'text/css', 'href': '//fonts.googleapis.com/css?family=Open+Sans:400,300,700'},
+                        {'rel': 'stylesheet', 'type': 'text/css', 'href': '//unpkg.com/react-virtualized-select/styles.css'},
+                        {'rel': 'stylesheet', 'type': 'text/css', 'href': '//unpkg.com/react-virtualized/styles.css'}
                     ]}
                 />
             </div>
