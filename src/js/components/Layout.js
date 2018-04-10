@@ -16,6 +16,7 @@ import Button from "./Button"
 import Head from "./Head"
 import Header from "./Header"
 import Content from "./Content"
+import Comments from "./Comments"
 import Footer from "./Footer"
 import SelectYear from "./SelectYear"
 import SelectQuarter from "./SelectQuarter"
@@ -45,6 +46,7 @@ export default class Layout extends React.Component {
             <LangTable store={EventStore} hist={HistStore} table={TableStore}/>
             <LicensePie/>
             <Content/>
+            <Comments/>
             <Footer/>
           </div>
         );
