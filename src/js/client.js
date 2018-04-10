@@ -14,11 +14,12 @@ import 'jquery' // Material Button
 import 'materialize-css' // Style
 import { getMaxDataDate } from './utils.js'
 
-const { registerObserver } = require('react-perf-devtool')
-
-registerObserver({ shouldLog: true })
-
 const production = window.location.href.includes("madnight.github.io")
+
+if (!production) {
+    const { registerObserver } = require('react-perf-devtool')
+    registerObserver({ shouldLog: true })
+}
 
 getMaxDataDate().then(maxDate => {
     const defaultPath = "#/pull_requests/" + maxDate.year + "/" + maxDate.quarter
