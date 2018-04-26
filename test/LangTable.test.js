@@ -4,7 +4,11 @@ import LangTable from '../src/js/components/LangTable'
 import EventStore from "../src/js/stores/EventStore"
 import HistStore from "../src/js/stores/HistStore"
 import TableStore from "../src/js/stores/TableStore"
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
+
+
 import _ from 'lodash'
 
 describe('Test LangTable', () => {

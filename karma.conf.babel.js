@@ -18,6 +18,7 @@ const karma_config = {
     frameworks: ['mocha'],
     files: [
         'node_modules/babel-polyfill/dist/polyfill.js',
+        'test/setupTests.js',
         'test/**/*.js'
     ],
     preprocessors: {

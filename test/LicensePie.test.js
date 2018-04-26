@@ -1,7 +1,10 @@
 import React from 'react'
 import expect from 'expect.js'
 import LicensePie from '../src/js/components/LicensePie'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
+
 import _ from 'lodash'
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
 const waitFor = async (wrapper, str) => {

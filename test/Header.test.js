@@ -1,7 +1,9 @@
 import React from 'react'
 import expect from 'expect.js'
 import Header from '../src/js/components/Header'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
 
 describe('Test Header', () => {
     it('component import should work', () => {

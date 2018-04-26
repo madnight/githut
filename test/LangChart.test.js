@@ -5,7 +5,9 @@ import LangChart from '../src/js/components/LangChart'
 import EventStore from "../src/js/stores/EventStore"
 import TableStore from "../src/js/stores/TableStore"
 import HistStore from "../src/js/stores/HistStore"
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
 import _ from 'lodash'
 
 describe('Test LangChart', () => {

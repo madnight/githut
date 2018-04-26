@@ -7,7 +7,6 @@
 
 import { observer } from 'mobx-react'
 import Select from './Select'
-import React from 'react'
 import PropTypes from 'prop-types'
 
 @observer

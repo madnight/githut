@@ -1,7 +1,9 @@
 import React from 'react'
 import expect from 'expect.js'
 import Content from '../src/js/components/Content'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
 
 describe('Test Content', () => {
     it('component import should work', () => {
