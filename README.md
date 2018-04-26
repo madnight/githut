@@ -1,4 +1,7 @@
-# Github Language Statistics
+<p align="center">
+    <h1 align="center">Github Language Statistics<br></h1>
+</p>
+
 [![License (AGPL-3.0)](https://img.shields.io/badge/license-AGPL--3.0-brightgreen.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![Build Status](https://travis-ci.org/madnight/githut.svg?branch=master)](https://travis-ci.org/madnight/githut)
 [![Code Climate](https://codeclimate.com/github/madnight/githut/badges/gpa.svg)](https://codeclimate.com/github/madnight/githut)
