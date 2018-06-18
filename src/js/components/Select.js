@@ -2,18 +2,9 @@ import React from 'react'
 import ReactSelect from 'react-select'
 const { range, toString } = require("lodash/fp")
 import { getMaxDataDate } from '../utils.js'
-import PropTypes from 'prop-types'
-
 import 'react-select/dist/react-select.css';
 
 export default class Select extends React.Component {
-
-    static propTypes = {
-        hist: PropTypes.any.isRequired,
-        match: PropTypes.any.isRequired,
-        history: PropTypes.any.isRequired,
-        location: PropTypes.any.isRequired
-    }
 
     vals(start, end) {
         return range(--start, end).map(i =>

@@ -7,20 +7,12 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { Button as MaterialButton } from 'react-materialize';
-import PropTypes from 'prop-types'
 
 @observer
 export default class Button extends React.Component {
 
     constructor(props) {
         super(props)
-    }
-
-    static propTypes = {
-        match: PropTypes.any.isRequired,
-        store: PropTypes.any.isRequired,
-        location: PropTypes.any.isRequired,
-        history: PropTypes.any.isRequired
     }
 
     componentWillMount() {

@@ -14,31 +14,35 @@ const query = (sql) => {
     return BigQuery({ projectId: process.env.GCLOUD_PROJECT }).query(options)
 }
 
+const getAppendFileName = fileName => {
+    if (fileName == 'PullRequestEvent.json')
+        return 'gh-pull-request.json'
+    if (fileName == 'PushEvent.json')
+        return 'gh-push-event.json'
+    if (fileName == 'IssuesEvent.json')
+        return 'gh-issue-event.json'
+    if (fileName == 'WatchEvent.json')
+        return 'gh-star-event.json'
+    throw 'cannot find append file'
+}
+
+const format = string => string.split(' ').pop().replace(/'/g,'')
+
+const lineEndings = json => String(json).replace(/},{/g, '}\r\n{')
+
 const writeJsonToFile = q => async (json) => {
-    const format = string => string.split(' ').pop().replace(/'/g,'')
     const fileName = format(q) + '.json'
-    const lineEndings = (json) => String(json).replace(/},{/g, '}\r\n{')
     await fs.writeFile(fileName, lineEndings(json), (err) => {
         if (err)
-            process.stdout.write('Could not write to ' + fileName + ' File ' + err + '\n')
+            process.stdout.write(
+                'Could not write to ' + fileName + ' File ' + err + '\n')
         else
             process.stdout.write(fileName + ' successfully written\n')
     })
 
-    const getAppendFileName = fileName => {
-        if (fileName == 'PullRequestEvent.json')
-            return 'gh-pull-request.json'
-        if (fileName == 'PushEvent.json')
-            return 'gh-push-event.json'
-        if (fileName == 'IssuesEvent.json')
-            return 'gh-issue-event.json'
-        if (fileName == 'WatchEvent.json')
-            return 'gh-star-event.json'
-        throw 'cannot find append file'
-    }
-
-    await fs.appendFile('../src/data/' + getAppendFileName(fileName), "\n" + lineEndings(json), (err) => {
-        if (err) throw 'could not append file'
+    await fs.appendFile('../src/data/' + getAppendFileName(fileName),
+        "\n" + lineEndings(json), (err) => {
+            if (err) throw 'could not append file'
     })
 }
 

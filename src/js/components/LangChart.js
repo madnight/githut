@@ -116,6 +116,17 @@ export default class LangChart extends Lang {
             | this.percentageData
     }
 
+    cachedSeries(data, title, top) {
+        const cacheKey = title + top.toString()
+        if (!lscache.get(cacheKey)) {
+            const series = this.createSeriesPercentage(data)
+            lscache.set(cacheKey, { series_cache: series })
+            return series
+        } else {
+            return lscache.get(cacheKey).series_cache
+        }
+    }
+
     /**
      * Creates a new chart if necessary
      */
@@ -126,22 +137,13 @@ export default class LangChart extends Lang {
             this.top10 = top
             this.dataLength = data.length
 
-            const cachedSeries = () => {
-                const cacheKey = title + top.toString()
-                if (!lscache.get(cacheKey)) {
-                    const series = this.createSeriesPercentage(data)
-                    lscache.set(cacheKey, { series_cache: series })
-                    return series
-                } else {
-                    return lscache.get(cacheKey).series_cache
-                }
-            }
+
             const newState = {
                 ...this.state,
                 yAxis: {
                     ...this.state.yAxis, title: { text: title }
                 },
-                series: cachedSeries(),
+                series: this.cachedSeries(data, title, top),
                 xAxis: { categories: this.categories() }
             }
             this.updateState(newState)
