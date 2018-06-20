@@ -2,13 +2,14 @@
     <h1 align="center">Github Language Statistics<br></h1>
 </p>
 
-[![License (AGPL-3.0)](https://img.shields.io/badge/license-AGPL--3.0-brightgreen.svg)](https://www.gnu.org/licenses/agpl-3.0.en.html)
-[![Build Status](https://travis-ci.org/madnight/githut.svg?branch=master)](https://travis-ci.org/madnight/githut)
-[![Code Climate](https://codeclimate.com/github/madnight/githut/badges/gpa.svg)](https://codeclimate.com/github/madnight/githut)
-[![Issue Count](https://codeclimate.com/github/madnight/githut/badges/issue_count.svg)](https://codeclimate.com/github/madnight/githut)
-[![dependencies Status](https://david-dm.org/madnight/githut/status.svg)](https://david-dm.org/madnight/githut)
-[![Known Vulnerabilities](https://snyk.io/test/github/madnight/githut/badge.svg)](https://snyk.io/test/github/madnight/githut)
-![](https://i.imgur.com/WK7zKol.png)
+<p align=center>
+<a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="https://img.shields.io/badge/license-AGPL--3.0-brightgreen.svg" alt="License (AGPL-3.0)"></a>
+<a href="https://travis-ci.org/madnight/githut"><img src="https://travis-ci.org/madnight/githut.svg?branch=master" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/madnight/githut"><img src="https://codeclimate.com/github/madnight/githut/badges/gpa.svg" alt="Code Climate"></a>
+<a href="https://codeclimate.com/github/madnight/githut"><img src="https://codeclimate.com/github/madnight/githut/badges/issue_count.svg" alt="Issue Count"></a>
+<a href="https://david-dm.org/madnight/githut"><img src="https://david-dm.org/madnight/githut/status.svg" alt="dependencies Status"></a>
+<a href="https://snyk.io/test/github/madnight/githut"><img src="https://snyk.io/test/github/madnight/githut/badge.svg" alt="Known Vulnerabilities"></a>
+<img src="https://i.imgur.com/WK7zKol.png" alt=""></p>
 
 ## Data Generation
 ### Languages
