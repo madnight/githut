@@ -17,7 +17,6 @@ import { RenameLangStore } from '../stores/RenameLangStore'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import Lang from './Lang'
-import lscache from 'lscache'
 
 @observer
 export default class LangTable extends Lang {
@@ -176,27 +175,18 @@ export default class LangTable extends Lang {
      */
     mountTable() {
         const data = this.props.store.getData
-        const name = this.props.store.getEventName
         const hist = this.props.hist.getData
         if (data.length < 1000) return
         const {year, quarter} = hist
-        const cacheKey = year + quarter + name + "table"
         const dec = i => --i | toString
 
-        if (!lscache.get(cacheKey)) {
-            const curYearRanking = this.createTable(data, year, quarter)
-            const lastYearRanking = this.createTable(data, dec(year), quarter)
-            const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
-            const langRanking = this.getChange(trendRanking, lastYearRanking)
+        const curYearRanking = this.createTable(data, year, quarter)
+        const lastYearRanking = this.createTable(data, dec(year), quarter)
+        const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
+        const langRanking = this.getChange(trendRanking, lastYearRanking)
 
-            lscache.set(cacheKey, { langRanking: langRanking })
-            this.props.table.set(langRanking)
-            this.setState({data: langRanking})
-        } else {
-            const { langRanking } = lscache.get(cacheKey)
-            this.props.table.set(langRanking)
-            this.setState({data: langRanking})
-        }
+        this.props.table.set(langRanking)
+        this.setState({data: langRanking})
     }
 
     /**

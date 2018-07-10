@@ -5,7 +5,6 @@ import pushEvent from '../../data/gh-push-event.json'
 import starEvent from '../../data/gh-star-event.json'
 import issueEvent from '../../data/gh-issue-event.json'
 import { mapValues, first, map, split, keys } from 'lodash/fp'
-import lscache from 'lscache'
 
 /**
  * This Store keeps the GitHub api data for
@@ -67,15 +66,9 @@ export class EventStore {
      * @returns {Object} JSON parsed result
      */
     @action async fetchData(json) {
-        const cacheKey = (this.event | first | keys | first) + "store"
-        if (!lscache.get(cacheKey)) {
-            const { data } = await axios.get(json)
-            const d = data | this.parseJSON
-            lscache.set(cacheKey, d)
-            this.data = d
-        } else {
-            this.data = lscache.get(cacheKey)
-        }
+        const { data } = await axios.get(json)
+        const d = data | this.parseJSON
+        this.data = d
     }
 
     @computed get getData() {
