@@ -1,5 +1,5 @@
 <p align="center">
-    <h1 align="center">Github Language Statistics<br></h1>
+    <h1 align="center">GitHub Language Statistics<br></h1>
 </p>
 
 <p align=center>
