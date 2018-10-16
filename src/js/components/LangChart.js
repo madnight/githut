@@ -19,7 +19,6 @@ import { update, range, sortBy, includes, uniqBy, reject, size, max,
 import { LangChartStore } from '../stores/LangChartStore'
 import ReactHighcharts from 'react-highcharts'
 import Lang from './Lang'
-import lscache from 'lscache'
 
 @observer
 export default class LangChart extends Lang {
@@ -116,16 +115,6 @@ export default class LangChart extends Lang {
             | this.percentageData
     }
 
-    cachedSeries(data, title, top) {
-        const cacheKey = title + top.toString()
-        if (!lscache.get(cacheKey)) {
-            const series = this.createSeriesPercentage(data)
-            lscache.set(cacheKey, { series_cache: series })
-            return series
-        } else {
-            return lscache.get(cacheKey).series_cache
-        }
-    }
 
     /**
      * Creates a new chart if necessary
@@ -137,13 +126,12 @@ export default class LangChart extends Lang {
             this.top10 = top
             this.dataLength = data.length
 
-
             const newState = {
                 ...this.state,
                 yAxis: {
                     ...this.state.yAxis, title: { text: title }
                 },
-                series: this.cachedSeries(data, title, top),
+                series: this.createSeriesPercentage(data),
                 xAxis: { categories: this.categories() }
             }
             this.updateState(newState)
