@@ -10,13 +10,41 @@ export class NonLangStore {
     constructor() {
         this.config = {
             lang: [
-                'HTML', 'CSS' ,'Gettext Catalog', 'Jupyter Notebook',
-                'Makefile', 'TeX', 'ApacheConf', 'CMAKE', 'Groff', 'XSLT',
-                'CMake', 'Nginx', 'QMake', 'Yacc', 'Lex', 'Protocol Buffer',
-                'Batchfile', 'Smarty', 'Scilab', 'PLpgSQL', 'Perl6',
-                'Handlebars', 'NSIS', 'M4', 'PLSQL', 'Arduino', 'CMake',
-                'ApacheConf', 'XML', 'SaltStack', 'Vue',
-                'GCC Machine Description'
+                'ApacheConf',
+                'ApacheConf',
+                'Arduino',
+                'Batchfile',
+                'BitBake',
+                'CMAKE',
+                'CMake',
+                'CSS',
+                'Dockerfile',
+                'GCC Machine Description',
+                'Gettext Catalog',
+                'Gherkin',
+                'Groff',
+                'HCL',
+                'HTML',
+                'Handlebars',
+                'Jupyter Notebook',
+                'Lex',
+                'M4',
+                'Makefile',
+                'NSIS',
+                'Nginx',
+                'PLSQL',
+                'PLpgSQL',
+                'Perl6',
+                'Protocol Buffer',
+                'QMake',
+                'SaltStack',
+                'Scilab',
+                'Smarty',
+                'TeX',
+                'Vue',
+                'XML',
+                'XSLT',
+                'Yacc'
             ]
         };
     }
