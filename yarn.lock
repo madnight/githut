@@ -3357,6 +3357,11 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flex-exec@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flex-exec/-/flex-exec-1.0.0.tgz#06974b68532839d2a12c32debcdb12378200fdf0"
+  integrity sha1-BpdLaFMoOdKhLDLevNsSN4IA/fA=
+
 follow-redirects@^1.0.0, follow-redirects@^1.2.5, follow-redirects@^1.3.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.6.1.tgz#514973c44b5757368bad8bddfe52f81f015c94cb"
@@ -3522,6 +3527,14 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+gift@0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/gift/-/gift-0.10.2.tgz#4600efe8f284b51fcb01c3527b321e22b494e156"
+  integrity sha512-wC9aKnQpjfOTWX+JG4DPJkS89ux6sl8EN4hXhv/2vBoXCDTEz1JiTeGTSeuKYlCqIgUFM1JwPVym34Sys3hvzw==
+  dependencies:
+    flex-exec "^1.0.0"
+    underscore "^1.8.3"
 
 gift@^0.6.1:
   version "0.6.1"
@@ -3706,6 +3719,18 @@ growl@1.9.2:
 growly@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+
+gulp-gh-pages-will@^0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/gulp-gh-pages-will/-/gulp-gh-pages-will-0.5.5.tgz#a133ff616b9dd61a0c57402a047c4d2421464175"
+  integrity sha512-Aat+vWbqy+xKEbbSp0JOZRGOSLnmh7Nvs8VrfUWxYBqtseu0cOaeOP3ea3UxuA3wu6WM34ljkP1wcOgApfEglQ==
+  dependencies:
+    gift "0.10.2"
+    gulp-util "^3.0.7"
+    readable-stream "^2.0.4"
+    rimraf "^2.4.4"
+    vinyl-fs "^2.2.1"
+    wrap-promise "^1.0.1"
 
 gulp-gh-pages@^0.5.4:
   version "0.5.4"
@@ -7505,7 +7530,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@^2.4.3, rimraf@^2.6.0, rimraf@^2.6.1, rimraf@~2.6.2:
+rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.6.0, rimraf@^2.6.1, rimraf@~2.6.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
   dependencies:
@@ -8512,9 +8537,10 @@ uncontrollable@^4.0.1:
   dependencies:
     invariant "^2.1.0"
 
-underscore@1.x.x:
+underscore@1.x.x, underscore@^1.8.3:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 union-value@^1.0.0:
   version "1.0.0"
