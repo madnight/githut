@@ -62,8 +62,8 @@ export default class LangChart extends Lang {
      * @returns {Object} Data series with percentage data
      */
     percentageData(data) {
-        const total = map(sum)(unzip(map('data')(data)))
-        return map(update('data')(d => zipWith(divide)(d)(total)))(data)
+        const total = data | map('data') | unzip | map(sum)
+        return data | map((x => total | zipWith(divide)(x)) | update('data'))
     }
 
     /**
@@ -75,7 +75,7 @@ export default class LangChart extends Lang {
      */
     fillZeros(data) {
         const HistSize = data | map('data') | map(size) | max
-        const fill = (d) => (new Array(HistSize - size(d)).fill(0)).concat(d)
+        const fill = d => (new Array(HistSize - size(d)).fill(0)).concat(d)
         return data | map(d => ({ name: d.name, data: fill(d.data) }))
     }
 
