@@ -185,6 +185,11 @@ export default class LangTable extends Lang {
         const trendRanking = this.getTrend(curYearRanking, lastYearRanking)
         const langRanking = this.getChange(trendRanking, lastYearRanking)
 
+        if (this.props.selected.getData.length === 0) {
+            const top10 = langRanking | take(10) | map(x => x.name)
+            this.props.selected.set(top10)
+        }
+
         this.props.table.set(langRanking)
         this.setState({data: langRanking})
     }
@@ -247,15 +252,41 @@ export default class LangTable extends Lang {
         )
     }
 
+    handleRowSelect(row, isSelected, e) {
+        const {data} = this.state;
+        const {name} = data[row.id - 1];
+        const {selected} = this.props;
+        if (isSelected) {
+            selected.add(name);
+        } else {
+            selected.delete(name);
+        }
+    }
+
     render() {
-        if (this.state.data.length < 50) return this.noDataAvailableYet()
+        const {data} = this.state;
+        if (data.length < 50) return this.noDataAvailableYet()
+
+        const selectedNames = this.props.selected.getData;
+        const selected = data
+            .map((x, i) => [x, i])
+            .filter(([x, i]) => includes(x.name)(selectedNames))
+            .map(([x, i]) => i + 1);
+
+        const selectRowProp = {
+            mode: 'checkbox',
+            onSelect: this.handleRowSelect.bind(this),
+            selected,
+        };
+
         return (
             <div style={this.style}>
                 <BootstrapTable
+                    selectRow={selectRowProp}
                     condensed
                     striped
                     tableStyle={{margin: '30px auto 30px auto', width: '70%'}}
-                    data={this.state.data}
+                    data={data}
                     bordered={false}
                     options={this.options}>
                     <TableHeaderColumn

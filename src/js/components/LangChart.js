@@ -13,8 +13,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
-import { update, range, sortBy, includes, uniqBy, reject, size, max,
-    flatten, map, take, zipWith, divide, unzip, sum, filter,
+import { update, range, sortBy, includes, uniqBy, size, max,
+    flatten, map, zipWith, divide, unzip, sum, filter,
     drop, isEqual } from 'lodash/fp'
 import { LangChartStore } from '../stores/LangChartStore'
 import ReactHighcharts from 'react-highcharts'
@@ -33,7 +33,7 @@ export default class LangChart extends Lang {
         const store = new LangChartStore
         this.state = store.getConfig()
         this.dataLength = 0
-        this.top10 = []
+        this.selected = []
         this.style = {
             width: '100%',
             margin: 'auto',
@@ -81,13 +81,13 @@ export default class LangChart extends Lang {
 
     /**
      * Creates a data series for highcharts based on GitHub raw api data
-     * Filters top 10 languages
+     * Filters to only the selected languages
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series for top 10 languages
      */
     createSeries(data) {
         return data
-            | reject(o => !includes(o.name)(this.top10))
+            | filter(o => includes(o.name)(this.selected))
             | map(d => ({
                 name: d.name,
                 data: map('count')(filter({'name': d.name})(data))
@@ -119,11 +119,11 @@ export default class LangChart extends Lang {
     /**
      * Creates a new chart if necessary
      */
-    constructChart(data, title, top) {
+    constructChart(data, title, selected) {
         if ((data.length != this.dataLength
-            || !isEqual(this.top10, top))
-            && size(top) > 0) {
-            this.top10 = top
+            || !isEqual(this.selected, selected))
+            && size(selected) > 0) {
+            this.selected = selected.slice();
             this.dataLength = data.length
 
             const newState = {
@@ -149,8 +149,8 @@ export default class LangChart extends Lang {
         this.handler = autorun(() => {
             const data = this.props.store.getData
             const title = this.props.store.getEventName
-            const top = this.props.table.data | take(10) | sortBy('name') | map('name')
-            this.constructChart(data, title, top)
+            const selected = this.props.selected.getData
+            this.constructChart(data, title, selected)
         });
     }
 

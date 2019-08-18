@@ -23,6 +23,7 @@ import SelectQuarter from "./SelectQuarter"
 import EventStore from "../stores/EventStore"
 import HistStore from "../stores/HistStore"
 import TableStore from "../stores/TableStore"
+import SelectedLangStore from "../stores/SelectedLangStore.js";
 
 export default class Layout extends React.Component {
 
@@ -31,7 +32,10 @@ export default class Layout extends React.Component {
           <div>
             <Head/>
             <Header/>
-            <LangChart store={EventStore} table={TableStore}/>
+            <LangChart
+                store={EventStore}
+                table={TableStore}
+                selected={SelectedLangStore} />
             <Route path="/:event?/:year?/:quarter?"
                      render={ route =>
                           (<Button {...route} store={EventStore}/>) } />
@@ -43,7 +47,11 @@ export default class Layout extends React.Component {
                      render={ route =>
                           (<SelectQuarter {...route} hist={HistStore}/>) } />
             </div>
-            <LangTable store={EventStore} hist={HistStore} table={TableStore}/>
+            <LangTable
+                store={EventStore}
+                hist={HistStore}
+                table={TableStore}
+                selected={SelectedLangStore} />
             <LicensePie/>
             <Content/>
             <Comments/>
