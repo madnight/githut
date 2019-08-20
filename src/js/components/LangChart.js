@@ -15,7 +15,7 @@ import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import { update, range, sortBy, includes, uniqBy, reject, size, max,
     flatten, map, take, zipWith, divide, unzip, sum, filter,
-    drop, isEqual } from 'lodash/fp'
+    drop, isEqual, assign } from 'lodash/fp'
 import { LangChartStore } from '../stores/LangChartStore'
 import ReactHighcharts from 'react-highcharts'
 import Lang from './Lang'
@@ -93,8 +93,9 @@ export default class LangChart extends Lang {
                 data: map('count')(filter({'name': d.name})(data))
             }))
             | uniqBy('name')
-            | sortBy('name')
             | this.fillZeros
+            | map.convert({'cap':0})((o, i) => i > 10 ? assign({visible: false})(o) : o)
+            | sortBy('name')
     }
 
     /*
@@ -149,7 +150,7 @@ export default class LangChart extends Lang {
         this.handler = autorun(() => {
             const data = this.props.store.getData
             const title = this.props.store.getEventName
-            const top = this.props.table.data | take(10) | sortBy('name') | map('name')
+            const top = this.props.table.data | take(50) | sortBy('name') | map('name')
             this.constructChart(data, title, top)
         });
     }
