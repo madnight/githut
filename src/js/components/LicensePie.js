@@ -10,10 +10,9 @@
  */
 
 import React from 'react'
-import axios from 'axios'
 import licenses from '../../data/github-licenses.json'
 import ReactHighcharts from 'react-highcharts'
-import { mapKeys, update, take, map, split } from 'lodash/fp'
+import { mapKeys, update, take, map } from 'lodash/fp'
 
 export default class LicensePie extends React.Component {
 
@@ -38,10 +37,7 @@ export default class LicensePie extends React.Component {
     }
 
     async componentWillMount() {
-        const { data } = await axios.get(licenses)
-        const series = data
-            | split('\n')
-            | map(JSON.parse)
+        const series = licenses
             | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
             | map(update('y')(Math.floor))
             | take(5)

@@ -1,15 +1,12 @@
-import axios from 'axios'
-import { map, split, max, values, filter } from 'lodash/fp'
+import { map, max, values, filter } from 'lodash/fp'
 import pullRequests from '../data/gh-pull-request.json'
 
 const getMaxDataDate = async () => {
-    const data = await axios.get(pullRequests)
-    const d = data.data | split('\n') | map(JSON.parse)
-    const year = d
+    const year = pullRequests
         | map('year')
         | values
         | max
-    const maxQuarter = d
+    const maxQuarter = pullRequests
         | filter({ 'year': year })
         | map('quarter')
         | values
