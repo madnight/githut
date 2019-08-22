@@ -1,6 +1,5 @@
 import wpConf from './webpack.config.babel.js'
 import { initial } from 'lodash/fp'
-wpConf.entry = {}
 
 // filter out WebpackBrowserPlugin for tests
 wpConf.plugins = wpConf.plugins | initial

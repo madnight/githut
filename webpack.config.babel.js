@@ -1,8 +1,7 @@
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import WebpackBrowserPlugin from 'webpack-browser-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 import path from 'path'
 
@@ -10,7 +9,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     context: path.join(__dirname, 'src'),
-    devtool: debug ? 'source-map' : null,
+    devtool: debug ? 'source-map' : false,
     entry: './js/client.js',
     resolve: {
         alias: {
@@ -18,38 +17,34 @@ module.exports = {
         }
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015', 'stage-0'],
-                    plugins: [
-                        'react-html-attrs',
-                        'add-module-exports',
-                        'transform-decorators-legacy',
-                        'transform-class-properties',
-                        'pipe-operator-curry'
-                    ]
-                }
             },
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
             {
-                test: /\.json$/,
-                loader: 'file-loader?name=[name]_[hash:6].[ext]'
-            },
-            {
                 test: /\.md$/,
-                loader: 'html!markdown'
+                loader: 'html-loader!markdown-loader'
             },
             {
                 test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
-            }
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "stylus-loader"
+                    }
+                ]
+            },
         ]
     },
     output: {
@@ -64,16 +59,20 @@ module.exports = {
         'react/lib/ReactContext': true
     },
     plugins: [
-        new ExtractTextPlugin('styles_[hash:6].css', { allChunks: false }),
+        new MiniCssExtractPlugin({
+              // Options similar to the same options in webpackOptions.output
+              // all options are optional
+            filename: 'styles_[hash:6].csss',
+            ignoreOrder: false, // Enable to remove warnings about conflicting order
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         }),
         new HtmlWebpackPlugin({
             title: 'GitHut 2.0'
-        }),
-        new webpack.NoErrorsPlugin()
-    ].concat(debug ? [ new WebpackBrowserPlugin() ] :
+        })
+    ].concat(debug ? [ ] :
     [
         new WebpackCleanupPlugin(),
         new webpack.DefinePlugin({
@@ -81,9 +80,6 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
         new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
     ])
 }

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { computed, observable, action } from "mobx"
 import pullRequests from '../../data/gh-pull-request.json'
 import pushEvent from '../../data/gh-push-event.json'
@@ -66,9 +65,7 @@ export class EventStore {
      * @returns {Object} JSON parsed result
      */
     @action async fetchData(json) {
-        const { data } = await axios.get(json)
-        const d = data | this.parseJSON
-        this.data = d
+        this.data = json
     }
 
     @computed get getData() {
