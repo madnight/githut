@@ -95,7 +95,6 @@
     "file-loader": "^4.2.0",
     "gulp": "^4.0.2",
     "gulp-gh-pages": "^0.5.4",
-    "gulp-gh-pages-will": "^0.5.5",
     "gulp-htmlmin": "^3.0.0",
     "html-loader": "^0.4.4",
     "html-minifier": "^3.2.3",
