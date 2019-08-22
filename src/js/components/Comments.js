@@ -8,7 +8,6 @@ import React from 'react'
 import ReactDisqusThread from 'react-disqus-comments'
 
 export default class Comments extends React.Component {
-
     constructor () {
         super()
         this.style = {
@@ -17,19 +16,19 @@ export default class Comments extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return false
     }
 
     render () {
         return (
-          <div style={this.style}>
-              <ReactDisqusThread
-                shortname="githut2"
-                identifier="githut2"
-                title="GitHut2 Thread"
-              />
-          </div>
+            <div style={this.style}>
+                <ReactDisqusThread
+                    shortname="githut2"
+                    identifier="githut2"
+                    title="GitHut2 Thread"
+                />
+            </div>
         )
     }
 }

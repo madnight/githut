@@ -10,7 +10,6 @@ import React from 'react'
 import content from '../../content/content.md'
 
 export default class Content extends React.Component {
-
     constructor () {
         super()
         this.contentStyle = {
@@ -23,7 +22,7 @@ export default class Content extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return false
     }
 

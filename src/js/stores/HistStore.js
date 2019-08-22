@@ -1,4 +1,4 @@
-import { computed, observable } from "mobx"
+import { computed, observable } from 'mobx'
 
 /**
  * This Store keeps the current time state year and quarter
@@ -6,16 +6,14 @@ import { computed, observable } from "mobx"
  * @license AGPL-3.0
  */
 export class HistStore {
-
     @observable data = {}
 
-    constructor() {
+    constructor () {
         this.data = { year: '2018', quarter: '1' }
     }
 
-    @computed get getData() {
+    @computed get getData () {
         return this.data
     }
-
 }
-export default new HistStore
+export default new HistStore()

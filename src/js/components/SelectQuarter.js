@@ -10,8 +10,4 @@ import Select from './Select'
 
 @observer
 export default class SelectQuarter extends Select {
-
-    constructor(props) {
-        super(props)
-    }
 }

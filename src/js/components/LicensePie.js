@@ -15,15 +15,14 @@ import ReactHighcharts from 'react-highcharts'
 import { mapKeys, update, take, map } from 'lodash/fp'
 
 export default class LicensePie extends React.Component {
-
-    constructor() {
+    constructor () {
         super()
         this.state = {
             credits: { enabled: false },
             chart: { type: 'pie', backgroundColor: 'transparent' },
             title: { text: 'Top 5 Open Source Licenses' },
             tooltip: {
-                formatter: function() {
+                formatter: function () {
                     return '<span style="color:' + this.series.color + '">'
                         + this.point.name + '</span>: <b>'
                         + (this.percentage).toFixed(2) + '%</b>'
@@ -32,19 +31,19 @@ export default class LicensePie extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return this.state.series !== nextState.series
     }
 
-    async componentWillMount() {
+    async componentWillMount () {
         const series = licenses
-            | map(mapKeys(k => k == 'license' ? 'name' : 'y'))
+            | map(mapKeys(k => k === 'license' ? 'name' : 'y'))
             | map(update('y')(Math.floor))
             | take(5)
         this.setState({series: [{data: series}]})
     }
 
-    render() {
-        return (<ReactHighcharts config={ this.state }/>);
+    render () {
+        return (<ReactHighcharts config={ this.state }/>)
     }
 }

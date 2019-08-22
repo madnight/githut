@@ -10,8 +10,7 @@ import Select from './Select'
 
 @observer
 export default class SelectYear extends Select {
-
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.year = true
     }

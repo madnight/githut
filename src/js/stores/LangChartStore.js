@@ -10,7 +10,7 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-const chart_config = {
+const chartConfig = {
     credits: { enabled: false },
     chart: { type: 'spline', backgroundColor: 'transparent' },
     title: { text: '' },
@@ -20,8 +20,8 @@ const chart_config = {
             text: ''
         },
         labels: {
-            formatter: function() {
-                return (this.value * 100) + "%"
+            formatter: function () {
+                return (this.value * 100) + '%'
             }
         }
     },
@@ -32,26 +32,25 @@ const chart_config = {
         },
         series: {
             animation: {
-                duration: 200,
+                duration: 200
             }
         }
     },
     tooltip: {
-        formatter: function() {
+        formatter: function () {
             return '<span style="color:' + this.series.color + '">'
                 + this.series.name + '</span>: <b>'
                 + (this.y * 100).toFixed(2) + '%</b>'
         }
     }
-};
+}
 
 export class LangChartStore {
-
-    constructor() {
-        this.config = chart_config
+    constructor () {
+        this.config = chartConfig
     }
 
-    getConfig() {
-        return this.config;
+    getConfig () {
+        return this.config
     }
 }

@@ -28,5 +28,6 @@
     "mocha/no-exclusive-tests": "error",
     "react/prop-types": [0 , {}],
     "indent": ["error", 4],
+    "operator-linebreak": off
   }
 }
