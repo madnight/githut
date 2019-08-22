@@ -22,15 +22,14 @@ import Lang from './Lang'
 
 @observer
 export default class LangChart extends Lang {
-
     /**
      * Contains react state and react inline style
      * @constructor
      * @param {Object} props - Contains GitHub data sets
      */
-    constructor(props) {
+    constructor (props) {
         super(props)
-        const store = new LangChartStore
+        const store = new LangChartStore()
         this.state = store.getConfig()
         this.dataLength = 0
         this.top10 = []
@@ -46,11 +45,11 @@ export default class LangChart extends Lang {
      * quarter wise: 2012/Q1, 2012/Q2, ...
      * @returns {Object} xAxis categories (year/quarter)
      */
-    categories() {
+    categories () {
         return range(12, 30)
             | map(y => range(1, 5)
-                | map(q => y + "/Q" + q)
-              )
+                | map(q => y + '/Q' + q)
+            )
             | flatten
             | drop(1)
     }
@@ -61,7 +60,7 @@ export default class LangChart extends Lang {
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series with percentage data
      */
-    percentageData(data) {
+    percentageData (data) {
         const total = data | map('data') | unzip | map(sum)
         return data | map((x => total | zipWith(divide)(x)) | update('data'))
     }
@@ -73,7 +72,7 @@ export default class LangChart extends Lang {
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series filled with zeros if required
      */
-    fillZeros(data) {
+    fillZeros (data) {
         const HistSize = data | map('data') | map(size) | max
         const fill = d => (new Array(HistSize - size(d)).fill(0)).concat(d)
         return data | map(d => ({ name: d.name, data: fill(d.data) }))
@@ -85,7 +84,7 @@ export default class LangChart extends Lang {
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series for top 10 languages
      */
-    createSeries(data) {
+    createSeries (data) {
         return data
             | reject(o => !includes(o.name)(this.top10))
             | map(d => ({
@@ -94,34 +93,32 @@ export default class LangChart extends Lang {
             }))
             | uniqBy('name')
             | this.fillZeros
-            | map.convert({'cap':0})((o, i) => i > 10 ? assign({visible: false})(o) : o)
+            | map.convert({'cap': 0})((o, i) => i > 10 ? assign({visible: false})(o) : o)
             | sortBy('name')
     }
 
     /*
      * Updates react state if the new state is different than the old state
      */
-    updateState(newState) {
-        if (!isEqual(this.state, newState))
-            this.setState(newState)
+    updateState (newState) {
+        if (!isEqual(this.state, newState)) { this.setState(newState) }
     }
 
     /*
      * Creates a new percentage series of data
      */
-    createSeriesPercentage(data) {
+    createSeriesPercentage (data) {
         return data
             | map(update('count')(Math.floor))
             | this.createSeries
             | this.percentageData
     }
 
-
     /**
      * Creates a new chart if necessary
      */
-    constructChart(data, title, top) {
-        if ((data.length != this.dataLength
+    constructChart (data, title, top) {
+        if ((data.length !== this.dataLength
             || !isEqual(this.top10, top))
             && size(top) > 0) {
             this.top10 = top
@@ -146,16 +143,16 @@ export default class LangChart extends Lang {
      * of class member functions and change reacts state if something
      * has changed
      */
-    componentWillMount() {
+    componentWillMount () {
         this.handler = autorun(() => {
             const data = this.props.store.getData
             const title = this.props.store.getEventName
             const top = this.props.table.data | take(50) | sortBy('name') | map('name')
             this.constructChart(data, title, top)
-        });
+        })
     }
 
-    render() {
+    render () {
         return (
             <div style={this.style}>
                 <ReactHighcharts config={ this.state } ref="chart"/>

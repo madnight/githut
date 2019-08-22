@@ -20,17 +20,16 @@ import Lang from './Lang'
 
 @observer
 export default class LangTable extends Lang {
-
     /**
      * Sets inital state and react inline style
      * @constructor
      * @param {Object} props - Contains GitHub data sets
      */
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.state = {
             data: []
-        };
+        }
         this.style = {
             margin: 'auto',
             maxWidth: 1160
@@ -43,7 +42,7 @@ export default class LangTable extends Lang {
      * @param {number} year - Example 2017
      * @param {number} quarter - Example 2
      */
-    filterDate(data, year, quarter) {
+    filterDate (data, year, quarter) {
         return data
             | filter({year: year})
             | filter({quarter: quarter})
@@ -57,7 +56,7 @@ export default class LangTable extends Lang {
      * Filters non programming languages
      * @param {Object} data - GitHub api data set
      */
-    filterNonProgrammingLanguages(data) {
+    filterNonProgrammingLanguages (data) {
         const nonLang = new NonLangStore().getConfig()
         return data
             | reject(o => includes(o.name)(nonLang.lang))
@@ -69,7 +68,7 @@ export default class LangTable extends Lang {
      * the latest name (replace old names) to keep consistency
      * @param {Object} data - GitHub api data set
      */
-    applyLanguageRenamings(data) {
+    applyLanguageRenamings (data) {
         const renameLang = new RenameLangStore().getConfig()
         const rename = (name) => {
             const r = find(o => includes(name, o.before))(renameLang)
@@ -88,11 +87,11 @@ export default class LangTable extends Lang {
      * @param {Object} cell - Cell content of the table
      * @param {Object} row - Row content of the table
      */
-    trendFormatter(cell, row) {
+    trendFormatter (cell, row) {
         const arrow = n => {
             const angle = dir => `<i class='fa fa-angle-${dir}'></i>`
             switch (true) {
-            case n == 0:
+            case n === 0:
                 return ''
             case n > 3:
                 return angle('double-up')
@@ -115,7 +114,7 @@ export default class LangTable extends Lang {
      * @param {string} name - Name to search for
      * @returns {Object} Search result
      */
-    findByName(data, name) {
+    findByName (data, name) {
         return data
             | filter({ name: name })
             | first
@@ -128,7 +127,7 @@ export default class LangTable extends Lang {
      * @param {Object} last - GitHub api data set last year
      * @returns {Object} Data set ++ trend diff
      */
-    getTrend(current, last) {
+    getTrend (current, last) {
         return current
             | map(c => assign({
                 trend: this.findByName(last, c.name).id - c.id
@@ -142,7 +141,7 @@ export default class LangTable extends Lang {
      * @param {Object} last - GitHub api data set last year
      * @returns {Object} Data set ++ change as number
      */
-    getChange(current, last) {
+    getChange (current, last) {
         return current
             | map(c => assign({
                 change: c.count - this.findByName(last, c.name).count
@@ -159,9 +158,9 @@ export default class LangTable extends Lang {
      * @param {number} quarter - e.g. 2
      * @returns {Object} filtered and indexed data set (table)
      */
-    createTable(date, year, quarter) {
+    createTable (date, year, quarter) {
         const addSortId = i => i
-            | map.convert({'cap':0})((o, i) => assign({id: ++i})(o))
+            | map.convert({'cap': 0})((o, i) => assign({id: ++i})(o))
         return this.filterDate(date, year, quarter)
             | this.filterNonProgrammingLanguages
             | this.applyLanguageRenamings
@@ -173,7 +172,7 @@ export default class LangTable extends Lang {
      * Sets ranking table state based on given props (api data)
      * Gets called on componentDidMount and sets react state on prop change
      */
-    mountTable() {
+    mountTable () {
         const data = this.props.store.getData
         const hist = this.props.hist.getData
         if (data.length < 1000) return
@@ -195,16 +194,16 @@ export default class LangTable extends Lang {
      * @param {Object} data - GitHub api data set
      * @returns {Object} Data set with percentage count
      */
-    percentageData(data) {
+    percentageData (data) {
         const total = data | map('count') | map(Number) | sum
-        return data | map(update('count')(d => d/total))
+        return data | map(update('count')(d => d / total))
     }
 
     /**
      * Native react function, called on component mount and
      * on every prop change event via mobx autorun
      */
-    componentWillMount() {
+    componentWillMount () {
         autorun(() => this.mountTable())
     }
 
@@ -215,23 +214,23 @@ export default class LangTable extends Lang {
      * @param {Object} row - Row content of the table
      * @returns {Object} Formatted cell content
      */
-    percentFormatter(cell, row) {
+    percentFormatter (cell, row) {
         const font = (i, color) =>
             `<font size="1">(<font color="${color}">${i}%</font>)</font>`
         const colorize = i => i >= 0
-            ? font(('+' + i), "green")
-            : font(i, "chrimson")
+            ? font(('+' + i), 'green')
+            : font(i, 'chrimson')
         const percent = i => ((i * 100).toFixed(3))
-        const countPercent = (row.count | percent) + "%"
+        const countPercent = (row.count | percent) + '%'
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
         const normalize = n => isNaN(n) ? 0.000 : n
-        if (row.id > 30 ) return countPercent
-        return `${ countPercent + "  " +
+        if (row.id > 30) return countPercent
+        return `${countPercent + '  ' +
             (row.change
                 | normalize
                 | percent
-                | colorize) }`
+                | colorize)}`
     }
 
     /**
@@ -239,7 +238,7 @@ export default class LangTable extends Lang {
      * still loading
      * @returns {Object} html content for emtpy table
      */
-    noDataAvailableYet() {
+    noDataAvailableYet () {
         return (
             <div className="emptyTable">
                 <h2>No data available for this time period yet</h2>
@@ -247,7 +246,7 @@ export default class LangTable extends Lang {
         )
     }
 
-    render() {
+    render () {
         if (this.state.data.length < 50) return this.noDataAvailableYet()
         return (
             <div style={this.style}>

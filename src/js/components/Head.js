@@ -9,8 +9,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 export default class Application extends React.Component {
-
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return false
     }
 

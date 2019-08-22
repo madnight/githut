@@ -6,8 +6,7 @@
  * @see {@link https://github.com/github/linguist/blob/master/lib/linguist/languages.yml}
  */
 export class NonLangStore {
-
-    constructor() {
+    constructor () {
         this.config = {
             lang: [
                 'ApacheConf',
@@ -46,11 +45,10 @@ export class NonLangStore {
                 'XSLT',
                 'Yacc'
             ]
-        };
+        }
     }
 
-    getConfig() {
-        return this.config;
+    getConfig () {
+        return this.config
     }
-
 }

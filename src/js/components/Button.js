@@ -6,43 +6,38 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Button as MaterialButton } from 'react-materialize';
+import { Button as MaterialButton } from 'react-materialize'
 
 @observer
 export default class Button extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
-
-    componentWillMount() {
+    componentWillMount () {
         const { match, store } = this.props
         const value = match.params.event
         const urlToEvent = url => url
-            .replace(/_/g," ")
+            .replace(/_/g, ' ')
             .replace(/\b[a-z]/g, f => f.toUpperCase())
         store.set(urlToEvent(value))
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return this.props !== nextProps
     }
 
-    next() {
+    next () {
         const { match } = this.props
         this.props.store.next()
         const event = this.props.store.getEventName
         const eventToUrl = event => event
             .toLowerCase()
-            .replace(/ /g,"_")
+            .replace(/ /g, '_')
         this.props.history.push(
-              "/" + eventToUrl(event)
-            + "/" + match.params.year
-            + "/" + match.params.quarter)
+            '/' + eventToUrl(event)
+            + '/' + match.params.year
+            + '/' + match.params.quarter)
     }
 
-    render() {
-        const buttonClass= "waves-effect waves-light blue-grey lighten-2 btn"
+    render () {
+        const buttonClass = 'waves-effect waves-light blue-grey lighten-2 btn'
         return (
             <div>
                 <center>
