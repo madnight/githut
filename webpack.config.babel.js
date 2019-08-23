@@ -2,6 +2,7 @@ import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import WebpackCleanupPlugin from "webpack-cleanup-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
 import path from "path";
 
@@ -110,7 +111,8 @@ module.exports = {
               NODE_ENV: JSON.stringify("production")
             }
           }),
-          new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 })
+          new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 }),
+          new HtmlBeautifyPlugin()
         ]
   )
 };
