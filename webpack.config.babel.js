@@ -3,6 +3,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 import path from 'path'
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -80,6 +82,7 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
+        new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
+        new BundleAnalyzerPlugin(),
     ])
 }
