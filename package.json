@@ -11,7 +11,6 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --mode=production -p --progress --colors --content-base src && gulp minify",
-    "profile": "NODE_ENV=production webpack --profile --json --mode=production -p --progress --colors --content-base src > stats.json",
     "deploy": "npm run build && gulp deploy",
     "lint": "eslint -c .eslintrc src",
     "babel": "babel-node --presets es2015",
@@ -88,7 +87,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^4.2.0",
     "gulp": "^4.0.2",
-    "gulp-gh-pages": "^0.5.4",
+    "gulp-gh-pages": "^0.6.0-6",
     "gulp-htmlmin": "^3.0.0",
     "html-loader": "^0.4.4",
     "html-minifier": "^3.2.3",
