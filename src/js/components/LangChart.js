@@ -47,9 +47,9 @@ export default class LangChart extends Lang {
      * @returns {Object} xAxis categories (year/quarter)
      */
     categories () {
-        return range(12, 30)
+        return range(2012, 2050)
             | map(y => range(1, 5)
-                | map(q => y + '/Q' + q)
+                | map(q => q === 1 ? y : '')
             )
             | flatten
             | drop(1)
@@ -131,7 +131,7 @@ export default class LangChart extends Lang {
                     ...this.state.yAxis, title: { text: title }
                 },
                 series: this.createSeriesPercentage(data),
-                xAxis: { categories: this.categories() }
+                xAxis: { tickLength: 0, categories: this.categories() }
             }
             this.updateState(newState)
         }
