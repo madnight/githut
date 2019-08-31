@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactSelect from 'react-select'
-const { range, toString } = require('lodash/fp')
+import { range, toString } from 'lodash/fp'
 import { getMaxDataDate } from '../utils.js'
 import 'react-select/dist/react-select.css'
 

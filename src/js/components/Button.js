@@ -19,10 +19,6 @@ export default class Button extends React.Component {
         store.set(urlToEvent(value))
     }
 
-    shouldComponentUpdate (nextProps, nextState) {
-        return this.props !== nextProps
-    }
-
     next () {
         const { match } = this.props
         this.props.store.next()

@@ -21,6 +21,7 @@ export default class Application extends React.Component {
                     meta={[ {'charset': 'utf-8'} ]}
                     link={[
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'},
+                        {'rel': 'stylesheet', 'type': 'text/css', 'href': '//cdnjs.cloudflare.com/ajax/libs/react-select/1.2.1/react-select.min.css'},
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'},
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//fonts.googleapis.com/icon?family=Material+Icons'},
                         {'rel': 'stylesheet', 'type': 'text/css', 'href': '//allenfang.github.io/react-bootstrap-table/css/react-bootstrap-table-all.min.css'},
