@@ -225,12 +225,13 @@ export default class LangTable extends Lang {
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
         const normalize = n => isNaN(n) ? 0.000 : n
-        if (row.id > 30) return countPercent
-        return `${countPercent + '  ' +
+        const offset = '\u00A0'.repeat(6)
+        return offset + (row.id > 30 ? countPercent :
+            (`${countPercent + '  ' +
             (row.change
                 | normalize
                 | percent
-                | colorize)}`
+                | colorize)}`))
     }
 
     /**
@@ -272,8 +273,8 @@ export default class LangTable extends Lang {
                     </TableHeaderColumn>
                     <TableHeaderColumn
                         width='100px'
-                        dataAlign="center"
                         dataField='count'
+                        dataAlign="left"
                         dataFormat={ this.percentFormatter }>
                         Percentage (Change)
                     </TableHeaderColumn>

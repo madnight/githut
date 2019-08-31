@@ -13,6 +13,7 @@
     "build": "NODE_ENV=production webpack --mode=production -p --progress --colors --content-base src",
     "deploy": "npm run build && gh-pages -d public",
     "lint": "eslint -c .eslintrc src",
+    "lint-fix": "eslint -c .eslintrc src --fix",
     "babel": "babel-node --presets es2015",
     "ver": "npm version patch --git=true",
     "test-browser": "BROWSERS=true npm run test",
