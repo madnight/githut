@@ -15,10 +15,11 @@ import { observer } from 'mobx-react'
 import { autorun } from 'mobx'
 import { update, range, sortBy, includes, uniqBy, reject, size, max,
     flatten, map, take, zipWith, divide, unzip, sum, filter,
-    drop, isEqual, assign } from 'lodash/fp'
+    drop, isEqual } from 'lodash/fp'
 import { LangChartStore } from '../stores/LangChartStore'
 import ReactHighcharts from 'react-highcharts'
 import Lang from './Lang'
+import GitHubColors from 'github-colors'
 
 @observer
 export default class LangChart extends Lang {
@@ -32,7 +33,7 @@ export default class LangChart extends Lang {
         const store = new LangChartStore()
         this.state = store.getConfig()
         this.dataLength = 0
-        this.top10 = []
+        this.top50 = []
         this.style = {
             width: '100%',
             margin: 'auto',
@@ -75,7 +76,7 @@ export default class LangChart extends Lang {
     fillZeros (data) {
         const HistSize = data | map('data') | map(size) | max
         const fill = d => (new Array(HistSize - size(d)).fill(0)).concat(d)
-        return data | map(d => ({ name: d.name, data: fill(d.data) }))
+        return data | map(update('data', fill))
     }
 
     /**
@@ -86,15 +87,15 @@ export default class LangChart extends Lang {
      */
     createSeries (data) {
         return data
-            | reject(o => !includes(o.name)(this.top10))
-            | map(d => ({
+            | uniqBy('name')
+            | reject(o => !includes(o.name)(this.top50))
+            | map.convert({'cap': 0})((d, i) => ({
                 name: d.name,
+                color: GitHubColors.get(d.name).color,
+                visible: i < 7,
                 data: map('count')(filter({'name': d.name})(data))
             }))
-            | uniqBy('name')
             | this.fillZeros
-            | map.convert({'cap': 0})((o, i) => i > 10 ? assign({visible: false})(o) : o)
-            | sortBy('name')
     }
 
     /*
@@ -119,9 +120,9 @@ export default class LangChart extends Lang {
      */
     constructChart (data, title, top) {
         if ((data.length !== this.dataLength
-            || !isEqual(this.top10, top))
+            || !isEqual(this.top50, top))
             && size(top) > 0) {
-            this.top10 = top
+            this.top50 = top
             this.dataLength = data.length
 
             const newState = {

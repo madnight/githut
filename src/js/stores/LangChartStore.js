@@ -26,7 +26,7 @@ const chartConfig = {
         }
     },
     plotOptions: {
-        spline: { lineWidth: 4,
+        spline: { lineWidth: 3,
             states: { hover: { lineWidth: 5 } },
             marker: { enabled: false }
         },
