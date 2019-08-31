@@ -15,39 +15,36 @@ const query = (sql) => {
 }
 
 const getAppendFileName = fileName => {
-    if (fileName == 'PullRequestEvent.json')
-        return 'gh-pull-request.json'
-    if (fileName == 'PushEvent.json')
-        return 'gh-push-event.json'
-    if (fileName == 'IssuesEvent.json')
-        return 'gh-issue-event.json'
-    if (fileName == 'WatchEvent.json')
-        return 'gh-star-event.json'
-    throw 'cannot find append file'
+    if (fileName === 'PullRequestEvent.json') { return 'gh-pull-request.json' }
+    if (fileName === 'PushEvent.json') { return 'gh-push-event.json' }
+    if (fileName === 'IssuesEvent.json') { return 'gh-issue-event.json' }
+    if (fileName === 'WatchEvent.json') { return 'gh-star-event.json' }
+    throw new Error('cannot find append file')
 }
 
-const format = string => string.split(' ').pop().replace(/'/g,'')
+const format = string => string.split(' ').pop().replace(/'/g, '')
 
 const lineEndings = json => String(json).replace(/},{/g, '}\r\n{')
 
 const writeJsonToFile = q => async (json) => {
     const fileName = format(q) + '.json'
     await fs.writeFile(fileName, lineEndings(json), (err) => {
-        if (err)
+        if (err) {
             process.stdout.write(
                 'Could not write to ' + fileName + ' File ' + err + '\n')
-        else
-            process.stdout.write(fileName + ' successfully written\n')
+        } else { process.stdout.write(fileName + ' successfully written\n') }
     })
 
     await fs.appendFile('../src/data/' + getAppendFileName(fileName),
-        "\n" + lineEndings(json), (err) => {
-            if (err) throw 'could not append file'
-    })
+        '\n' + lineEndings(json), (err) => {
+            if (err) throw new Error('could not append file')
+        })
 }
 
 const queryBuilder = (tables) => {
     const types = ['PullRequestEvent', 'IssuesEvent', 'PushEvent', 'WatchEvent']
+
+    /* eslint-disable no-useless-escape */
     const sqlQuery = (type) =>
         `SELECT language as name, year, quarter, count FROM ( SELECT * FROM (
           SELECT lang as language, y as year, q as quarter, type,
@@ -65,6 +62,7 @@ const queryBuilder = (tables) => {
           GROUP by type, language, year, quarter
           order by year, quarter, count DESC)
           WHERE count >= 100) WHERE type = '${type}'`
+    /* eslint-enable no-useless-escape */
     return map(sqlQuery)(types)
 }
 

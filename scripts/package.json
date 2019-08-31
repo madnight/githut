@@ -5,7 +5,7 @@
   "main": "query.js",
   "scripts": {
     "start": "node query.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix query.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +15,8 @@
     "commander": "^2.11.0",
     "lodash": "^4.17.4",
     "yargs": "7.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0"
   }
 }
