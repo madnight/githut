@@ -3,7 +3,7 @@
 const BigQuery = require('@google-cloud/bigquery')
 const fs = require('fs')
 const param = require('commander')
-const {flow, map, first, isNumber, defaultTo} = require('lodash/fp')
+const {flatten, flow, map, first, isNumber, defaultTo} = require('lodash/fp')
 
 const query = (sql) => {
     const options = {
@@ -26,19 +26,15 @@ const format = string => string.split(' ').pop().replace(/'/g, '')
 
 const lineEndings = json => String(json).replace(/},{/g, '}\r\n{')
 
-const writeJsonToFile = q => async (json) => {
+const writeJsonToFile = q => async (j) => {
     const fileName = format(q) + '.json'
-    await fs.writeFile(fileName, lineEndings(json), (err) => {
-        if (err) {
-            process.stdout.write(
-                'Could not write to ' + fileName + ' File ' + err + '\n')
-        } else { process.stdout.write(fileName + ' successfully written\n') }
+    const fN = '../src/data/' + getAppendFileName(fileName)
+    fs.readFile(fN, (err, data) => {
+        const json = JSON.parse(data)
+        if (err) throw new Error('could not append file')
+        json.push(j)
+        fs.writeFile(fN, JSON.stringify(flatten(json), null, 2), (err) => { if (err) throw err })
     })
-
-    await fs.appendFile('../src/data/' + getAppendFileName(fileName),
-        '\n' + lineEndings(json), (err) => {
-            if (err) throw new Error('could not append file')
-        })
 }
 
 const queryBuilder = (tables) => {
@@ -78,7 +74,6 @@ const stringify = flow(
 const exec = async (q) =>
     flow(
         first,
-        map(stringify),
         writeJsonToFile(q)
     )(await query(q))
 
