@@ -91,7 +91,9 @@ export default class LangChart extends Lang {
             | reject(o => !includes(o.name)(this.top50))
             | map.convert({'cap': 0})((d, i) => ({
                 name: d.name,
-                color: GitHubColors.get(d.name).color,
+                color: GitHubColors.get(d.name) ?
+                    GitHubColors.get(d.name).color : // or random color
+                    '#' + Math.floor(Math.random() * 16777215).toString(16),
                 visible: i < 7,
                 data: map('count')(filter({'name': d.name})(data))
             }))
