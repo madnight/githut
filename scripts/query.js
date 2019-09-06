@@ -3,7 +3,7 @@
 const BigQuery = require('@google-cloud/bigquery')
 const fs = require('fs')
 const param = require('commander')
-const {flatten, flow, map, first, isNumber, defaultTo} = require('lodash/fp')
+const { flatten, flow, map, first, isNumber, defaultTo } = require('lodash/fp')
 
 const query = (sql) => {
     const options = {
@@ -14,26 +14,26 @@ const query = (sql) => {
     return BigQuery({ projectId: process.env.GCLOUD_PROJECT }).query(options)
 }
 
-const getAppendFileName = fileName => {
-    if (fileName === 'PullRequestEvent.json') { return 'gh-pull-request.json' }
-    if (fileName === 'PushEvent.json') { return 'gh-push-event.json' }
-    if (fileName === 'IssuesEvent.json') { return 'gh-issue-event.json' }
-    if (fileName === 'WatchEvent.json') { return 'gh-star-event.json' }
-    throw new Error('cannot find append file')
+const getAppendFileName = eventName => {
+    return {
+        'PullRequestEvent': 'gh-pull-request.json',
+        'PushEvent': 'gh-push-event.json',
+        'IssuesEvent': 'gh-issue-event.json',
+        'WatchEvent': 'gh-star-event.json'
+    }[eventName]
 }
 
-const format = string => string.split(' ').pop().replace(/'/g, '')
-
-const lineEndings = json => String(json).replace(/},{/g, '}\r\n{')
+const format = str => str.split(' ').pop().replace(/'/g, '')
 
 const writeJsonToFile = q => async (j) => {
-    const fileName = format(q) + '.json'
-    const fN = '../src/data/' + getAppendFileName(fileName)
+    const fN = '../src/data/' + getAppendFileName(format(q))
     fs.readFile(fN, (err, data) => {
         const json = JSON.parse(data)
         if (err) throw new Error('could not append file')
         json.push(j)
-        fs.writeFile(fN, JSON.stringify(flatten(json), null, 2), (err) => { if (err) throw err })
+        fs.writeFile(fN, JSON.stringify(flatten(json), null, 2), (err) => {
+            if (err) throw err
+        })
     })
 }
 
@@ -62,18 +62,15 @@ const queryBuilder = (tables) => {
     return map(sqlQuery)(types)
 }
 
-const numToStrReplacer = (key, value) => isNumber(value) ? JSON.stringify(value) : value
+const numToStrReplacer = (key, value) => isNumber(value) ?
+    JSON.stringify(value) : value
 const stringifyFP = x => y => JSON.stringify(y, x)
-
-const stringify = flow(
-    JSON.stringify,
-    JSON.parse,
-    stringifyFP(numToStrReplacer)
-)
 
 const exec = async (q) =>
     flow(
         first,
+        stringifyFP(numToStrReplacer),
+        JSON.parse,
         writeJsonToFile(q)
     )(await query(q))
 
