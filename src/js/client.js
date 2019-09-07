@@ -21,8 +21,15 @@ if (!production) {
 
 getMaxDataDate().then(maxDate => {
     const defaultPath = '#/pull_requests/' + maxDate.year + '/' + maxDate.quarter
-    if (!(window.location.href).includes('#')) {
-        if (production) { window.location.href = '/githut/' + defaultPath } else { window.location.href = '/' + defaultPath }
+    if (!(window.location.href).includes('pull_requests') &&
+        !(window.location.href).includes('pushes') &&
+        !(window.location.href).includes('stars') &&
+        !(window.location.href).includes('issues')) {
+        if (production) {
+            window.location.href = '/githut/' + defaultPath
+        } else {
+            window.location.href = '/' + defaultPath
+        }
     }
 
     const app = document.createElement('div')
