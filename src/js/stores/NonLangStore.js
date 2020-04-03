@@ -37,6 +37,7 @@ export class NonLangStore {
                 'Protocol Buffer',
                 'QMake',
                 'SaltStack',
+                'Starlark',
                 'Scilab',
                 'Smarty',
                 'TeX',
