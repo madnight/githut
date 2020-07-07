@@ -14938,5 +14938,515 @@
     "year": "2020",
     "quarter": "1",
     "count": "101"
+  },
+  {
+    "name": "JavaScript",
+    "year": "2020",
+    "quarter": "2",
+    "count": "228570"
+  },
+  {
+    "name": "Python",
+    "year": "2020",
+    "quarter": "2",
+    "count": "195956"
+  },
+  {
+    "name": "Java",
+    "year": "2020",
+    "quarter": "2",
+    "count": "130542"
+  },
+  {
+    "name": "Go",
+    "year": "2020",
+    "quarter": "2",
+    "count": "108534"
+  },
+  {
+    "name": "C++",
+    "year": "2020",
+    "quarter": "2",
+    "count": "92892"
+  },
+  {
+    "name": "TypeScript",
+    "year": "2020",
+    "quarter": "2",
+    "count": "89215"
+  },
+  {
+    "name": "Ruby",
+    "year": "2020",
+    "quarter": "2",
+    "count": "78973"
+  },
+  {
+    "name": "PHP",
+    "year": "2020",
+    "quarter": "2",
+    "count": "63228"
+  },
+  {
+    "name": "C#",
+    "year": "2020",
+    "quarter": "2",
+    "count": "46189"
+  },
+  {
+    "name": "C",
+    "year": "2020",
+    "quarter": "2",
+    "count": "40392"
+  },
+  {
+    "name": "HTML",
+    "year": "2020",
+    "quarter": "2",
+    "count": "28991"
+  },
+  {
+    "name": "Shell",
+    "year": "2020",
+    "quarter": "2",
+    "count": "24458"
+  },
+  {
+    "name": "Scala",
+    "year": "2020",
+    "quarter": "2",
+    "count": "20978"
+  },
+  {
+    "name": "CSS",
+    "year": "2020",
+    "quarter": "2",
+    "count": "15172"
+  },
+  {
+    "name": "Rust",
+    "year": "2020",
+    "quarter": "2",
+    "count": "13534"
+  },
+  {
+    "name": "Jupyter Notebook",
+    "year": "2020",
+    "quarter": "2",
+    "count": "9189"
+  },
+  {
+    "name": "Swift",
+    "year": "2020",
+    "quarter": "2",
+    "count": "9050"
+  },
+  {
+    "name": "Starlark",
+    "year": "2020",
+    "quarter": "2",
+    "count": "8295"
+  },
+  {
+    "name": "Kotlin",
+    "year": "2020",
+    "quarter": "2",
+    "count": "8150"
+  },
+  {
+    "name": "Dart",
+    "year": "2020",
+    "quarter": "2",
+    "count": "7381"
+  },
+  {
+    "name": "Objective-C",
+    "year": "2020",
+    "quarter": "2",
+    "count": "4980"
+  },
+  {
+    "name": "Groovy",
+    "year": "2020",
+    "quarter": "2",
+    "count": "4780"
+  },
+  {
+    "name": "Elixir",
+    "year": "2020",
+    "quarter": "2",
+    "count": "4588"
+  },
+  {
+    "name": "DM",
+    "year": "2020",
+    "quarter": "2",
+    "count": "4179"
+  },
+  {
+    "name": "Perl",
+    "year": "2020",
+    "quarter": "2",
+    "count": "3814"
+  },
+  {
+    "name": "Vue",
+    "year": "2020",
+    "quarter": "2",
+    "count": "3135"
+  },
+  {
+    "name": "Makefile",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2920"
+  },
+  {
+    "name": "PowerShell",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2664"
+  },
+  {
+    "name": "Lua",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2604"
+  },
+  {
+    "name": "Emacs Lisp",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2603"
+  },
+  {
+    "name": "TSQL",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2525"
+  },
+  {
+    "name": "CoffeeScript",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2478"
+  },
+  {
+    "name": "Clojure",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2435"
+  },
+  {
+    "name": "Haskell",
+    "year": "2020",
+    "quarter": "2",
+    "count": "2032"
+  },
+  {
+    "name": "Dockerfile",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1863"
+  },
+  {
+    "name": "Vim script",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1854"
+  },
+  {
+    "name": "OCaml",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1655"
+  },
+  {
+    "name": "Jsonnet",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1566"
+  },
+  {
+    "name": "R",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1452"
+  },
+  {
+    "name": "Erlang",
+    "year": "2020",
+    "quarter": "2",
+    "count": "1279"
+  },
+  {
+    "name": "Julia",
+    "year": "2020",
+    "quarter": "2",
+    "count": "882"
+  },
+  {
+    "name": "Smarty",
+    "year": "2020",
+    "quarter": "2",
+    "count": "839"
+  },
+  {
+    "name": "Coq",
+    "year": "2020",
+    "quarter": "2",
+    "count": "817"
+  },
+  {
+    "name": "MATLAB",
+    "year": "2020",
+    "quarter": "2",
+    "count": "656"
+  },
+  {
+    "name": "Fortran",
+    "year": "2020",
+    "quarter": "2",
+    "count": "653"
+  },
+  {
+    "name": "F#",
+    "year": "2020",
+    "quarter": "2",
+    "count": "578"
+  },
+  {
+    "name": "Puppet",
+    "year": "2020",
+    "quarter": "2",
+    "count": "563"
+  },
+  {
+    "name": "PLpgSQL",
+    "year": "2020",
+    "quarter": "2",
+    "count": "534"
+  },
+  {
+    "name": "BitBake",
+    "year": "2020",
+    "quarter": "2",
+    "count": "492"
+  },
+  {
+    "name": "HCL",
+    "year": "2020",
+    "quarter": "2",
+    "count": "479"
+  },
+  {
+    "name": "Vala",
+    "year": "2020",
+    "quarter": "2",
+    "count": "473"
+  },
+  {
+    "name": "Smalltalk",
+    "year": "2020",
+    "quarter": "2",
+    "count": "451"
+  },
+  {
+    "name": "CMake",
+    "year": "2020",
+    "quarter": "2",
+    "count": "427"
+  },
+  {
+    "name": "Crystal",
+    "year": "2020",
+    "quarter": "2",
+    "count": "416"
+  },
+  {
+    "name": "Visual Basic .NET",
+    "year": "2020",
+    "quarter": "2",
+    "count": "407"
+  },
+  {
+    "name": "WebAssembly",
+    "year": "2020",
+    "quarter": "2",
+    "count": "370"
+  },
+  {
+    "name": "Nix",
+    "year": "2020",
+    "quarter": "2",
+    "count": "361"
+  },
+  {
+    "name": "ABAP",
+    "year": "2020",
+    "quarter": "2",
+    "count": "360"
+  },
+  {
+    "name": "TeX",
+    "year": "2020",
+    "quarter": "2",
+    "count": "319"
+  },
+  {
+    "name": "XSLT",
+    "year": "2020",
+    "quarter": "2",
+    "count": "307"
+  },
+  {
+    "name": "Elm",
+    "year": "2020",
+    "quarter": "2",
+    "count": "297"
+  },
+  {
+    "name": "Objective-C++",
+    "year": "2020",
+    "quarter": "2",
+    "count": "295"
+  },
+  {
+    "name": "Common Lisp",
+    "year": "2020",
+    "quarter": "2",
+    "count": "280"
+  },
+  {
+    "name": "PureScript",
+    "year": "2020",
+    "quarter": "2",
+    "count": "273"
+  },
+  {
+    "name": "Pawn",
+    "year": "2020",
+    "quarter": "2",
+    "count": "261"
+  },
+  {
+    "name": "Haxe",
+    "year": "2020",
+    "quarter": "2",
+    "count": "247"
+  },
+  {
+    "name": "Gherkin",
+    "year": "2020",
+    "quarter": "2",
+    "count": "241"
+  },
+  {
+    "name": "PLSQL",
+    "year": "2020",
+    "quarter": "2",
+    "count": "235"
+  },
+  {
+    "name": "QML",
+    "year": "2020",
+    "quarter": "2",
+    "count": "214"
+  },
+  {
+    "name": "Nim",
+    "year": "2020",
+    "quarter": "2",
+    "count": "212"
+  },
+  {
+    "name": "SWIG",
+    "year": "2020",
+    "quarter": "2",
+    "count": "199"
+  },
+  {
+    "name": "Pascal",
+    "year": "2020",
+    "quarter": "2",
+    "count": "188"
+  },
+  {
+    "name": "M4",
+    "year": "2020",
+    "quarter": "2",
+    "count": "167"
+  },
+  {
+    "name": "SourcePawn",
+    "year": "2020",
+    "quarter": "2",
+    "count": "158"
+  },
+  {
+    "name": "Roff",
+    "year": "2020",
+    "quarter": "2",
+    "count": "155"
+  },
+  {
+    "name": "Assembly",
+    "year": "2020",
+    "quarter": "2",
+    "count": "154"
+  },
+  {
+    "name": "GLSL",
+    "year": "2020",
+    "quarter": "2",
+    "count": "152"
+  },
+  {
+    "name": "SystemVerilog",
+    "year": "2020",
+    "quarter": "2",
+    "count": "146"
+  },
+  {
+    "name": "q",
+    "year": "2020",
+    "quarter": "2",
+    "count": "146"
+  },
+  {
+    "name": "Raku",
+    "year": "2020",
+    "quarter": "2",
+    "count": "133"
+  },
+  {
+    "name": "SaltStack",
+    "year": "2020",
+    "quarter": "2",
+    "count": "125"
+  },
+  {
+    "name": "Reason",
+    "year": "2020",
+    "quarter": "2",
+    "count": "121"
+  },
+  {
+    "name": "Scheme",
+    "year": "2020",
+    "quarter": "2",
+    "count": "117"
+  },
+  {
+    "name": "D",
+    "year": "2020",
+    "quarter": "2",
+    "count": "116"
+  },
+  {
+    "name": "LookML",
+    "year": "2020",
+    "quarter": "2",
+    "count": "104"
   }
 ]
