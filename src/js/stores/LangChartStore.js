@@ -12,7 +12,22 @@
 
 const chartConfig = {
     credits: { enabled: false },
-    chart: { type: 'spline', backgroundColor: 'transparent' },
+    chart: {
+        type: 'spline',
+        backgroundColor: 'transparent',
+        events: {
+            load() {
+                let item = localStorage.getItem('visibility');
+                if (!item) {
+                    return
+                }
+                let visibility = JSON.parse(item);
+                for (let series of this.series) {
+                    series.visible = !!visibility[series.name];
+                }
+            }
+        }
+    },
     title: { text: '' },
     xAxis: { categories: [] },
     yAxis: {
@@ -33,6 +48,20 @@ const chartConfig = {
         series: {
             animation: {
                 duration: 200
+            },
+            events: {
+                legendItemClick() {
+                    let visibility = {};
+                    for (let series of this.chart.series) {
+                        // this callback is called before the visibility is toggled
+                        if (series.name === this.name) {
+                            visibility[series.name] = !series.visible;
+                        } else {
+                            visibility[series.name] = series.visible;
+                        }
+                    }
+                    localStorage.setItem('visibility', JSON.stringify(visibility));
+                }
             }
         }
     },
