@@ -25,6 +25,9 @@ const chartConfig = {
                 for (let series of this.series) {
                     series.visible = !!visibility[series.name];
                 }
+                if (this.hasRendered) {
+                    this.renderSeries();
+                }
             }
         }
     },
