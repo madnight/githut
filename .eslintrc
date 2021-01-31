@@ -15,6 +15,9 @@
     "jsx": true,
     "modules": true
   },
+  "globals": {
+    "localStorage": true,
+  },
   "env": {
     "node": true,
     "mocha": true

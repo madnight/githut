@@ -16,17 +16,17 @@ const chartConfig = {
         type: 'spline',
         backgroundColor: 'transparent',
         events: {
-            load() {
-                let item = localStorage.getItem('visibility');
+            load () {
+                const item = localStorage.getItem('visibility')
                 if (!item) {
                     return
                 }
-                let visibility = JSON.parse(item);
-                for (let series of this.series) {
-                    series.visible = !!visibility[series.name];
-                }
+                const visibility = JSON.parse(item)
+                this.series.forEach(series => {
+                    series.visible = !!visibility[series.name]
+                })
                 if (this.hasRendered) {
-                    this.renderSeries();
+                    this.renderSeries()
                 }
             }
         }
@@ -53,17 +53,17 @@ const chartConfig = {
                 duration: 200
             },
             events: {
-                legendItemClick() {
-                    let visibility = {};
-                    for (let series of this.chart.series) {
+                legendItemClick () {
+                    let visibility = {}
+                    this.char.series.forEach(series => {
                         // this callback is called before the visibility is toggled
                         if (series.name === this.name) {
-                            visibility[series.name] = !series.visible;
+                            visibility[series.name] = !series.visible
                         } else {
-                            visibility[series.name] = series.visible;
+                            visibility[series.name] = series.visible
                         }
-                    }
-                    localStorage.setItem('visibility', JSON.stringify(visibility));
+                    })
+                    localStorage.setItem('visibility', JSON.stringify(visibility))
                 }
             }
         }
