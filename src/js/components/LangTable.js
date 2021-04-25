@@ -276,14 +276,14 @@ export default class LangTable extends Lang {
                         dataField='count'
                         dataAlign="left"
                         dataFormat={ this.percentFormatter }>
-                        Percentage (Change)
+                        Percentage (YoY Change)
                     </TableHeaderColumn>
                     <TableHeaderColumn
                         width='50px'
                         dataAlign="center"
                         dataField='trend'
                         dataFormat={ this.trendFormatter }>
-                        Trend
+                        YoY Trend
                     </TableHeaderColumn>
                 </BootstrapTable>
             </div>
