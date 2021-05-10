@@ -7,7 +7,7 @@
 <a href="https://travis-ci.org/madnight/githut"><img src="https://travis-ci.org/madnight/githut.svg?branch=master" alt="Build Status"></a>
 <a href="https://codeclimate.com/github/madnight/githut"><img src="https://codeclimate.com/github/madnight/githut/badges/gpa.svg" alt="Code Climate"></a>
 <a href="https://codeclimate.com/github/madnight/githut"><img src="https://codeclimate.com/github/madnight/githut/badges/issue_count.svg" alt="Issue Count"></a>
-<a href="https://david-dm.org/madnight/githut"><img src="https://david-dm.org/madnight/githut/status.svg" alt="dependencies Status"></a>
+<a href="https://david-dm.org/madnight/githut"><img src="https://img.shields.io/david/madnight/githut?cacheSeconds=3600" alt="dependencies Status" /></a>
 <a href="https://snyk.io/test/github/madnight/githut"><img src="https://snyk.io/test/github/madnight/githut/badge.svg" alt="Known Vulnerabilities"></a>
 <img src="https://i.imgur.com/WK7zKol.png" alt=""></p>
 
