@@ -30,7 +30,9 @@ export default class Layout extends React.Component {
             <div>
                 <Head/>
                 <Header/>
-                <LangChart store={EventStore} table={TableStore}/>
+                <Route path="/:event?/:year?/:quarter?/:lang?"
+                    render={ route =>
+                        (<LangChart {...route} store={EventStore} table={TableStore}/>) } />
                 <Route path="/:event?/:year?/:quarter?"
                     render={ route =>
                         (<Button {...route} store={EventStore}/>) } />

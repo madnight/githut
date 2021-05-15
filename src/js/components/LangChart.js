@@ -39,6 +39,7 @@ export default class LangChart extends Lang {
             margin: 'auto',
             maxWidth: 1360
         }
+        this.visible = undefined
     }
 
     /**
@@ -94,7 +95,7 @@ export default class LangChart extends Lang {
                 color: GitHubColors.get(d.name) ?
                     GitHubColors.get(d.name).color : // or random color
                     '#' + Math.floor(Math.random() * 16777215).toString(16),
-                visible: i < 7,
+                visible: this.visible ? this.visible.includes(d.name) : i < 7,
                 data: map('count')(filter({'name': d.name})(data))
             }))
             | this.fillZeros
@@ -148,6 +149,8 @@ export default class LangChart extends Lang {
      */
     componentWillMount () {
         this.handler = autorun(() => {
+            const { lang } = this.props.match.params
+            this.visible = lang ? lang.split(',') : undefined
             const data = this.props.store.getData
             const title = this.props.store.getEventName
             const top = this.props.table.data | take(50) | sortBy('name') | map('name')
