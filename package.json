@@ -23,7 +23,7 @@
     "dev": "webpack-dev-server --progress --colors --content-base src --inline --hot"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.0.1",
     "core-js": "^3.2.1",
     "github-colors": "^2.2.18",
     "lodash": "^4.17.21",
