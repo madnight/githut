@@ -83,5 +83,18 @@ order by year, quarter, count DESC)
 WHERE count >= 100) WHERE type = 'PullRequestEvent'
 ```
 
-### Manual  
+### Manual
 Googles BigQuery is free for public datasets like Github, Reddit or Stackoverflow. It is limited to 1000 GB query volume per month. One of the querys above takes about 50-200 MB query volume. The public dataset for Github is available here: https://cloud.google.com/bigquery/public-data/github
+
+
+### URL Schema
+
+```
+madnight.github.io/githut/#/pull_requests/2021/1/Python,Lua,JavaScript
+                                 ▲         ▲   ▲        ▲
+                                 │         │   │        │
+                pull_requests ───┘   year ─┘   │        └─ languages
+                pushes                         └─ quarter
+                stars
+                issues
+```
