@@ -10,7 +10,8 @@ import { Button as MaterialButton } from 'react-materialize'
 
 @observer
 export default class Button extends React.Component {
-    componentWillMount () {
+
+    componentDidMount () {
         const { match, store } = this.props
         const value = match.params.event
         const urlToEvent = url => url

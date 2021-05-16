@@ -35,7 +35,7 @@ export default class LicensePie extends React.Component {
         return this.state.series !== nextState.series
     }
 
-    async componentWillMount () {
+    async componentDidMount () {
         const series = licenses
             | map(mapKeys(k => k === 'license' ? 'name' : 'y'))
             | map(update('y')(Math.floor))

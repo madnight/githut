@@ -15,20 +15,6 @@ describe('Test LangChart', () => {
         expect(LangChart).not.to.be.equal(null)
     })
 
-    it('categories return array', () => {
-        expect((new LangChart()).categories()).to.be.an(Array)
-    })
-
-    it('categories generates YEARSR (2013, 2014, ...)', () => {
-        const cats = new LangChart().categories()
-        _.each([2013, 2014, 2015], (date) =>
-            expect(cats).to.contain(date)
-        )
-        _.each([2011, '101/Q1', '14/Q5', 'Q1/15', '42'], (date) =>
-            expect(cats).to.not.contain(date)
-        )
-    })
-
     it('render should work', () => {
         mount(<LangChart store={EventStore} table={TableStore}/>)
     }).timeout(10000)

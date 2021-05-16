@@ -161,6 +161,7 @@ export default class LangTable extends Lang {
     createTable (date, year, quarter) {
         const addSortId = i => i
             | map.convert({'cap': 0})((o, i) => assign({id: ++i})(o))
+
         return this.filterDate(date, year, quarter)
             | this.filterNonProgrammingLanguages
             | this.applyLanguageRenamings
@@ -175,7 +176,6 @@ export default class LangTable extends Lang {
     mountTable () {
         const data = this.props.store.getData
         const hist = this.props.hist.getData
-        if (data.length < 1000) return
         const {year, quarter} = hist
         const dec = i => --i | toString
 
@@ -203,8 +203,10 @@ export default class LangTable extends Lang {
      * Native react function, called on component mount and
      * on every prop change event via mobx autorun
      */
-    componentWillMount () {
-        autorun(() => this.mountTable())
+    componentDidMount () {
+        this.handler = autorun(() => {
+            this.mountTable()
+        })
     }
 
     /**

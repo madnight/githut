@@ -19,16 +19,12 @@ export default class Select extends React.Component {
         this.onChange = this.onChange.bind(this)
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    // return this.state !== nextState
-    // }
-
     setValue (value) {
         if (this.year) { this.props.hist.data.year = value } else { this.props.hist.data.quarter = value }
         this.setState({ value })
     }
 
-    componentWillMount () {
+    componentDidMount () {
         getMaxDataDate().then(maxDate => {
             this.setState({
                 options: this.year ? this.vals(2014, maxDate.year) : this.vals(1, 4),
@@ -53,7 +49,8 @@ export default class Select extends React.Component {
         if (this.year) { this.histPush(params.event, value, params.quarter) } else { this.histPush(params.event, params.year, value) }
     }
 
-    render (x) {
+    render () {
+        if (!this.state) return null
         return (
             <div>
                 <h4 className="section-heading">

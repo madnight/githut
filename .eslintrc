@@ -2,7 +2,8 @@
   "extends": [
     "standard",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "prettier"
   ],
   "plugins": [
     "standard",
@@ -28,6 +29,7 @@
     "mocha/no-exclusive-tests": "error",
     "react/prop-types": [0 , {}],
     "indent": ["error", 4],
-    "operator-linebreak": off
+    "operator-linebreak": off,
+    "no-duplicate-imports": off
   }
 }
