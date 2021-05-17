@@ -1,19 +1,13 @@
-import { map, max, values, filter } from 'lodash/fp'
-import pullRequests from '../data/gh-pull-request.json'
+import { map, max, values, filter, pipe } from "lodash/fp"
+import pullRequests from "../data/gh-pull-request.json"
 
-const getMaxDataDate = async () => {
-    const year = pullRequests
-        | map('year')
-        | values
-        | max
-    const maxQuarter = pullRequests
-        | filter({ 'year': year })
-        | map('quarter')
-        | values
-        | max
-    return {year: year, quarter: maxQuarter}
-}
-
-module.exports = {
-    getMaxDataDate: getMaxDataDate
+export async function getMaxDataDate() {
+    const year = pipe(map("year"), values, max)(pullRequests)
+    const maxQuarter = pipe(
+        filter({ year: year }),
+        map("quarter"),
+        values,
+        max
+    )(pullRequests)
+    return { year: year, quarter: maxQuarter }
 }
