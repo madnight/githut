@@ -4,47 +4,41 @@
  * @license AGPL-3.0
  */
 
-import React from 'react'
-import { observer } from 'mobx-react'
-import { Button as MaterialButton } from 'react-materialize'
+import React, { useEffect } from "react"
+import { observer } from "mobx-react"
+import { Button as MaterialButton } from "react-materialize"
 
-@observer
-export default class Button extends React.Component {
+export default observer(function Button({ match, store, history }) {
+    useEffect(() => {
+        const urlToEvent = (url) =>
+            url.replace(/_/g, " ").replace(/\b[a-z]/g, (f) => f.toUpperCase())
+        store.set(urlToEvent(match.params.event))
+    }, [])
 
-    componentDidMount () {
-        const { match, store } = this.props
-        const value = match.params.event
-        const urlToEvent = url => url
-            .replace(/_/g, ' ')
-            .replace(/\b[a-z]/g, f => f.toUpperCase())
-        store.set(urlToEvent(value))
-    }
-
-    next () {
-        const { match } = this.props
-        this.props.store.next()
-        const event = this.props.store.getEventName
-        const eventToUrl = event => event
-            .toLowerCase()
-            .replace(/ /g, '_')
-        this.props.history.push(
-            '/' + eventToUrl(event)
-            + '/' + match.params.year
-            + '/' + match.params.quarter)
-    }
-
-    render () {
-        const buttonClass = 'waves-effect waves-light blue-grey lighten-2 btn'
-        return (
-            <div>
-                <center>
-                    <MaterialButton
-                        className={buttonClass}
-                        onClick={this.next.bind(this)}>
-                        { this.props.store.getEventName }
-                    </MaterialButton>
-                </center>
-            </div>
+    function next() {
+        store.next()
+        const eventToUrl = (event) => event.toLowerCase().replace(/ /g, "_")
+        history.push(
+            "/" +
+                eventToUrl(store.getEventName) +
+                "/" +
+                match.params.year +
+                "/" +
+                match.params.quarter
         )
     }
-}
+
+    const buttonClass = "waves-effect waves-light blue-grey lighten-2 btn"
+    return (
+        <div>
+            <center>
+                <MaterialButton
+                    className={buttonClass}
+                    onClick={next}
+                >
+                    {store.getEventName}
+                </MaterialButton>
+            </center>
+        </div>
+    )
+})
