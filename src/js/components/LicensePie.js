@@ -9,41 +9,41 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-import React from 'react'
-import licenses from '../../data/github-licenses.json'
-import ReactHighcharts from 'react-highcharts'
-import { mapKeys, update, take, map } from 'lodash/fp'
+import React, { useState, useEffect } from "react"
+import licenses from "../../data/github-licenses.json"
+import ReactHighcharts from "react-highcharts"
+import { mapKeys, update, take, map, pipe } from "lodash/fp"
 
-export default class LicensePie extends React.Component {
-    constructor () {
-        super()
-        this.state = {
-            credits: { enabled: false },
-            chart: { type: 'pie', backgroundColor: 'transparent' },
-            title: { text: 'Top 5 Open Source Licenses' },
-            tooltip: {
-                formatter: function () {
-                    return '<span style="color:' + this.series.color + '">'
-                        + this.point.name + '</span>: <b>'
-                        + (this.percentage).toFixed(2) + '%</b>'
-                }
-            }
-        }
+export default function LicensePie() {
+    const config = {
+        credits: { enabled: false },
+        chart: { type: "pie", backgroundColor: "transparent" },
+        title: { text: "Top 5 Open Source Licenses" },
+        tooltip: {
+            formatter: function () {
+                return (
+                    '<span style="color:' +
+                    this.series.color +
+                    '">' +
+                    this.point.name +
+                    "</span>: <b>" +
+                    this.percentage.toFixed(2) +
+                    "%</b>"
+                )
+            },
+        },
     }
 
-    shouldComponentUpdate (nextProps, nextState) {
-        return this.state.series !== nextState.series
-    }
+    const [state, setState] = useState(config)
 
-    async componentDidMount () {
-        const series = licenses
-            | map(mapKeys(k => k === 'license' ? 'name' : 'y'))
-            | map(update('y')(Math.floor))
-            | take(5)
-        this.setState({series: [{data: series}]})
-    }
+    useEffect(() => {
+        const series = pipe(
+            map(mapKeys((k) => (k === "license" ? "name" : "y"))),
+            map(update("y")(Math.floor)),
+            take(5)
+        )(licenses)
+        setState({ ...config, series: [{ data: series }] })
+    }, [])
 
-    render () {
-        return (<ReactHighcharts config={ this.state }/>)
-    }
+    return <ReactHighcharts config={state} />
 }
