@@ -23,37 +23,37 @@ import EventStore from "../stores/EventStore"
 import HistStore from "../stores/HistStore"
 import TableStore from "../stores/TableStore"
 
-export default (function Layout(props) {
-        return (
-            <div>
-                <Head />
-                <Header />
-                <Route
-                    path="/:event?/:year?/:quarter?/:lang?"
-                    render={(route) => (
-                        <div>
-                            <LangChart
-                                {...route}
-                                store={EventStore}
-                                table={TableStore}
-                            />
-                            <Button {...route} store={EventStore} />
-                            <div className="rowCenter">
-                                <Select {...route} hist={HistStore} year="true" />
-                                <Select {...route} hist={HistStore} />
-                            </div>
-                            <LangTable
-                                store={EventStore}
-                                hist={HistStore}
-                                table={TableStore}
-                            />
+export default function Layout(props) {
+    return (
+        <div>
+            <Head />
+            <Header />
+            <Route
+                path="/:event?/:year?/:quarter?/:lang?"
+                render={(route) => (
+                    <div>
+                        <LangChart
+                            {...route}
+                            store={EventStore}
+                            table={TableStore}
+                        />
+                        <Button {...route} store={EventStore} />
+                        <div className="rowCenter">
+                            <Select {...route} hist={HistStore} year="true" />
+                            <Select {...route} hist={HistStore} />
                         </div>
-                    )}
-                />
-                <LicensePie />
-                <Content />
-                <Comments />
-                <Footer />
-            </div>
-        )
-})
+                        <LangTable
+                            store={EventStore}
+                            hist={HistStore}
+                            table={TableStore}
+                        />
+                    </div>
+                )}
+            />
+            <LicensePie />
+            <Content />
+            <Comments />
+            <Footer />
+        </div>
+    )
+}

@@ -10,19 +10,19 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { observer } from "mobx-react"
 import { autorun } from "mobx"
 import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
 import { unzip, sum, filter, drop, isEqual } from "lodash/fp"
 import { LangChartStore } from "../stores/LangChartStore"
-import ReactHighcharts from "react-highcharts"
+import Highcharts from "highcharts"
+import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
 
 export default observer(function LangChart(props) {
     const store = new LangChartStore()
-    const inputRef = useRef("chart")
     const [state, setState] = useState(store.getConfig())
     let dataLength = 0
     let top50 = []
@@ -31,7 +31,7 @@ export default observer(function LangChart(props) {
         margin: "auto",
         maxWidth: 1360,
     }
-    let visible;
+    let visible
 
     /**
      * Creates Highcharts xAxis categories since 2012
@@ -162,7 +162,7 @@ export default observer(function LangChart(props) {
     if (state && state.series && state.series.length === 0) return null
     return (
         <div style={style}>
-            <ReactHighcharts config={state} ref={inputRef} />
+            <HighchartsReact highcharts={Highcharts} options={state} />
         </div>
     )
 })
