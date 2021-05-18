@@ -1,70 +1,71 @@
-import React from 'react'
-import ReactSelect from 'react-select'
-import { range, toString } from 'lodash/fp'
-import { getMaxDataDate } from '../utils.js'
-import 'react-select/dist/react-select.css'
+import React, { useState, useEffect } from "react"
+import ReactSelect from "react-select"
+import { range, toString } from "lodash/fp"
+import { getMaxDataDate } from "../utils.js"
+import "react-select/dist/react-select.css"
 
-export default class Select extends React.Component {
-    vals (start, end) {
-        return range(--start, end).map(i =>
-            ({
-                value: toString(i + 1),
-                label: toString(i + 1)
-            }))
+export default function Select(props) {
+    const year = props.year
+    const [state, setState] = useState({})
+
+    function vals(start, end) {
+        return range(--start, end).map((i) => ({
+            value: toString(i + 1),
+            label: toString(i + 1),
+        }))
     }
 
-    constructor (props) {
-        super(props)
-        this.year = false
-        this.onChange = this.onChange.bind(this)
+    function setValue(value) {
+        if (year) {
+            props.hist.data.year = value
+        } else {
+            props.hist.data.quarter = value
+        }
+        setState({ ...state, value: value })
     }
 
-    setValue (value) {
-        if (this.year) { this.props.hist.data.year = value } else { this.props.hist.data.quarter = value }
-        this.setState({ value })
-    }
-
-    componentDidMount () {
-        getMaxDataDate().then(maxDate => {
-            this.setState({
-                options: this.year ? this.vals(2014, maxDate.year) : this.vals(1, 4),
-                value: this.year ? this.props.match.params.year : this.props.match.params.quarter
+    useEffect(() => {
+        getMaxDataDate().then((maxDate) => {
+            setState({
+                ...state,
+                options: year ? vals(2014, maxDate.year) : vals(1, 4),
+                value: year
+                    ? props.match.params.year
+                    : props.match.params.quarter,
             })
         })
-        const { params } = this.props.match
-        const value = this.year ? params.year : params.quarter
-        this.setValue(value)
+        const { params } = props.match
+        const value = year ? params.year : params.quarter
+        setValue(value)
+    }, [])
+
+    function histPush(x, y, z) {
+        props.history.push("/" + x + "/" + y + "/" + z)
     }
 
-    histPush (x, y, z) {
-        this.props.history.push(
-            '/' + x
-            + '/' + y
-            + '/' + z)
+    function onChange(value) {
+        const { params } = props.match
+        setValue(value)
+        if (year) {
+            histPush(params.event, value, params.quarter)
+        } else {
+            histPush(params.event, params.year, value)
+        }
     }
 
-    onChange (value) {
-        const { params } = this.props.match
-        this.setValue(value)
-        if (this.year) { this.histPush(params.event, value, params.quarter) } else { this.histPush(params.event, params.year, value) }
-    }
-
-    render () {
-        if (!this.state) return null
-        return (
-            <div>
-                <h4 className="section-heading">
-                    {this.year ? 'Year' : 'Quarter'}</h4>
-                <ReactSelect
-                    label="States"
-                    onChange={this.onChange}
-                    options={this.state.options}
-                    simpleValue
-                    searchable={false}
-                    clearable={false}
-                    value={this.state.value}
-                />
-            </div>
-        )
-    }
+    if (!state) return null
+    return (
+        <div>
+            <h4 className="section-heading">{year ? "Year" : "Quarter"}</h4>
+            <ReactSelect
+                label="States"
+                onChange={onChange}
+                options={state.options}
+                simpleValue
+                searchable={false}
+                clearable={false}
+                value={state.value}
+            />
+        </div>
+    )
 }

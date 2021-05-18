@@ -18,43 +18,42 @@ import Header from "./Header"
 import Content from "./Content"
 import Comments from "./Comments"
 import Footer from "./Footer"
-import SelectYear from "./SelectYear"
-import SelectQuarter from "./SelectQuarter"
+import Select from "./Select"
 import EventStore from "../stores/EventStore"
 import HistStore from "../stores/HistStore"
 import TableStore from "../stores/TableStore"
 
 export default (function Layout(props) {
-    return (
-        <div>
-            <Head />
-            <Header />
-            <Route
-                path="/:event?/:year?/:quarter?/:lang?"
-                render={(route) => (
-                    <div>
-                        <LangChart
-                            {...route}
-                            store={EventStore}
-                            table={TableStore}
-                        />
-                        <Button {...route} store={EventStore} />
-                        <div className="rowCenter">
-                            <SelectYear {...route} hist={HistStore} />
-                            <SelectQuarter {...route} hist={HistStore} />
+        return (
+            <div>
+                <Head />
+                <Header />
+                <Route
+                    path="/:event?/:year?/:quarter?/:lang?"
+                    render={(route) => (
+                        <div>
+                            <LangChart
+                                {...route}
+                                store={EventStore}
+                                table={TableStore}
+                            />
+                            <Button {...route} store={EventStore} />
+                            <div className="rowCenter">
+                                <Select {...route} hist={HistStore} year="true" />
+                                <Select {...route} hist={HistStore} />
+                            </div>
+                            <LangTable
+                                store={EventStore}
+                                hist={HistStore}
+                                table={TableStore}
+                            />
                         </div>
-                        <LangTable
-                            store={EventStore}
-                            hist={HistStore}
-                            table={TableStore}
-                        />
-                    </div>
-                )}
-            />
-            <LicensePie />
-            <Content />
-            <Comments />
-            <Footer />
-        </div>
-    )
+                    )}
+                />
+                <LicensePie />
+                <Content />
+                <Comments />
+                <Footer />
+            </div>
+        )
 })
