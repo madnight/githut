@@ -7,20 +7,20 @@
  * @license AGPL-3.0
  */
 export class RenameLangStore {
-    constructor () {
+    constructor() {
         this.config = {
             vim: {
-                before: ['VimL'],
-                after: 'Vim script'
+                before: ["VimL"],
+                after: "Vim script",
             },
             fortran: {
-                before: ['FORTRAN'],
-                after: 'Fortran'
-            }
+                before: ["FORTRAN"],
+                after: "Fortran",
+            },
         }
     }
 
-    getConfig () {
+    getConfig() {
         return this.config
     }
 }

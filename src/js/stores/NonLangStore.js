@@ -6,50 +6,50 @@
  * @see {@link https://github.com/github/linguist/blob/master/lib/linguist/languages.yml}
  */
 export class NonLangStore {
-    constructor () {
+    constructor() {
         this.config = {
             lang: [
-                'ApacheConf',
-                'ApacheConf',
-                'Arduino',
-                'Batchfile',
-                'BitBake',
-                'CMAKE',
-                'CMake',
-                'CSS',
-                'Dockerfile',
-                'GCC Machine Description',
-                'Gettext Catalog',
-                'Gherkin',
-                'Groff',
-                'HCL',
-                'HTML',
-                'Handlebars',
-                'Jupyter Notebook',
-                'Lex',
-                'M4',
-                'Makefile',
-                'NSIS',
-                'Nginx',
-                'PLSQL',
-                'PLpgSQL',
-                'Perl6',
-                'Protocol Buffer',
-                'QMake',
-                'SaltStack',
-                'Starlark',
-                'Scilab',
-                'Smarty',
-                'TeX',
-                'Vue',
-                'XML',
-                'XSLT',
-                'Yacc'
-            ]
+                "ApacheConf",
+                "ApacheConf",
+                "Arduino",
+                "Batchfile",
+                "BitBake",
+                "CMAKE",
+                "CMake",
+                "CSS",
+                "Dockerfile",
+                "GCC Machine Description",
+                "Gettext Catalog",
+                "Gherkin",
+                "Groff",
+                "HCL",
+                "HTML",
+                "Handlebars",
+                "Jupyter Notebook",
+                "Lex",
+                "M4",
+                "Makefile",
+                "NSIS",
+                "Nginx",
+                "PLSQL",
+                "PLpgSQL",
+                "Perl6",
+                "Protocol Buffer",
+                "QMake",
+                "SaltStack",
+                "Starlark",
+                "Scilab",
+                "Smarty",
+                "TeX",
+                "Vue",
+                "XML",
+                "XSLT",
+                "Yacc",
+            ],
         }
     }
 
-    getConfig () {
+    getConfig() {
         return this.config
     }
 }

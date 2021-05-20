@@ -12,45 +12,52 @@
 
 const chartConfig = {
     credits: { enabled: false },
-    chart: { type: 'spline', backgroundColor: 'transparent' },
-    title: { text: '' },
+    chart: { type: "spline", backgroundColor: "transparent" },
+    title: { text: "" },
     xAxis: { categories: [] },
     yAxis: {
         title: {
-            text: ''
+            text: "",
         },
         labels: {
             formatter: function () {
-                return (this.value * 100) + '%'
-            }
-        }
+                return this.value * 100 + "%"
+            },
+        },
     },
     plotOptions: {
-        spline: { lineWidth: 3,
+        spline: {
+            lineWidth: 3,
             states: { hover: { lineWidth: 5 } },
-            marker: { enabled: false }
+            marker: { enabled: false },
         },
         series: {
             animation: {
-                duration: 200
-            }
-        }
+                duration: 200,
+            },
+        },
     },
     tooltip: {
         formatter: function () {
-            return '<span style="color:' + this.series.color + '">'
-                + this.series.name + '</span>: <b>'
-                + (this.y * 100).toFixed(2) + '%</b>'
-        }
-    }
+            return (
+                '<span style="color:' +
+                this.series.color +
+                '">' +
+                this.series.name +
+                "</span>: <b>" +
+                (this.y * 100).toFixed(2) +
+                "%</b>"
+            )
+        },
+    },
 }
 
 export class LangChartStore {
-    constructor () {
+    constructor() {
         this.config = chartConfig
     }
 
-    getConfig () {
+    getConfig() {
         return this.config
     }
 }

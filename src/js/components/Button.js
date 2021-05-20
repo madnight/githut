@@ -32,10 +32,7 @@ export default observer(function Button({ match, store, history }) {
     return (
         <div>
             <center>
-                <MaterialButton
-                    className={buttonClass}
-                    onClick={next}
-                >
+                <MaterialButton className={buttonClass} onClick={next}>
                     {store.getEventName}
                 </MaterialButton>
             </center>
