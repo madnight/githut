@@ -15,7 +15,7 @@ import { observer } from "mobx-react"
 import { autorun } from "mobx"
 import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
-import { unzip, sum, filter, drop, isEqual } from "lodash/fp"
+import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"
 import { LangChartStore } from "../stores/LangChartStore"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
@@ -39,12 +39,11 @@ export default observer(function LangChart(props) {
      * @returns {Object} xAxis categories (year/quarter)
      */
     function categories() {
-        return (
-            range(2012, 2050) |
-            map((y) => range(1, 5) | map((q) => (q === 1 ? y : ""))) |
-            flatten |
+        return pipe(
+            map((y) => range(1, 5) | map((q) => (q === 1 ? y : ""))),
+            flatten,
             drop(1)
-        )
+        )(range(2012, 2050))
     }
 
     /**
@@ -54,8 +53,10 @@ export default observer(function LangChart(props) {
      * @returns {Object} Data series with percentage data
      */
     function percentageData(data) {
-        const total = data | map("data") | unzip | map(sum)
-        return data | map(((x) => total | zipWith(divide)(x)) | update("data"))
+        const total = pipe(map("data"), unzip, map(sum))(data)
+        const zipTotal = (x) => zipWith(divide, x)(total)
+        const zipData = pipe(update("data"))(zipTotal)
+        return map(zipData, data)
     }
 
     /**
@@ -66,9 +67,9 @@ export default observer(function LangChart(props) {
      * @returns {Object} Data series filled with zeros if required
      */
     function fillZeros(data) {
-        const HistSize = data | map("data") | map(size) | max
+        const HistSize = pipe(map("data"), map(size), max)(data)
         const fill = (d) => new Array(HistSize - size(d)).fill(0).concat(d)
-        return data | map(update("data", fill))
+        return map(update("data", fill))(data)
     }
 
     /**
@@ -78,10 +79,9 @@ export default observer(function LangChart(props) {
      * @returns {Object} Data series for top 10 languages
      */
     function createSeries(data) {
-        return (
-            data |
-            uniqBy("name") |
-            reject((o) => !includes(o.name)(top50)) |
+        return pipe(
+            uniqBy("name"),
+            reject((o) => !includes(o.name)(top50)),
             map.convert({ cap: 0 })((d, i) => ({
                 name: d.name,
                 color: GitHubColors.get(d.name)
@@ -89,9 +89,9 @@ export default observer(function LangChart(props) {
                     : "#" + Math.floor(Math.random() * 16777215).toString(16),
                 visible: visible ? visible.includes(d.name) : i < 7,
                 data: map("count")(filter({ name: d.name })(data)),
-            })) |
+            })),
             fillZeros
-        )
+        )(data)
     }
 
     /*
@@ -107,12 +107,11 @@ export default observer(function LangChart(props) {
      * Creates a new percentage series of data
      */
     function createSeriesPercentage(data) {
-        return (
-            data |
-            map(update("count")(Math.floor)) |
-            createSeries |
+        return pipe(
+            map(update("count")(Math.floor)),
+            createSeries,
             percentageData
-        )
+        )(data)
     }
 
     /**
@@ -153,8 +152,11 @@ export default observer(function LangChart(props) {
             visible = lang ? lang.split(",") : undefined
             const data = props.store.getData
             const title = props.store.getEventName
-            const top =
-                props.table.data | take(50) | sortBy("name") | map("name")
+            const top = pipe(
+                take(50),
+                sortBy("name"),
+                map("name")
+            )(props.table.data)
             constructChart(data, title, top)
         })
     }, [])
