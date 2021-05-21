@@ -14,10 +14,8 @@ import { pick, map, pipe } from "lodash/fp"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import { NonLangStore } from "../stores/NonLangStore"
 import { RenameLangStore } from "../stores/RenameLangStore"
-import { observer } from "mobx-react"
-import { autorun } from "mobx"
 
-export default observer(function LangTable(props) {
+export default function LangTable({store, hist, table}) {
     const [state, setState] = useState({ data: [] })
     const style = {
         margin: "auto",
@@ -74,7 +72,7 @@ export default observer(function LangTable(props) {
      * @param {Object} cell - Cell content of the table
      * @param {Object} row - Row content of the table
      */
-    function trendFormatter(cell, row) {
+    function trendFormatter(cell, _) {
         const arrow = (n) => {
             const angle = (dir) => `<i class='fa fa-angle-${dir}'></i>`
             switch (true) {
@@ -167,9 +165,8 @@ export default observer(function LangTable(props) {
      * Gets called on componentDidMount and sets react state on prop change
      */
     function mountTable() {
-        const data = props.store.getData
-        const hist = props.hist.getData
-        const { year, quarter } = hist
+        const data = store[0].data
+        const { year, quarter } = hist[0]
         const dec = (i) => toString(--i)
 
         const curYearRanking = createTable(data, year, quarter)
@@ -177,7 +174,8 @@ export default observer(function LangTable(props) {
         const trendRanking = getTrend(curYearRanking, lastYearRanking)
         const langRanking = getChange(trendRanking, lastYearRanking)
 
-        props.table.set(langRanking)
+        const [, dispatch] = table
+        dispatch({ type: "set", payload: langRanking })
         setState({ data: langRanking })
     }
 
@@ -197,10 +195,8 @@ export default observer(function LangTable(props) {
      * on every prop change event via mobx autorun
      */
     useEffect(() => {
-        autorun(() => {
-            mountTable()
-        })
-    }, [])
+        mountTable()
+    }, [hist[0]])
 
     /**
      * Formatter that applies color, percentage and change from raw
@@ -289,4 +285,4 @@ export default observer(function LangTable(props) {
             </BootstrapTable>
         </div>
     )
-})
+}

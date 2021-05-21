@@ -14,12 +14,7 @@ import { getMaxDataDate } from "./utils.js"
 
 const production = window.location.href.includes("madnight.github.io")
 
-if (!production) {
-    const { registerObserver } = require("react-perf-devtool")
-    registerObserver({ shouldLog: true })
-}
-
-const main = (async () => {
+const main = async () => {
     const { year, quarter } = await getMaxDataDate()
     const defaultPath = "#/pull_requests/" + year + "/" + quarter
     const loc = window.location.href
@@ -40,6 +35,6 @@ const main = (async () => {
         </HashRouter>,
         app
     )
-})()
+}
 
 main()

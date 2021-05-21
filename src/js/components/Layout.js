@@ -7,7 +7,7 @@
  * @license AGPL-3.0
  */
 
-import React from "react"
+import React, { useReducer } from "react"
 import { Route } from "react-router-dom"
 import LangChart from "./LangChart"
 import LangTable from "./LangTable"
@@ -19,11 +19,27 @@ import Content from "./Content"
 import Comments from "./Comments"
 import Footer from "./Footer"
 import Select from "./Select"
-import EventStore from "../stores/EventStore"
-import HistStore from "../stores/HistStore"
-import TableStore from "../stores/TableStore"
+import EventReducer from "../reducers/EventReducer"
+import TableReducer  from "../reducers/TableReducer"
+import HistReducer  from "../reducers/HistReducer"
+import pullRequests from "../../data/gh-pull-request.json"
+import pushEvent from "../../data/gh-push-event.json"
+import starEvent from "../../data/gh-star-event.json"
+import issueEvent from "../../data/gh-issue-event.json"
 
-export default function Layout(props) {
+export default function Layout() {
+
+    const table = useReducer(TableReducer, {});
+    const hist = useReducer(HistReducer, { year: "2018", quarter: "1" });
+    const event = useReducer(EventReducer, {
+        data: pullRequests,
+        name: "Pull Requests",
+        pullRequests,
+        pushEvent,
+        starEvent,
+        issueEvent,
+    });
+
     return (
         <div>
             <Head />
@@ -34,18 +50,19 @@ export default function Layout(props) {
                     <div>
                         <LangChart
                             {...route}
-                            store={EventStore}
-                            table={TableStore}
+                            store={event}
+                            hist={hist}
+                            table={table}
                         />
-                        <Button {...route} store={EventStore} />
+                        <Button {...route} store={event} />
                         <div className="rowCenter">
-                            <Select {...route} hist={HistStore} year="true" />
-                            <Select {...route} hist={HistStore} />
+                            <Select {...route} hist={hist} year="true" />
+                            <Select {...route} hist={hist} />
                         </div>
                         <LangTable
-                            store={EventStore}
-                            hist={HistStore}
-                            table={TableStore}
+                            store={event}
+                            hist={hist}
+                            table={table}
                         />
                     </div>
                 )}

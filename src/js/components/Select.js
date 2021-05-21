@@ -16,10 +16,14 @@ export default function Select(props) {
     }
 
     function setValue(value) {
+        const [_, dispatch] = props.hist
+
         if (year) {
-            props.hist.data.year = value
+            // props.hist.data.year = value
+            dispatch({ type: 'setYear', payload: value });
         } else {
-            props.hist.data.quarter = value
+            dispatch({ type: 'setQuarter', payload: value });
+            // props.hist.data.quarter = value
         }
         setState({ ...state, value: value })
     }
