@@ -1,26 +1,30 @@
 /**
- * Fancy material button to select the data set
+ * Material button to select the data set
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
 
-import React, { useEffect } from "react"
-import { observer } from "mobx-react"
+import React, { useEffect, useState } from "react"
 import { Button as MaterialButton } from "react-materialize"
 
-export default observer(function Button({ match, store, history }) {
+export default function Button({ match, store, history }) {
+    const [state, setState] = useState([
+        "pushes",
+        "stars",
+        "issues",
+        "pull_requests",
+    ])
+
     useEffect(() => {
-        const urlToEvent = (url) =>
-            url.replace(/_/g, " ").replace(/\b[a-z]/g, (f) => f.toUpperCase())
-        store.set(urlToEvent(match.params.event))
-    }, [])
+        store[1]({ type: match.params.event })
+    }, [match.params.event])
 
     function next() {
-        store.next()
-        const eventToUrl = (event) => event.toLowerCase().replace(/ /g, "_")
+        const rotateRight = (a) => [...a.slice(1, a.length), a[0]]
+        setState(rotateRight(state))
         history.push(
             "/" +
-                eventToUrl(store.getEventName) +
+                state[0] +
                 "/" +
                 match.params.year +
                 "/" +
@@ -28,14 +32,18 @@ export default observer(function Button({ match, store, history }) {
         )
     }
 
-    const buttonClass = "waves-effect waves-light blue-grey lighten-2 btn"
     return (
         <div>
             <center>
-                <MaterialButton className={buttonClass} onClick={next}>
-                    {store.getEventName}
+                <MaterialButton
+                    className={
+                        "waves-effect waves-light blue-grey lighten-2 btn"
+                    }
+                    onClick={next}
+                >
+                    {store[0].name}
                 </MaterialButton>
             </center>
         </div>
     )
-})
+}

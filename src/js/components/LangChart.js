@@ -11,8 +11,6 @@
  */
 
 import React, { useState, useEffect } from "react"
-import { observer } from "mobx-react"
-import { autorun } from "mobx"
 import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
 import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"
@@ -21,7 +19,7 @@ import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
 
-export default observer(function LangChart(props) {
+export default function LangChart(props) {
     const store = new LangChartStore()
     const [state, setState] = useState(store.getConfig())
     let dataLength = 0
@@ -147,19 +145,18 @@ export default observer(function LangChart(props) {
      * has changed
      */
     useEffect(() => {
-        autorun(() => {
             const { lang } = props.match.params
             visible = lang ? lang.split(",") : undefined
-            const data = props.store.getData
-            const title = props.store.getEventName
+            const [store, _] = props.store
+            const data = store.data
+            const title = store.name
             const top = pipe(
                 take(50),
                 sortBy("name"),
                 map("name")
-            )(props.table.data)
+            )(props.table[0].data)
             constructChart(data, title, top)
-        })
-    }, [])
+    }, [props.hist, props.store, props.table])
 
     if (state && state.series && state.series.length === 0) return null
     return (
@@ -167,4 +164,4 @@ export default observer(function LangChart(props) {
             <HighchartsReact highcharts={Highcharts} options={state} />
         </div>
     )
-})
+}

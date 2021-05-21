@@ -29,6 +29,10 @@
     "mocha/no-exclusive-tests": "error",
     "react/prop-types": [0 , {}],
     "operator-linebreak": off,
-    "no-duplicate-imports": off
+    "no-duplicate-imports": off,
+    "no-unused-vars": ['error', {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_'
+      } ],
   }
 }
