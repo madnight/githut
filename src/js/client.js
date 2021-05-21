@@ -19,20 +19,16 @@ if (!production) {
     registerObserver({ shouldLog: true })
 }
 
-getMaxDataDate().then((maxDate) => {
-    const defaultPath =
-        "#/pull_requests/" + maxDate.year + "/" + maxDate.quarter
-    if (
-        !window.location.href.includes("pull_requests") &&
-        !window.location.href.includes("pushes") &&
-        !window.location.href.includes("stars") &&
-        !window.location.href.includes("issues")
-    ) {
-        if (production) {
-            window.location.href = "/githut/" + defaultPath
-        } else {
-            window.location.href = "/" + defaultPath
-        }
+const main = (async () => {
+    const { year, quarter } = await getMaxDataDate()
+    const defaultPath = "#/pull_requests/" + year + "/" + quarter
+    const loc = window.location.href
+    const validUrlParams = ["pull_requests", "pushes", "stars", "issues"]
+    const isValidURL = validUrlParams.some((v) => loc.includes(v))
+    const url = (production ? "/githut/" : "/") + defaultPath
+
+    if (!isValidURL) {
+        window.history.pushState("", "", url)
     }
 
     const app = document.createElement("div")
@@ -44,4 +40,6 @@ getMaxDataDate().then((maxDate) => {
         </HashRouter>,
         app
     )
-})
+})()
+
+main()
