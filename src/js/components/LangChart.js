@@ -14,6 +14,7 @@ import React, { useState, useEffect } from "react"
 import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
 import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"
+import _ from "lodash"
 import { LangChartStore } from "../stores/LangChartStore"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
@@ -22,8 +23,8 @@ import GitHubColors from "github-colors"
 export default function LangChart(props) {
     const store = new LangChartStore()
     const [state, setState] = useState(store.getConfig())
+    const [debounce, ] = useState(() => _.debounce(setState, 200))
     let dataLength = 0
-    let top50 = []
     let visible
     const style = {
         width: "100%",
@@ -75,10 +76,10 @@ export default function LangChart(props) {
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series for top 10 languages
      */
-    function createSeries(data) {
+    const createSeries = (top) => (data) => {
         return pipe(
             uniqBy("name"),
-            reject((o) => !includes(o.name)(top50)),
+            reject((o) => !includes(o.name)(top)),
             map.convert({ cap: 0 })((d, i) => ({
                 name: d.name,
                 color: GitHubColors.get(d.name)
@@ -96,17 +97,17 @@ export default function LangChart(props) {
      */
     function updateState(newState) {
         if (!isEqual(state, newState)) {
-            setState(newState)
+            debounce(newState)
         }
     }
 
     /*
      * Creates a new percentage series of data
      */
-    function createSeriesPercentage(data) {
+    function createSeriesPercentage(data, top) {
         return pipe(
             map(update("count")(Math.floor)),
-            createSeries,
+            createSeries(top),
             percentageData
         )(data)
     }
@@ -115,14 +116,10 @@ export default function LangChart(props) {
      * Creates a new chart if state has changed
      */
     function constructChart(data, title, top) {
-        if (
-            (data.length === dataLength || isEqual(top50, top)) &&
-            size(top) === 0
-        ) {
+        if (data.length === dataLength && size(top) === 0) {
             return
         }
 
-        top50 = top
         dataLength = data.length
         const newState = {
             ...state,
@@ -130,9 +127,10 @@ export default function LangChart(props) {
                 ...state.yAxis,
                 title: { text: title },
             },
-            series: createSeriesPercentage(data),
+            series: createSeriesPercentage(data, top),
             xAxis: { tickLength: 0, categories: categories() },
         }
+        console.log
         updateState(newState)
     }
 
@@ -141,17 +139,17 @@ export default function LangChart(props) {
      * on every prop change event
      */
     useEffect(() => {
-            const { lang } = props.match.params
-            visible = lang ? lang.split(",") : undefined
-            const [store, _] = props.store
-            const data = store.data
-            const title = store.name
-            const top = pipe(
-                take(50),
-                sortBy("name"),
-                map("name")
-            )(props.table[0].data)
-            constructChart(data, title, top)
+        const { lang } = props.match.params
+        visible = lang ? lang.split(",") : undefined
+        const [store, _] = props.store
+        const data = store.data
+        const title = store.name
+        const top = pipe(
+            take(50),
+            sortBy("name"),
+            map("name")
+        )(props.table[0].data)
+        constructChart(data, title, top)
     }, [props.hist, props.store, props.table])
 
     if (state && state.series && state.series.length === 0) return null
