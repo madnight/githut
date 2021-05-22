@@ -18,13 +18,7 @@ export default function Select(props) {
     function setValue(value) {
         const [_, dispatch] = props.hist
 
-        if (year) {
-            // props.hist.data.year = value
-            dispatch({ type: 'setYear', payload: value });
-        } else {
-            dispatch({ type: 'setQuarter', payload: value });
-            // props.hist.data.quarter = value
-        }
+        dispatch({ type: year ? 'setYear' : 'setQuarter' , payload: value });
         setState({ ...state, value: value })
     }
 
@@ -39,8 +33,7 @@ export default function Select(props) {
             })
         })
         const { params } = props.match
-        const value = year ? params.year : params.quarter
-        setValue(value)
+        setValue(year ? params.year : params.quarter)
     }, [])
 
     function histPush(x, y, z) {

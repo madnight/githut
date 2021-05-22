@@ -195,7 +195,7 @@ export default function LangTable({store, hist, table}) {
 
     /**
      * Native react function, called on component mount and
-     * on every prop change event via mobx autorun
+     * on every prop change
      */
     useEffect(() => {
         mountTable()

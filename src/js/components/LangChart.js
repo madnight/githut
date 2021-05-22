@@ -24,12 +24,12 @@ export default function LangChart(props) {
     const [state, setState] = useState(store.getConfig())
     let dataLength = 0
     let top50 = []
+    let visible
     const style = {
         width: "100%",
         margin: "auto",
         maxWidth: 1360,
     }
-    let visible
 
     /**
      * Creates Highcharts xAxis categories since 2012
@@ -38,7 +38,7 @@ export default function LangChart(props) {
      */
     function categories() {
         return pipe(
-            map((y) => range(1, 5) | map((q) => (q === 1 ? y : ""))),
+            map((y) => map((q) => (q === 1 ? y : "")), range(1, 5)),
             flatten,
             drop(1)
         )(range(2012, 2050))
@@ -59,8 +59,7 @@ export default function LangChart(props) {
 
     /**
      * Adds zeros if we dont have enough historical data. For example,
-     * there is no data for Typescript in 2012/Q2. We fill missing data
-     * with zeros.
+     * there is no data for Typescript in 2012/Q2.
      * @param {Object} current - GitHub api data set
      * @returns {Object} Data series filled with zeros if required
      */
@@ -93,7 +92,7 @@ export default function LangChart(props) {
     }
 
     /*
-     * Updates react state if the new state is different than the old state
+     * Updates react state if state has changed
      */
     function updateState(newState) {
         if (!isEqual(state, newState)) {
@@ -113,7 +112,7 @@ export default function LangChart(props) {
     }
 
     /**
-     * Creates a new chart if necessary
+     * Creates a new chart if state has changed
      */
     function constructChart(data, title, top) {
         if (
@@ -139,10 +138,7 @@ export default function LangChart(props) {
 
     /**
      * Native react function, called on component mount and
-     * on every prop change event via mobx autorun
-     * The autorun handler creates the chart with a composition
-     * of class member functions and change reacts state if something
-     * has changed
+     * on every prop change event
      */
     useEffect(() => {
             const { lang } = props.match.params
