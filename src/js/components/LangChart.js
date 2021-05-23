@@ -130,7 +130,6 @@ export default function LangChart(props) {
             series: createSeriesPercentage(data, top),
             xAxis: { tickLength: 0, categories: categories() },
         }
-        console.log
         updateState(newState)
     }
 

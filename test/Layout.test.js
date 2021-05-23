@@ -49,5 +49,5 @@ describe("E2E Test Githut 2.0", () => {
         expect(html).to.contain("12.134%")
 
         await browser.close()
-    }, 40000)
+    }, 60 * 1000)
 })
