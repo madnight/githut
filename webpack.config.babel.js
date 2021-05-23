@@ -27,20 +27,6 @@ module.exports = {
         test: /\.md$/,
         loader: "html-loader!markdown-loader"
       },
-      {
-        test: /\.styl$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader"
-          },
-          {
-            loader: "stylus-loader"
-          }
-        ]
-      }
     ]
   },
   output: {

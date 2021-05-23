@@ -9,7 +9,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { HashRouter } from "react-router-dom"
 import Layout from "./components/Layout"
-import styles from "../style.styl" // eslint-disable-line no-unused-vars
+import styles from "../style.css" // eslint-disable-line no-unused-vars
 import { getMaxDataDate } from "./utils.js"
 
 const production = window.location.href.includes("madnight.github.io")
