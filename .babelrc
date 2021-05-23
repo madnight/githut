@@ -1,16 +1,12 @@
 {
-                    plugins: [
-                        ["@babel/transform-runtime"],
-                        "@babel/plugin-transform-modules-commonjs",
-                        'add-module-exports',
-                        'react-html-attrs',
-                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                        ["@babel/plugin-proposal-class-properties", { "loose": true }],
-                        ['@babel/plugin-proposal-pipeline-operator', { 'proposal': 'minimal' }],
-                        'pipe-operator-curry',
-                    ],
-  "presets": [
-    "@babel/preset-react",
-    ["@babel/preset-env", { "useBuiltIns": false, }]
-  ]
+    "plugins": [
+        ["@babel/transform-runtime"],
+        "@babel/plugin-transform-modules-commonjs",
+        "add-module-exports",
+        "react-html-attrs",
+    ],
+    "presets": [
+        "@babel/preset-react",
+        ["@babel/preset-env", { "useBuiltIns": false }]
+    ]
 }

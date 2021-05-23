@@ -7,7 +7,6 @@
   ],
   "plugins": [
     "standard",
-    "mocha",
     "react",
     "promise"
   ],
@@ -18,17 +17,9 @@
   },
   "env": {
     "node": true,
-    "mocha": true
-  },
-  "settings": {
-    "import/ignore": [
-      ".styl$"
-    ]
   },
   "rules": {
-    "mocha/no-exclusive-tests": "error",
     "react/prop-types": [0 , {}],
-    "operator-linebreak": off,
     "no-duplicate-imports": off,
     "no-unused-vars": ['error', {
       argsIgnorePattern: '^_',

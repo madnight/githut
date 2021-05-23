@@ -214,7 +214,7 @@ export default function LangTable({store, hist, table}) {
         const colorize = (i) =>
             i >= 0 ? font("+" + i, "green") : font(i, "chrimson")
         const percent = (i) => (i * 100).toFixed(3)
-        const countPercent = (row.count | percent) + "%"
+        const countPercent = (percent(row.count)) + "%"
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
         const normalize = (n) => (isNaN(n) ? 0.0 : n)
@@ -226,7 +226,7 @@ export default function LangTable({store, hist, table}) {
                 : `${
                       countPercent +
                       "  " +
-                      (row.change | normalize | percent | colorize)
+                      (pipe(normalize, percent, colorize)(row.change))
                   }`)
         )
     }
