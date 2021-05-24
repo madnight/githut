@@ -21,6 +21,7 @@
   "rules": {
     "react/prop-types": [0 , {}],
     "no-duplicate-imports": off,
+    "import/no-duplicates" : off,
     "no-unused-vars": ['error', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_'

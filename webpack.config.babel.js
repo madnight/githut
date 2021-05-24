@@ -1,9 +1,6 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import WebpackCleanupPlugin from "webpack-cleanup-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-
 import path from "path";
 
 const debug = process.env.NODE_ENV !== "production";
@@ -25,7 +22,7 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: "html-loader!markdown-loader"
+        use: ['html-loader', 'markdown-loader'],
       },
     ]
   },
@@ -91,14 +88,12 @@ module.exports = {
     debug
       ? []
       : [
-          new WebpackCleanupPlugin(),
           new webpack.DefinePlugin({
             "process.env": {
               NODE_ENV: JSON.stringify("production")
             }
           }),
           new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 }),
-          new HtmlBeautifyPlugin()
         ]
   )
 };

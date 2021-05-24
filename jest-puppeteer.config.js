@@ -1,7 +1,7 @@
 module.exports = {
   server: {
-    command: "webpack-dev-server --progress --colors --content-base src --inline --hot",
-    timeout: 30000,
+    command: "yarn dev",
+    timeout: 60000,
     port: 8080,
   },
 }

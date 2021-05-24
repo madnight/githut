@@ -13,7 +13,7 @@ export default function Footer() {
                 Credits to <a href="//github.com/littleark">Carlo Zapponi</a>
                 <br />
                 This work is licensed under the{" "}
-                <a
+                <a // eslint-disable-line react/jsx-no-target-blank
                     rel="license"
                     href="//www.gnu.org/licenses/agpl-3.0.en.html"
                     target="_blank"
