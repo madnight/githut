@@ -32,6 +32,13 @@
  */
 
 /**
+ * Entrypoint for the react app
+ * Provides a basic app wrapper for react
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
+
+/**
  * Layout class that is used to compose all react
  * components into one app div
  * Provides dependency injection via props
