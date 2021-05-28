@@ -36,7 +36,6 @@ a:hover {
 }
 #header {
   width: 80%;
-  min-width: 960px;
   margin: 0 auto 10px;
   padding-bottom: 5px;
   position: relative;
@@ -61,7 +60,6 @@ a:hover {
   text-transform: uppercase;
 }
 #footer {
-  width: 600px;
   margin: 0 auto 10px;
   padding-bottom: 5px;
   font-size: 11px;
@@ -129,3 +127,4 @@ a:hover {
   margin-top: 200px;
   margin-bottom: 200px;
 }
+

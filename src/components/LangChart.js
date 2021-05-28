@@ -21,16 +21,15 @@ import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
 
 export default function LangChart(props) {
+
     const store = new LangChartStore()
     const [state, setState] = useState(store.getConfig())
     const [debounce] = useState(() => _.debounce(setState, 200))
     let dataLength = 0
     let visible
     const style = {
-        width: "100%",
         margin: "auto",
-        maxWidth: 1360,
-        minWidth: 1360,
+        maxWidth: "80%",
     }
 
     /**

@@ -12,7 +12,7 @@
 
 const chartConfig = {
     credits: { enabled: false },
-    chart: { type: "spline", backgroundColor: "transparent" },
+    chart: { type: "spline", backgroundColor: "transparent", width: 1200 },
     title: { text: "" },
     xAxis: { categories: [] },
     yAxis: {
@@ -36,6 +36,23 @@ const chartConfig = {
                 duration: 200,
             },
         },
+    },
+    responsive: {
+        rules: [
+            {
+                condition: {
+                    maxWidth: 1200,
+                },
+                chartOptions: {
+                    chart: { width: null },
+                    legend: {
+                        layout: "horizontal",
+                        align: "center",
+                        verticalAlign: "bottom",
+                    },
+                },
+            },
+        ],
     },
     tooltip: {
         formatter: function () {
