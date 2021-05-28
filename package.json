@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production react-scripts build",
-    "postbuild": "react-snap",
+    "postbuild": "react-snap && prettier -w build/index.html",
     "deploy": "npm run build && gh-pages -d build",
     "lint": "eslint -c .eslintrc src",
     "lint-fix": "eslint -c .eslintrc src --fix",
@@ -59,6 +59,7 @@
     "jest-puppeteer": "^5.0.3",
     "jsdom": "^16.6.0",
     "mini-css-extract-plugin": "^1.6.0",
+    "prettier": "^2.3.0",
     "puppeteer": "^9.1.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",

@@ -29,7 +29,7 @@ export default function LangChart(props) {
     let visible
     const style = {
         margin: "auto",
-        maxWidth: "80%",
+        maxWidth: "100%",
     }
 
     /**

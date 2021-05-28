@@ -8,7 +8,6 @@
 import React from "react"
 import { HashRouter } from "react-router-dom"
 import Layout from "./components/Layout"
-import styles from "./style.css" // eslint-disable-line no-unused-vars
 import { getMaxDataDate } from "./utils.js"
 import { hydrate, render } from "react-dom"
 

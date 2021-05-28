@@ -19,7 +19,7 @@ export default function LangTable({store, hist, table}) {
     const [state, setState] = useState({ data: [] })
     const style = {
         margin: "auto",
-        maxWidth: 1160,
+        maxWidth: 810,
     }
 
     /**
@@ -250,7 +250,7 @@ export default function LangTable({store, hist, table}) {
             <BootstrapTable
                 condensed
                 striped
-                tableStyle={{ margin: "30px auto 30px auto", width: "70%" }}
+                tableStyle={{ margin: "30px auto 30px auto", width: "100%" }}
                 data={state.data}
                 bordered={false}
             >

@@ -12,7 +12,7 @@
 
 const chartConfig = {
     credits: { enabled: false },
-    chart: { type: "spline", backgroundColor: "transparent", width: 1200 },
+    chart: { type: "spline", backgroundColor: "transparent", width: 1400 },
     title: { text: "" },
     xAxis: { categories: [] },
     yAxis: {
@@ -41,7 +41,7 @@ const chartConfig = {
         rules: [
             {
                 condition: {
-                    maxWidth: 1200,
+                    maxWidth: 1400,
                 },
                 chartOptions: {
                     chart: { width: null },
