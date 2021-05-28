@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/githut/static/css/main.16b3d60c.chunk.css",
-    "main.js": "/githut/static/js/main.c6bdc29d.chunk.js",
-    "main.js.map": "/githut/static/js/main.c6bdc29d.chunk.js.map",
+    "main.js": "/githut/static/js/main.1c9fc8ec.chunk.js",
+    "main.js.map": "/githut/static/js/main.1c9fc8ec.chunk.js.map",
     "runtime-main.js": "/githut/static/js/runtime-main.27909881.js",
     "runtime-main.js.map": "/githut/static/js/runtime-main.27909881.js.map",
     "static/js/2.835ca720.chunk.js": "/githut/static/js/2.835ca720.chunk.js",
@@ -10,12 +10,12 @@
     "index.html": "/githut/index.html",
     "static/css/main.16b3d60c.chunk.css.map": "/githut/static/css/main.16b3d60c.chunk.css.map",
     "static/js/2.835ca720.chunk.js.LICENSE.txt": "/githut/static/js/2.835ca720.chunk.js.LICENSE.txt",
-    "static/js/main.c6bdc29d.chunk.js.LICENSE.txt": "/githut/static/js/main.c6bdc29d.chunk.js.LICENSE.txt"
+    "static/js/main.1c9fc8ec.chunk.js.LICENSE.txt": "/githut/static/js/main.1c9fc8ec.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.27909881.js",
     "static/js/2.835ca720.chunk.js",
     "static/css/main.16b3d60c.chunk.css",
-    "static/js/main.c6bdc29d.chunk.js"
+    "static/js/main.1c9fc8ec.chunk.js"
   ]
 }
