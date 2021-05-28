@@ -128,3 +128,6 @@ a:hover {
   margin-bottom: 200px;
 }
 
+@font-face {
+  font-display: swap;
+}

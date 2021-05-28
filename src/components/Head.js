@@ -48,7 +48,7 @@ export default function Application() {
                     {
                         rel: "stylesheet",
                         type: "text/css",
-                        href: "//fonts.googleapis.com/css?family=Open+Sans:400,300,700",
+                        href: "//fonts.googleapis.com/css?family=Open+Sans:400,300,700&display=swap",
                     },
                     {
                         rel: "stylesheet",
