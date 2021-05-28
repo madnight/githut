@@ -4,20 +4,21 @@
   "license": "ISC",
   "version": "0.1.39",
   "description": "githut2",
-  "main": "webpack.config.js",
+  "homepage": "https://madnight.github.io/githut",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/madnight/github-stats.git"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack --mode=production --progress",
-    "deploy": "npm run build && gh-pages -d public",
+    "build": "NODE_ENV=production react-scripts build",
+    "postbuild": "react-snap",
+    "deploy": "npm run build && gh-pages -d build",
     "lint": "eslint -c .eslintrc src",
     "lint-fix": "eslint -c .eslintrc src --fix",
-    "babel": "babel-node --presets es2015",
     "ver": "npm version patch --git=true",
     "jest": "jest --detectOpenHandles",
-    "dev": "webpack serve --mode development --progress --content-base src --inline --hot"
+    "test": "yarn jest",
+    "dev": "react-scripts start"
   },
   "dependencies": {
     "bootstrap": "^5.0.1",
@@ -25,37 +26,22 @@
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "lodash": "^4.17.21",
+    "marked": "^2.0.6",
     "react-disqus-comments": "^1.1.1",
     "react-github-fork-ribbon": "^0.6.0",
     "react-helmet": "^6.1.0",
     "react-materialize": "^3.3.4",
     "react-router-dom": "^5.0.1",
+    "react-scripts": "^4.0.3",
     "react-select": "^4.3.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/node": "^7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.5.5",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.6.3",
-    "babel-loader": "^8.0.0-beta.6",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-plugin-react-html-attrs": "^3.0.5",
-    "babel-plugin-transform-class-properties": "^6.3.13",
     "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-polyfill": "^7.0.0-beta.3",
-    "babel-preset-es2015": "^7.0.0-beta.3",
-    "babel-preset-react": "^7.0.0-beta.3",
-    "babel-preset-stage-0": "^7.0.0-beta.3",
-    "babel-preset-stage-1": "^6.16.0",
     "css-loader": "^5.2.6",
-    "enzyme": "^3.3.0",
+    "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
@@ -66,17 +52,12 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-standard": "^5.0.0",
     "expect.js": "^0.3.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^6.2.0",
     "gh-pages": "^3.1.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
-    "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "jest-puppeteer": "^5.0.3",
     "jsdom": "^16.6.0",
-    "json-loader": "^0.5.4",
-    "markdown-loader": "^6.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "puppeteer": "^9.1.1",
     "react": "^17.0.2",
@@ -84,11 +65,19 @@
     "react-bootstrap-table": "^4.3.1",
     "react-data-components": "^1.1.0",
     "react-dom": "^17.0.2",
-    "react-test-renderer": "^17.0.2",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.37.1",
-    "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.8.0"
+    "react-snap": "^1.23.0",
+    "react-test-renderer": "^17.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

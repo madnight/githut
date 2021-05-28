@@ -1,6 +1,6 @@
 import React from 'react'
 import expect from 'expect.js'
-import Header from '../src/js/components/Header'
+import Header from '../src/components/Header'
 import { shallow, configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })

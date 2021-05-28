@@ -10,7 +10,7 @@
  */
 
 import React, { useState, useEffect } from "react"
-import licenses from "../../data/github-licenses.json"
+import licenses from "../data/github-licenses.json"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import { mapKeys, update, take, map, pipe } from "lodash/fp"
@@ -46,5 +46,9 @@ export default function LicensePie() {
         setState({ ...config, series: [{ data: series }] })
     }, [])
 
-    return <HighchartsReact highcharts={Highcharts} options={state} />
+    return (
+        <center>
+            <HighchartsReact highcharts={Highcharts} options={state} />
+        </center>
+    )
 }

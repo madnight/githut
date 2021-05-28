@@ -23,13 +23,14 @@ import GitHubColors from "github-colors"
 export default function LangChart(props) {
     const store = new LangChartStore()
     const [state, setState] = useState(store.getConfig())
-    const [debounce, ] = useState(() => _.debounce(setState, 200))
+    const [debounce] = useState(() => _.debounce(setState, 200))
     let dataLength = 0
     let visible
     const style = {
         width: "100%",
         margin: "auto",
         maxWidth: 1360,
+        minWidth: 1360,
     }
 
     /**
@@ -153,8 +154,10 @@ export default function LangChart(props) {
 
     if (state && state.series && state.series.length === 0) return null
     return (
-        <div style={style}>
-            <HighchartsReact highcharts={Highcharts} options={state} />
-        </div>
+        <center>
+            <div style={style}>
+                <HighchartsReact highcharts={Highcharts} options={state} />
+            </div>
+        </center>
     )
 }

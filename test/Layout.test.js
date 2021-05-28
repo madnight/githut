@@ -6,7 +6,7 @@ describe("E2E Test Githut 2.0", () => {
         let browser = await puppeteer.launch({ headless: true })
         let page = await browser.newPage()
 
-        await page.goto("http://localhost:8080", {
+        await page.goto("http://localhost:3000", {
             waitUntil: ["networkidle0", "domcontentloaded"],
         })
         let html = await page.evaluate(() => document.querySelector("*").outerHTML)
@@ -28,7 +28,7 @@ describe("E2E Test Githut 2.0", () => {
         expect(html).to.not.contain("license-42")
         expect(html).to.not.contain("Cucumber")
 
-        await page.goto("http://localhost:8080/#/pull_requests/2014/1", {
+        await page.goto("http://localhost:3000/#/pull_requests/2014/1", {
             waitUntil: ["networkidle0", "domcontentloaded"],
         })
         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
@@ -38,7 +38,7 @@ describe("E2E Test Githut 2.0", () => {
         expect(html).to.contain("19.761%")
         expect(html).to.contain("16.468%")
 
-        await page.goto("http://localhost:8080/#/stars/2016/2", {
+        await page.goto("http://localhost:3000/#/stars/2016/2", {
             waitUntil: ["networkidle0", "domcontentloaded"],
         })
         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })

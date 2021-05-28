@@ -6,11 +6,11 @@
  */
 
 import React from "react"
-import ReactDOM from "react-dom"
 import { HashRouter } from "react-router-dom"
 import Layout from "./components/Layout"
-import styles from "../style.css" // eslint-disable-line no-unused-vars
+import styles from "./style.css" // eslint-disable-line no-unused-vars
 import { getMaxDataDate } from "./utils.js"
+import { hydrate, render } from "react-dom"
 
 const production = window.location.href.includes("madnight.github.io")
 
@@ -26,15 +26,22 @@ const main = async () => {
         window.history.pushState("", "", url)
     }
 
-    const app = document.createElement("div")
-    app.id = "app"
-    document.body.appendChild(app)
-    ReactDOM.render(
-        <HashRouter>
-            <Layout />
-        </HashRouter>,
-        app
-    )
+    const rootElement = document.getElementById("root")
+    if (rootElement.hasChildNodes()) {
+        hydrate(
+            <HashRouter>
+                <Layout />
+            </HashRouter>,
+            document.getElementById("root")
+        )
+    } else {
+        render(
+            <HashRouter>
+                <Layout />
+            </HashRouter>,
+            document.getElementById("root")
+        )
+    }
 }
 
 main()

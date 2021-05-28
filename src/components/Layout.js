@@ -22,10 +22,10 @@ import Select from "./Select"
 import EventReducer from "../reducers/EventReducer"
 import TableReducer  from "../reducers/TableReducer"
 import HistReducer  from "../reducers/HistReducer"
-import pullRequests from "../../data/gh-pull-request.json"
-import pushEvent from "../../data/gh-push-event.json"
-import starEvent from "../../data/gh-star-event.json"
-import issueEvent from "../../data/gh-issue-event.json"
+import pullRequests from "../data/gh-pull-request.json"
+import pushEvent from "../data/gh-push-event.json"
+import starEvent from "../data/gh-star-event.json"
+import issueEvent from "../data/gh-issue-event.json"
 
 export default function Layout() {
 

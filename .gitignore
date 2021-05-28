@@ -4,8 +4,7 @@ node_modules
 *.gz
 
 # deploy
-public
-.publish
+build
 
 # test
 coverage
