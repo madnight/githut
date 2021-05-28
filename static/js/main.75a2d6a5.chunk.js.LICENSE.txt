@@ -1,4 +1,15 @@
 /**
+ * A Highcharts chart that shows the top five licenses on GitHub
+ * Please note that the license for this file is
+ * not AGPL-3.0 since Highcharts is licensed under CC BY-NC 3.0
+ * If Highcharts gets replaced in the future this class will
+ * be rewritten and licensed under AGPL-3.0
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license CC BY-NC 3.0
+ * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
+ */
+
+/**
  * Contains everything that belongs into the html footer
  * License, Credits
  * @author Fabian Beuke <mail@beuke.org>
@@ -36,9 +47,29 @@
  */
 
 /**
+ * Programming language popularity chart based on Highcharts
+ * Please note that this file is dual licensed since Highcharts
+ * is licensed under CC BY-NC 3.0
+ * If Highcharts gets replaced in the future this class
+ * will be licensed under AGPL-3.0 only
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0 everything except Highcharts
+ * @license CC BY-NC 3.0 Highcharts
+ * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
+ */
+
+/**
  * Simple discussion box
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
+ */
+
+/**
+ * Storage class for the language chart
+ * Contains all languages that are no programming lanuages
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ * @see {@link https://github.com/github/linguist/blob/master/lib/linguist/languages.yml}
  */
 
 /**
