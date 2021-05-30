@@ -15,15 +15,14 @@ import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
 import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"
 import _ from "lodash"
-import { LangChartStore } from "../stores/LangChartStore"
+import ChartConfig from "common/LangChartConfig"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
 
 export default function LangChart(props) {
 
-    const store = new LangChartStore()
-    const [state, setState] = useState(store.getConfig())
+    const [state, setState] = useState(ChartConfig)
     const [debounce] = useState(() => _.debounce(setState, 200))
     let dataLength = 0
     let visible

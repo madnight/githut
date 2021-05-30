@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ReactSelect from "react-select"
 import { range, toString } from "lodash/fp"
-import { getMaxDataDate } from "utils.js"
+import { getMaxDataDate } from "common/utils.js"
 
 export default function Select(props) {
     const year = props.year

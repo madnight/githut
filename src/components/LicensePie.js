@@ -10,7 +10,7 @@
  */
 
 import { useState, useEffect } from "react";
-import licenses from "../data/github-licenses.json"
+import licenses from "data/github-licenses.json"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import { mapKeys, update, take, map, pipe } from "lodash/fp"

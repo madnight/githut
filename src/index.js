@@ -7,7 +7,7 @@
 
 import { HashRouter } from "react-router-dom";
 import Layout from "components/Layout"
-import { getMaxDataDate } from "utils.js"
+import { getMaxDataDate } from "common/utils.js"
 import { hydrate, render } from "react-dom"
 
 const production = window.location.href.includes("madnight.github.io")

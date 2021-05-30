@@ -1,5 +1,5 @@
 /**
- * Storage class for the language chart
+ * Config for the language chart
  * Contains initial Highcharts configuration
  * Please note that the license for this file is
  * not AGPL-3.0 since Highcharts is licensed under CC BY-NC 3.0
@@ -10,7 +10,8 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-const chartConfig = {
+
+export default {
     credits: { enabled: false },
     chart: { type: "spline", backgroundColor: "transparent", width: 1400 },
     title: { text: "" },
@@ -69,12 +70,3 @@ const chartConfig = {
     },
 }
 
-export class LangChartStore {
-    constructor() {
-        this.config = chartConfig
-    }
-
-    getConfig() {
-        return this.config
-    }
-}

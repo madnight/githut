@@ -12,8 +12,8 @@ import { filter, toString, omitBy, isNil, find, first, sum } from "lodash/fp"
 import { update, isNaN, assign, take, includes, reject } from "lodash/fp"
 import { pick, map, pipe, isEqual } from "lodash/fp"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
-import { NonLangStore } from "../stores/NonLangStore"
-import { RenameLangStore } from "../stores/RenameLangStore"
+import NoLanguages from "common/NoLanguages"
+import RenameLanguages from "common/RenameLanguages"
 
 export default function LangTable({store, hist, table}) {
     const [state, setState] = useState({ data: [] })
@@ -44,8 +44,7 @@ export default function LangTable({store, hist, table}) {
      * @param {Object} data - GitHub api data set
      */
     function filterNonProgrammingLanguages(data) {
-        const nonLang = new NonLangStore().getConfig()
-        return reject((o) => includes(o.name)(nonLang.lang))(data)
+        return reject((o) => includes(o.name)(NoLanguages))(data)
     }
 
     /**
@@ -55,9 +54,8 @@ export default function LangTable({store, hist, table}) {
      * @param {Object} data - GitHub api data set
      */
     function applyLanguageRenamings(data) {
-        const renameLang = new RenameLangStore().getConfig()
         const rename = (name) => {
-            const r = find((o) => includes(name, o.before))(renameLang)
+            const r = find((o) => includes(name, o.before))(RenameLanguages)
             return r ? r.after : name
         }
         return map(update("name")(rename))(data)
