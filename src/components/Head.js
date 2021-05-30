@@ -18,7 +18,6 @@ export default function Application() {
                     {
                         rel: "stylesheet",
                         type: "text/css",
-                        href: "//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css",
                     },
                     {
                         rel: "stylesheet",

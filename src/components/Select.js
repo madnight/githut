@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
-import ReactSelect from "react-select"
 import { range, toString } from "lodash/fp"
 import { getMaxDataDate } from "../utils.js"
-// import "react-select/dist/react-select.css"
+import { Link } from "react-router-dom"
 
 export default function Select(props) {
     const year = props.year
@@ -36,36 +35,35 @@ export default function Select(props) {
         setValue(year ? params.year : params.quarter)
     }, [])
 
-    function histPush(x, y, z) {
-        props.history.push("/" + x + "/" + y + "/" + z)
-    }
-
-    function onChange({ value }) {
-        const { params } = props.match
-        setValue(value)
-        if (year) {
-            histPush(params.event, value, params.quarter)
-        } else {
-            histPush(params.event, params.year, value)
-        }
-    }
-
     if (!state) return null
-    const styles = {
-        control: (provided) => ({ ...provided, height: 38 }),
-        valueContainer: (provided) => ({ ...provided, height: 38 }),
-    }
+    // const styles = {
+    //     control: (provided) => ({ ...provided, height: 38 }),
+    //     valueContainer: (provided) => ({ ...provided, height: 38 }),
+    // }
+
+    // <ReactSelect
+    //     styles={styles}
+    //     onChange={onChange}
+    //     options={state.options}
+    //     searchable={false}
+    //     clearable={false}
+    //     value={{ value: state.value, label: state.value }}
+    // />
+
+    if (!state.options) return (null)
     return (
         <div style={{ width: "200px", paddingRight: "20px" }}>
             <h4 className="section-heading">{year ? "Year" : "Quarter"}</h4>
-            <ReactSelect
-                styles={styles}
-                onChange={onChange}
-                options={state.options}
-                searchable={false}
-                clearable={false}
-                value={{ value: state.value, label: state.value }}
-            />
+
+            <div className="dropdown">
+                <button className="dropbtn">Dropdown</button>
+                <div className="dropdown-content">
+
+ {[2014, 2015].map((link) => (
+                    <Link key={1} to={link}>{link}</Link>
+    ))}
+                </div>
+            </div>
         </div>
     )
 }

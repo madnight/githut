@@ -45,7 +45,7 @@ export default function Layout() {
             <Head />
             <Header />
             <Route
-                path="/:event?/:year?/:quarter?/:lang?"
+            path="/githut/:event?/:year?/:quarter?/:lang?"
                 render={(route) => (
                     <div>
                         <LangChart
