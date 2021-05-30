@@ -18,6 +18,7 @@
     "ver": "npm version patch --git=true",
     "jest": "jest --detectOpenHandles",
     "test": "yarn jest",
+    "dest": "react-scripts test",
     "dev": "react-scripts start"
   },
   "dependencies": {
@@ -26,7 +27,6 @@
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "lodash": "^4.17.21",
-    "marked": "^2.0.6",
     "react-disqus-comments": "^1.1.1",
     "react-github-fork-ribbon": "^0.6.0",
     "react-helmet": "^6.1.0",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-react": "^7.13.13",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-plugin-react-html-attrs": "^3.0.5",
     "enzyme": "^3.11.0",

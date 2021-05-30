@@ -4,7 +4,7 @@
  * @license AGPL-3.0
  */
 
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Button as MaterialButton } from "react-materialize"
 
 export default function Button({ match, store, history }) {

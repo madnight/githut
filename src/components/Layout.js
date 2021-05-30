@@ -7,25 +7,25 @@
  * @license AGPL-3.0
  */
 
-import React, { useReducer } from "react"
+import { useReducer } from "react";
 import { Route } from "react-router-dom"
-import LangChart from "./LangChart"
-import LangTable from "./LangTable"
-import LicensePie from "./LicensePie"
-import Button from "./Button"
-import Head from "./Head"
-import Header from "./Header"
-import Content from "./Content"
-import Comments from "./Comments"
-import Footer from "./Footer"
-import Select from "./Select"
-import EventReducer from "../reducers/EventReducer"
-import TableReducer  from "../reducers/TableReducer"
-import HistReducer  from "../reducers/HistReducer"
-import pullRequests from "../data/gh-pull-request.json"
-import pushEvent from "../data/gh-push-event.json"
-import starEvent from "../data/gh-star-event.json"
-import issueEvent from "../data/gh-issue-event.json"
+import LangChart from "components/LangChart"
+import LangTable from "components/LangTable"
+import LicensePie from "components/LicensePie"
+import Button from "components/Button"
+import Head from "components/Head"
+import Header from "components/Header"
+import Content from "components/Content"
+import Comments from "components/Comments"
+import Footer from "components/Footer"
+import Select from "components/Select"
+import EventReducer from "reducers/EventReducer"
+import TableReducer  from "reducers/TableReducer"
+import HistReducer  from "reducers/HistReducer"
+import pullRequests from "data/gh-pull-request.json"
+import pushEvent from "data/gh-push-event.json"
+import starEvent from "data/gh-star-event.json"
+import issueEvent from "data/gh-issue-event.json"
 
 export default function Layout() {
 

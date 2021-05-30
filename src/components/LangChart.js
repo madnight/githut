@@ -10,7 +10,7 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
 import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
 import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"

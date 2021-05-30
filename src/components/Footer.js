@@ -4,8 +4,6 @@
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
-import React from "react"
-
 export default function Footer() {
     return (
         <div id="footer">

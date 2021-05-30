@@ -5,10 +5,9 @@
  * @license AGPL-3.0
  */
 
-import React from "react"
-import { HashRouter } from "react-router-dom"
-import Layout from "./components/Layout"
-import { getMaxDataDate } from "./utils.js"
+import { HashRouter } from "react-router-dom";
+import Layout from "components/Layout"
+import { getMaxDataDate } from "utils.js"
 import { hydrate, render } from "react-dom"
 
 const production = window.location.href.includes("madnight.github.io")

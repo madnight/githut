@@ -6,8 +6,7 @@
  * @license AGPL-3.0
  */
 
-import React from "react"
-import GitHubForkRibbon from "react-github-fork-ribbon"
+import GitHubForkRibbon from "react-github-fork-ribbon";
 
 export default function Header() {
     return (

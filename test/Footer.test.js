@@ -1,4 +1,3 @@
-import React from 'react'
 import expect from 'expect.js'
 import Footer from '../src/components/Footer'
 import { shallow, configure } from 'enzyme'

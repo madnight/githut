@@ -9,7 +9,7 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import licenses from "../data/github-licenses.json"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"

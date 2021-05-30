@@ -1,4 +1,3 @@
-import React from 'react'
 import expect from 'expect.js'
 import Header from '../src/components/Header'
 import { shallow, configure } from 'enzyme'

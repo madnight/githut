@@ -7,7 +7,7 @@
  * @license AGPL-3.0
  */
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { filter, toString, omitBy, isNil, find, first, sum } from "lodash/fp"
 import { update, isNaN, assign, take, includes, reject } from "lodash/fp"
 import { pick, map, pipe, isEqual } from "lodash/fp"

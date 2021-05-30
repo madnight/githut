@@ -1,12 +1,13 @@
 {
     "plugins": [
         ["@babel/transform-runtime"],
+        ["@babel/plugin-transform-react-jsx", { "runtime": "automatic" }],
         "@babel/plugin-transform-modules-commonjs",
         "add-module-exports",
         "react-html-attrs",
     ],
     "presets": [
-        "@babel/preset-react",
+        ["@babel/preset-react", { "runtime": "automatic" }],
         ["@babel/preset-env", { "useBuiltIns": false }]
     ]
 }

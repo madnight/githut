@@ -6,8 +6,6 @@
  * @license AGPL-3.0
  */
 
-import React from "react"
-
 export default function Content() {
     return (
         <div
