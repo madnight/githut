@@ -7,8 +7,7 @@
   ],
   "plugins": [
     "standard",
-    "react",
-    "promise"
+    "react"
   ],
   "parser": "babel-eslint",
   "env": {

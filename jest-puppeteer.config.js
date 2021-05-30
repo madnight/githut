@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    command: "yarn dev",
+    command: "BROWSER=none yarn dev",
     timeout: 60000,
     port: 3000,
   },
