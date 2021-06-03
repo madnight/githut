@@ -8,12 +8,10 @@
  */
 
 import { useState, useEffect } from "react";
-import { filter, toString, omitBy, isNil, find, first, sum } from "lodash/fp"
-import { update, isNaN, assign, take, includes, reject } from "lodash/fp"
-import { pick, map, pipe, isEqual } from "lodash/fp"
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import NoLanguages from "common/NoLanguages"
 import RenameLanguages from "common/RenameLanguages"
+import _ from "lodash/fp"
 
 export default function LangTable({store, hist, table}) {
     const [state, setState] = useState({ data: [] })
@@ -29,10 +27,9 @@ export default function LangTable({store, hist, table}) {
      * @param {number} quarter - Example 2
      */
     function filterDate(data, year, quarter) {
-        return pipe(
-            filter({ year: year }),
-            filter({ quarter: quarter }),
-            map(pick(["name", "count"]))
+        return _.pipe(
+            _.filter({ year: year, quarter: quarter }),
+            _.map(_.pick(["name", "count"]))
         )(data)
     }
 
@@ -44,7 +41,7 @@ export default function LangTable({store, hist, table}) {
      * @param {Object} data - GitHub api data set
      */
     function filterNonProgrammingLanguages(data) {
-        return reject((o) => includes(o.name)(NoLanguages))(data)
+        return _.reject((o) => _.includes(o.name)(NoLanguages))(data)
     }
 
     /**
@@ -55,10 +52,10 @@ export default function LangTable({store, hist, table}) {
      */
     function applyLanguageRenamings(data) {
         const rename = (name) => {
-            const r = find((o) => includes(name, o.before))(RenameLanguages)
+            const r = _.find((o) => _.includes(name, o.before))(RenameLanguages)
             return r ? r.after : name
         }
-        return map(update("name")(rename))(data)
+        return _.map(_.update("name")(rename))(data)
     }
 
     /**
@@ -99,7 +96,7 @@ export default function LangTable({store, hist, table}) {
      * @returns {Object} Search result
      */
     function findByName(data, name) {
-        return pipe(filter({ name: name }), first, omitBy(isNil))(data)
+        return _.pipe(_.filter({ name: name }), _.first, _.omitBy(_.isNil))(data)
     }
 
     /**
@@ -109,13 +106,13 @@ export default function LangTable({store, hist, table}) {
      * @returns {Object} Data set ++ trend diff
      */
     function getTrend(current, last) {
-        return pipe(
-            map((c) =>
-                assign({
+        return _.pipe(
+            _.map((c) =>
+                _.assign({
                     trend: findByName(last, c.name).id - c.id,
                 })(c)
             ),
-            take(50)
+            _.take(50)
         )(current)
     }
 
@@ -126,13 +123,13 @@ export default function LangTable({store, hist, table}) {
      * @returns {Object} Data set ++ change as number
      */
     function getChange(current, last) {
-        return pipe(
-            map((c) =>
-                assign({
+        return _.pipe(
+            _.map((c) =>
+                _.assign({
                     change: c.count - findByName(last, c.name).count,
                 })(c)
             ),
-            take(50)
+            _.take(50)
         )(current)
     }
 
@@ -146,11 +143,11 @@ export default function LangTable({store, hist, table}) {
      * @returns {Object} filtered and indexed data set (table)
      */
     function createTable(date, year, quarter) {
-        const addSortId = map.convert({ cap: 0 })((o, i) =>
-            assign({ id: ++i })(o)
+        const addSortId = _.map.convert({ cap: 0 })((o, i) =>
+            _.assign({ id: ++i })(o)
         )
 
-        return pipe(
+        return _.pipe(
             filterNonProgrammingLanguages,
             applyLanguageRenamings,
             addSortId,
@@ -166,14 +163,14 @@ export default function LangTable({store, hist, table}) {
 
         const data = store[0].data
         const { year, quarter } = hist[0]
-        const dec = (i) => toString(--i)
+        const dec = (i) => _.toString(--i)
 
         const curYearRanking = createTable(data, year, quarter)
         const lastYearRanking = createTable(data, dec(year), quarter)
         const trendRanking = getTrend(curYearRanking, lastYearRanking)
         const langRanking = getChange(trendRanking, lastYearRanking)
 
-        if (!isEqual(state.data, langRanking)) {
+        if (!_.isEqual(state.data, langRanking)) {
             const [, dispatch] = table
             dispatch({ type: "set", payload: langRanking })
             setState({ data: langRanking })
@@ -187,8 +184,8 @@ export default function LangTable({store, hist, table}) {
      * @returns {Object} Data set with percentage count
      */
     function percentageData(data) {
-        const total = pipe(map("count"), map(Number), sum)(data)
-        return pipe(map(update("count")((d) => d / total)))(data)
+        const total = _.pipe(_.map("count"), _.map(Number), _.sum)(data)
+        return _.pipe(_.map(_.update("count")((d) => d / total)))(data)
     }
 
     /**
@@ -215,7 +212,7 @@ export default function LangTable({store, hist, table}) {
         const countPercent = (percent(row.count)) + "%"
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
-        const normalize = (n) => (isNaN(n) ? 0.0 : n)
+        const normalize = (n) => (_.isNaN(n) ? 0.0 : n)
         const offset = "\u00A0".repeat(6)
         return (
             offset +
@@ -224,7 +221,7 @@ export default function LangTable({store, hist, table}) {
                 : `${
                       countPercent +
                       "  " +
-                      (pipe(normalize, percent, colorize)(row.change))
+                      (_.pipe(normalize, percent, colorize)(row.change))
                   }`)
         )
     }

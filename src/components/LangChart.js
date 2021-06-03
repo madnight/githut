@@ -11,19 +11,16 @@
  */
 
 import { useState, useEffect } from "react";
-import { update, range, sortBy, includes, uniqBy, reject } from "lodash/fp"
-import { size, max, flatten, map, take, zipWith, divide } from "lodash/fp"
-import { unzip, sum, filter, drop, isEqual, pipe } from "lodash/fp"
-import _ from "lodash"
 import ChartConfig from "common/LangChartConfig"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
+import _ from "lodash/fp"
 
 export default function LangChart(props) {
 
     const [state, setState] = useState(ChartConfig)
-    const [debounce] = useState(() => _.debounce(setState, 200))
+    const [debounce] = useState(() => _.debounce(200)(setState))
     let dataLength = 0
     let visible
     const style = {
@@ -37,11 +34,11 @@ export default function LangChart(props) {
      * @returns {Object} xAxis categories (year/quarter)
      */
     function categories() {
-        return pipe(
-            map((y) => map((q) => (q === 1 ? y : "")), range(1, 5)),
-            flatten,
-            drop(1)
-        )(range(2012, 2050))
+        return _.pipe(
+            _.map((y) => _.map((q) => (q === 1 ? y : "")), _.range(1, 5)),
+            _.flatten,
+            _.drop(1)
+        )(_.range(2012, 2050))
     }
 
     /**
@@ -51,10 +48,10 @@ export default function LangChart(props) {
      * @returns {Object} Data series with percentage data
      */
     function percentageData(data) {
-        const total = pipe(map("data"), unzip, map(sum))(data)
-        const zipTotal = (x) => zipWith(divide, x)(total)
-        const zipData = pipe(update("data"))(zipTotal)
-        return map(zipData, data)
+        const total = _.pipe(_.map("data"), _.unzip, _.map(_.sum))(data)
+        const zipTotal = (x) => _.zipWith(_.divide, x)(total)
+        const zipData = _.pipe(_.update("data"))(zipTotal)
+        return _.map(zipData, data)
     }
 
     /**
@@ -64,9 +61,9 @@ export default function LangChart(props) {
      * @returns {Object} Data series filled with zeros if required
      */
     function fillZeros(data) {
-        const HistSize = pipe(map("data"), map(size), max)(data)
-        const fill = (d) => new Array(HistSize - size(d)).fill(0).concat(d)
-        return map(update("data", fill))(data)
+        const HistSize = _.pipe(_.map("data"), _.map(_.size), _.max)(data)
+        const fill = (d) => new Array(HistSize - _.size(d)).fill(0).concat(d)
+        return _.map(_.update("data", fill))(data)
     }
 
     /**
@@ -76,16 +73,16 @@ export default function LangChart(props) {
      * @returns {Object} Data series for top 10 languages
      */
     const createSeries = (top) => (data) => {
-        return pipe(
-            uniqBy("name"),
-            reject((o) => !includes(o.name)(top)),
-            map.convert({ cap: 0 })((d, i) => ({
+        return _.pipe(
+            _.uniqBy("name"),
+            _.reject((o) => !_.includes(o.name)(top)),
+            _.map.convert({ cap: 0 })((d, i) => ({
                 name: d.name,
                 color: GitHubColors.get(d.name)
                     ? GitHubColors.get(d.name).color // or random color
                     : "#" + Math.floor(Math.random() * 16777215).toString(16),
                 visible: visible ? visible.includes(d.name) : i < 7,
-                data: map("count")(filter({ name: d.name })(data)),
+                data: _.map("count")(_.filter({ name: d.name })(data)),
             })),
             fillZeros
         )(data)
@@ -95,7 +92,7 @@ export default function LangChart(props) {
      * Updates react state if state has changed
      */
     function updateState(newState) {
-        if (!isEqual(state, newState)) {
+        if (!_.isEqual(state, newState)) {
             debounce(newState)
         }
     }
@@ -104,8 +101,8 @@ export default function LangChart(props) {
      * Creates a new percentage series of data
      */
     function createSeriesPercentage(data, top) {
-        return pipe(
-            map(update("count")(Math.floor)),
+        return _.pipe(
+            _.map(_.update("count")(Math.floor)),
             createSeries(top),
             percentageData
         )(data)
@@ -115,7 +112,7 @@ export default function LangChart(props) {
      * Creates a new chart if state has changed
      */
     function constructChart(data, title, top) {
-        if (data.length === dataLength && size(top) === 0) {
+        if (data.length === dataLength && _.size(top) === 0) {
             return
         }
 
@@ -139,14 +136,15 @@ export default function LangChart(props) {
     useEffect(() => {
         const { lang } = props.match.params
         visible = lang ? lang.split(",") : undefined
-        const [store, _] = props.store
+        const [store] = props.store
         const data = store.data
         const title = store.name
-        const top = pipe(
-            take(50),
-            sortBy("name"),
-            map("name")
+        const top = _.pipe(
+            _.take(50),
+            _.sortBy("name"),
+            _.map("name")
         )(props.table[0].data)
+
         constructChart(data, title, top)
     }, [props.hist, props.store, props.table])
 
