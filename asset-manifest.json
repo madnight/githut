@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/githut/static/js/main.b13f4bb5.chunk.js",
-    "main.js.map": "/githut/static/js/main.b13f4bb5.chunk.js.map",
+    "main.js": "/githut/static/js/main.7330532f.chunk.js",
+    "main.js.map": "/githut/static/js/main.7330532f.chunk.js.map",
     "runtime-main.js": "/githut/static/js/runtime-main.27909881.js",
     "runtime-main.js.map": "/githut/static/js/runtime-main.27909881.js.map",
     "static/js/2.badb0b63.chunk.js": "/githut/static/js/2.badb0b63.chunk.js",
     "static/js/2.badb0b63.chunk.js.map": "/githut/static/js/2.badb0b63.chunk.js.map",
     "index.html": "/githut/index.html",
     "static/js/2.badb0b63.chunk.js.LICENSE.txt": "/githut/static/js/2.badb0b63.chunk.js.LICENSE.txt",
-    "static/js/main.b13f4bb5.chunk.js.LICENSE.txt": "/githut/static/js/main.b13f4bb5.chunk.js.LICENSE.txt"
+    "static/js/main.7330532f.chunk.js.LICENSE.txt": "/githut/static/js/main.7330532f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.27909881.js",
     "static/js/2.badb0b63.chunk.js",
-    "static/js/main.b13f4bb5.chunk.js"
+    "static/js/main.7330532f.chunk.js"
   ]
 }
