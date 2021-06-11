@@ -12,7 +12,7 @@ export default function Footer() {
                 <br />
                 This work is licensed under the{" "}
                 <a // eslint-disable-line react/jsx-no-target-blank
-                    rel="license"
+                    rel="noopener"
                     href="//www.gnu.org/licenses/agpl-3.0.en.html"
                     target="_blank"
                 >
