@@ -4,16 +4,8 @@
  * @license AGPL-3.0
  */
 
-import ReactDisqusThread from "react-disqus-comments";
-
 export default function Comments() {
     return (
-        <div style={{ margin: "auto", maxWidth: 760 }}>
-            <ReactDisqusThread
-                shortname="githut2"
-                identifier="githut2"
-                title="GitHut2 Thread"
-            />
-        </div>
+        <div style={{ margin: "auto", maxWidth: 760 }} id="disqus_thread"></div>
     )
 }

@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="This website shows the popularity of programming languages on GitHub over time.">
+        <meta
+            name="description"
+            content="This website shows the popularity of programming languages on GitHub over time."
+        />
         <title>GitHub Language Stats</title>
     </head>
     <style>
@@ -171,4 +174,44 @@
     <body>
         <div id="root"></div>
     </body>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "https://madnight.github.io/githut"
+            this.page.identifier = "githut2"
+        }
+        function loadDisqus() {
+            var d = document,
+                s = d.createElement("script")
+            s.src = "https://githut2.disqus.com/embed.js"
+            s.setAttribute("data-timestamp", +new Date())
+            ;(d.head || d.body).appendChild(s)
+        }
+
+        function lazyLoadDisqus() {
+            if (
+                !(
+                    "IntersectionObserver" in window &&
+                    "IntersectionObserverEntry" in window &&
+                    "isIntersecting" in
+                        window.IntersectionObserverEntry.prototype
+                )
+            ) {
+                loadDisqus()
+            } else {
+                const observer = new IntersectionObserver(function (entries) {
+                    for (const entry of entries) {
+                        if (entry.isIntersecting) {
+                            loadDisqus()
+                            observer.unobserve(entry.target)
+                        }
+                    }
+                })
+                observer.observe(document.getElementById("disqus_thread"))
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", function () {
+            lazyLoadDisqus()
+        })
+    </script>
 </html>

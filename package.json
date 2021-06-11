@@ -27,7 +27,6 @@
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "lodash": "^4.17.21",
-    "react-disqus-comments": "^1.1.1",
     "react-github-fork-ribbon": "^0.6.0",
     "react-helmet": "^6.1.0",
     "react-materialize": "^3.3.4",
