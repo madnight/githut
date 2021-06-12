@@ -129,23 +129,26 @@ export default function LangChart(props) {
         updateState(newState)
     }
 
-    /**
-     * Native react function, called on component mount and
-     * on every prop change event
-     */
-    useEffect(() => {
+    async function loadChart(){
         const { lang } = props.match.params
         visible = lang ? lang.split(",") : undefined
         const [store] = props.store
-        const data = store.data
+        const data = await store.data
         const title = store.name
         const top = _.pipe(
             _.take(50),
             _.sortBy("name"),
             _.map("name")
         )(props.table[0].data)
-
         constructChart(data, title, top)
+    }
+
+    /**
+     * Native react function, called on component mount and
+     * on every prop change event
+     */
+    useEffect(() => {
+       loadChart()
     }, [props.hist, props.store, props.table])
 
     if (state && state.series && state.series.length === 0) return null

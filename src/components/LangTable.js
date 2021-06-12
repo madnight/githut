@@ -159,9 +159,9 @@ export default function LangTable({store, hist, table}) {
      * Sets ranking table state based on given props (api data)
      * Gets called on componentDidMount and sets react state on prop change
      */
-    function mountTable() {
+    async function mountTable() {
 
-        const data = store[0].data
+        const data = await store[0].data
         const { year, quarter } = hist[0]
         const dec = (i) => _.toString(--i)
 
