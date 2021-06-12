@@ -1,7 +1,0 @@
-/*!
- * GitHubColors
- *
- * @name GitHubColors
- * @function
- * @return {undefined}
- */

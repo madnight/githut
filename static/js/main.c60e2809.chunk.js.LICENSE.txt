@@ -10,6 +10,13 @@
  */
 
 /**
+ * Contains all languages that are no programming lanuages
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ * @see {@link https://github.com/github/linguist/blob/master/lib/linguist/languages.yml}
+ */
+
+/**
  * Contains everything that belongs into the html footer
  * License, Credits
  * @author Fabian Beuke <mail@beuke.org>
@@ -54,7 +61,28 @@
  */
 
 /**
+ * Programming language popularity chart based on Highcharts
+ * Please note that this file is dual licensed since Highcharts
+ * is licensed under CC BY-NC 3.0
+ * If Highcharts gets replaced in the future this class
+ * will be licensed under AGPL-3.0 only
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0 everything except Highcharts
+ * @license CC BY-NC 3.0 Highcharts
+ * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
+ */
+
+/**
  * Simple discussion box
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */
+
+/**
+ * The LangTable contains the top 50 programming languages
+ * for a given quarter, e.g. 2017/Q2
+ * Features: Trend, Percentage & Change, History, different data sets
+ * PR/Push/Stars ...
  * @author Fabian Beuke <mail@beuke.org>
  * @license AGPL-3.0
  */
