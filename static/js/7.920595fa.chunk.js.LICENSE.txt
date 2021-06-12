@@ -1,0 +1,8 @@
+/**
+ * The LangTable contains the top 50 programming languages
+ * for a given quarter, e.g. 2017/Q2
+ * Features: Trend, Percentage & Change, History, different data sets
+ * PR/Push/Stars ...
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0
+ */

@@ -1,0 +1,11 @@
+/**
+ * Programming language popularity chart based on Highcharts
+ * Please note that this file is dual licensed since Highcharts
+ * is licensed under CC BY-NC 3.0
+ * If Highcharts gets replaced in the future this class
+ * will be licensed under AGPL-3.0 only
+ * @author Fabian Beuke <mail@beuke.org>
+ * @license AGPL-3.0 everything except Highcharts
+ * @license CC BY-NC 3.0 Highcharts
+ * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
+ */
