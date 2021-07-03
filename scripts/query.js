@@ -1,6 +1,6 @@
 'use strict'
 
-const BigQuery = require('@google-cloud/bigquery')
+const {BigQuery} = require('@google-cloud/bigquery');
 const fs = require('fs')
 const param = require('commander')
 const { flatten, flow, map, first, isNumber, defaultTo } = require('lodash/fp')
@@ -11,7 +11,11 @@ const query = (sql) => {
         timeoutMs: 1000000,
         useLegacySql: true
     }
-    return BigQuery({ projectId: process.env.GCLOUD_PROJECT }).query(options)
+
+    const bigqueryClient = new BigQuery();
+
+    return bigqueryClient.query(options);
+    // return BigQuery({ projectId: process.env.GCLOUD_PROJECT }).query(options)
 }
 
 const getAppendFileName = eventName => {
