@@ -15,6 +15,7 @@ import ChartConfig from "common/LangChartConfig"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
+import { isMobile } from 'react-device-detect'
 import _ from "lodash/fp"
 
 export default function LangChart(props) {
@@ -121,7 +122,7 @@ export default function LangChart(props) {
             ...state,
             yAxis: {
                 ...state.yAxis,
-                title: { text: title },
+                title: { text: isMobile ? "" : title },
             },
             series: createSeriesPercentage(data, top),
             xAxis: { tickLength: 0, categories: categories() },

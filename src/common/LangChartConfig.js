@@ -10,10 +10,15 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
+import { isMobile } from "react-device-detect"
 
 export default {
     credits: { enabled: false },
-    chart: { type: "spline", backgroundColor: "transparent", width: 1400 },
+    chart: {
+        type: "spline",
+        backgroundColor: "transparent",
+        width: isMobile ? 0 : 1400,
+    },
     title: { text: "" },
     xAxis: { categories: [] },
     yAxis: {
@@ -42,7 +47,7 @@ export default {
         rules: [
             {
                 condition: {
-                    maxWidth: 1400,
+                    maxWidth: 0,
                 },
                 chartOptions: {
                     chart: { width: null },
@@ -69,4 +74,3 @@ export default {
         },
     },
 }
-

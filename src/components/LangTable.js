@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import NoLanguages from "common/NoLanguages"
 import RenameLanguages from "common/RenameLanguages"
+import { isMobile } from 'react-device-detect'
 import _ from "lodash/fp"
 
 export default function LangTable({store, hist, table}) {
@@ -213,15 +214,14 @@ export default function LangTable({store, hist, table}) {
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
         const normalize = (n) => (_.isNaN(n) ? 0.0 : n)
-        const offset = "\u00A0".repeat(6)
+        const offset = "\u00A0".repeat(isMobile ? 0 : 6)
         return (
             offset +
             (row.id > 30
                 ? countPercent
                 : `${
                       countPercent +
-                      "  " +
-                      (_.pipe(normalize, percent, colorize)(row.change))
+                      (isMobile ? "" : "  " + (_.pipe(normalize, percent, colorize)(row.change)))
                   }`)
         )
     }
@@ -255,22 +255,22 @@ export default function LangTable({store, hist, table}) {
                     dataField="id"
                     isKey={true}
                 >
-                    # Ranking
+                    {isMobile ? "" : "# Ranking"}
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width="150px"
+                    width={isMobile ? "100px" : "150px"}
                     dataAlign="center"
                     dataField="name"
                 >
-                    Programming Language
+                    {isMobile ? "Language" : "Programming Language"}
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width="100px"
+                    width={isMobile ? "100px" : "150px"}
                     dataField="count"
-                    dataAlign="left"
+                    dataAlign="center"
                     dataFormat={percentFormatter}
                 >
-                    Percentage (YoY Change)
+                    {isMobile ? "Percentage" : "Percentage (YoY Change)"}
                 </TableHeaderColumn>
                 <TableHeaderColumn
                     width="50px"
@@ -278,7 +278,7 @@ export default function LangTable({store, hist, table}) {
                     dataField="trend"
                     dataFormat={trendFormatter}
                 >
-                    YoY Trend
+                    {isMobile ? "" : "YoY Trend"}
                 </TableHeaderColumn>
             </BootstrapTable>
         </div>
