@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table"
 import NoLanguages from "common/NoLanguages"
 import RenameLanguages from "common/RenameLanguages"
-import { isMobile } from 'react-device-detect'
 import _ from "lodash/fp"
 
 export default function LangTable({store, hist, table}) {
@@ -19,6 +18,7 @@ export default function LangTable({store, hist, table}) {
     const style = {
         margin: "auto",
         maxWidth: 810,
+        overflowX: "auto"
     }
 
     /**
@@ -214,14 +214,14 @@ export default function LangTable({store, hist, table}) {
         // NaN can happen in case of new first seen languages,
         // hence we say 0% change
         const normalize = (n) => (_.isNaN(n) ? 0.0 : n)
-        const offset = "\u00A0".repeat(isMobile ? 0 : 6)
+        const offset = "\u00A0".repeat(6)
         return (
             offset +
             (row.id > 30
                 ? countPercent
                 : `${
                       countPercent +
-                      (isMobile ? "" : "  " + (_.pipe(normalize, percent, colorize)(row.change)))
+                      ("  " + (_.pipe(normalize, percent, colorize)(row.change)))
                   }`)
         )
     }
@@ -248,37 +248,38 @@ export default function LangTable({store, hist, table}) {
                 tableStyle={{ margin: "30px auto 30px auto", width: "100%" }}
                 data={state.data}
                 bordered={false}
+                wrapperClasses="table-responsive"
             >
                 <TableHeaderColumn
-                    width="50px"
+                    width="100px"
                     dataAlign="center"
                     dataField="id"
                     isKey={true}
                 >
-                    {isMobile ? "" : "# Ranking"}
+                    {"# Ranking"}
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width={isMobile ? "100px" : "150px"}
+                    width={"230px"}
                     dataAlign="center"
                     dataField="name"
                 >
-                    {isMobile ? "Language" : "Programming Language"}
+                    {"Programming Language"}
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width={isMobile ? "100px" : "150px"}
+                    width={"230px"}
                     dataField="count"
                     dataAlign="center"
                     dataFormat={percentFormatter}
                 >
-                    {isMobile ? "Percentage" : "Percentage (YoY Change)"}
+                    Percentage (YoY Change)
                 </TableHeaderColumn>
                 <TableHeaderColumn
-                    width="50px"
+                    width="100px"
                     dataAlign="center"
                     dataField="trend"
                     dataFormat={trendFormatter}
                 >
-                    {isMobile ? "" : "YoY Trend"}
+                    YoY Trend
                 </TableHeaderColumn>
             </BootstrapTable>
         </div>
