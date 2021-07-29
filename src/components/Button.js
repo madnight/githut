@@ -28,7 +28,9 @@ export default function Button({ match, store, history }) {
                 "/" +
                 match.params.year +
                 "/" +
-                match.params.quarter
+                match.params.quarter +
+                (match.params.lang ?
+                ("/" + match.params.lang) : "")
         )
     }
 
