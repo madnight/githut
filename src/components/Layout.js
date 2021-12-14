@@ -54,7 +54,7 @@ export default function Layout() {
                             hist={hist}
                             table={table}
                         />
-                        <div className="rowCenter2"> 
+                        <div className="rowCenterGap"> 
                             <Button {...route} store={event} title="pull_requests"/>
                             <Button {...route} store={event} title="stars"/>
                             <Button {...route} store={event} title="pushes"/>

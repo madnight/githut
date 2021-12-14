@@ -9,17 +9,11 @@ import { Button as MaterialButton } from "react-materialize"
 
 export default function Button({ match, store, history, title }) {
 
-//    let activec = active;
-//    const [activec, setState] = useState(active)
-
     useEffect(() => {
         store[1]({ type: match.params.event })
     }, [match.params.event])
-    console.log("M",match.params.event);
 
     function next() {
-        // const rotateRight = (a) => [...a.slice(1, a.length), a[0]]
-        // setState(true)
         history.push(
             "/" +
             title +
