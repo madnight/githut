@@ -13,8 +13,12 @@ import NoLanguages from "common/NoLanguages"
 import RenameLanguages from "common/RenameLanguages"
 import _ from "lodash/fp"
 
+
 export default function LangTable({store, hist, table}) {
-    const [state, setState] = useState({ data: [] })
+
+    const [state, setState] = useState({ data: []})
+    const [numberState, setNumberState] = useState(10)
+
     const style = {
         margin: "auto",
         maxWidth: 810,
@@ -113,7 +117,7 @@ export default function LangTable({store, hist, table}) {
                     trend: findByName(last, c.name).id - c.id,
                 })(c)
             ),
-            _.take(50)
+            _.take(numberState)
         )(current)
     }
 
@@ -195,7 +199,7 @@ export default function LangTable({store, hist, table}) {
      */
     useEffect(() => {
         mountTable()
-    }, [hist, table])
+    }, [hist, table , numberState])
 
     /**
      * Formatter that applies color, percentage and change from raw
@@ -238,10 +242,21 @@ export default function LangTable({store, hist, table}) {
             </div>
         )
     }
-
-    if (state.data.length < 50) return noDataAvailableYet()
+    function handleInput(event) {
+        
+        if(numberState<=0){
+            setNumberState(0);
+        }
+        setNumberState(event.target.value);
+    }
+    if (state.data.length <= 0) return noDataAvailableYet()
     return (
         <div style={style}>
+            <div className="inputBox">
+                <label>Number of languages: <b>{numberState}</b> </label>
+                <input onChange={handleInput} min="1" max="50" className="inputBox__input" type="range" value={numberState}  ></input>
+            </div>
+            
             <BootstrapTable
                 condensed
                 striped
