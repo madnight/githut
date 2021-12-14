@@ -7,13 +7,10 @@
 import { useEffect, useState } from "react";
 import { Button as MaterialButton } from "react-materialize"
 
-export default function Button({ match, store, history }) {
-    const [state, setState] = useState([
-        "pushes",
-        "stars",
-        "issues",
-        "pull_requests",
-    ])
+export default function Button({ match, store, history, title }) {
+
+//    let activec = active;
+//    const [activec, setState] = useState(active)
 
     useEffect(() => {
         store[1]({ type: match.params.event })
@@ -24,29 +21,34 @@ export default function Button({ match, store, history }) {
         setState(rotateRight(state))
         history.push(
             "/" +
-                state[0] +
-                "/" +
-                match.params.year +
-                "/" +
-                match.params.quarter +
-                (match.params.lang ?
+            title +
+            "/" +
+            match.params.year +
+            "/" +
+            match.params.quarter +
+            (match.params.lang ?
                 ("/" + match.params.lang) : "")
         )
     }
-
-    return (
-        <div style={{
-            padding: "0.5rem",
-            margin: "0.5rem",
-        }}>
-            <center>
-                <MaterialButton
+    let button;
+    if(title===match.params.event){
+        button= <MaterialButton
+        className={
+            " waves-effect waves-light blue-grey darken-1  "
+        }
+        onClick={next}
+    >
+        {title}
+    </MaterialButton>
+    }
+    else{
+        button = <MaterialButton
                     className={
                         "waves-effect waves-light blue-grey darken-1 btn"
                     }
                     onClick={next}
                 >
-                    {store[0].name}
+                    {title}
                 </MaterialButton>
             </center>
         </div>
