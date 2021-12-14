@@ -242,6 +242,10 @@ export default function LangTable({store, hist, table}) {
             </div>
         )
     }
+
+    /**
+     * Is called when the input range change, to update the state
+     */
     function handleInput(event) {
         
         if(numberState<=0){
