@@ -4,47 +4,58 @@
  * @license AGPL-3.0
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button as MaterialButton } from "react-materialize"
 
-export default function Button({ match, store, history }) {
-    const [state, setState] = useState([
-        "pushes",
-        "stars",
-        "issues",
-        "pull_requests",
-    ])
+export default function Button({ match, store, history, title }) {
+
+//    let activec = active;
+//    const [activec, setState] = useState(active)
 
     useEffect(() => {
         store[1]({ type: match.params.event })
     }, [match.params.event])
+    console.log("M",match.params.event);
 
     function next() {
-        const rotateRight = (a) => [...a.slice(1, a.length), a[0]]
-        setState(rotateRight(state))
+        // const rotateRight = (a) => [...a.slice(1, a.length), a[0]]
+        // setState(true)
         history.push(
             "/" +
-                state[0] +
-                "/" +
-                match.params.year +
-                "/" +
-                match.params.quarter +
-                (match.params.lang ?
+            title +
+            "/" +
+            match.params.year +
+            "/" +
+            match.params.quarter +
+            (match.params.lang ?
                 ("/" + match.params.lang) : "")
-        )
+                )
     }
-
-    return (
-        <div>
-            <center>
-                <MaterialButton
+    let button;
+    if(title===match.params.event){
+        button= <MaterialButton
+        className={
+            " waves-effect waves-light blue-grey darken-1  "
+        }
+        onClick={next}
+    >
+        {title}
+    </MaterialButton>
+    }
+    else{
+        button = <MaterialButton
                     className={
-                        "waves-effect waves-light blue-grey darken-1 btn"
+                        " waves-effect waves-light blue-grey-inactive"
                     }
                     onClick={next}
                 >
-                    {store[0].name}
+                    {title}
                 </MaterialButton>
+    }
+    return (
+        <div>
+            <center>
+                {button}
             </center>
         </div>
     )
