@@ -19,7 +19,7 @@ export default function Content() {
             }}
         >
             <h4 id="githut-2-0">GITHUT 2.0</h4>
-            <p>
+            <p class="responsivity-mobile-modif">
                 GitHut 2.0 is an attempt to continue the{" "}
                 <a href="http://githut.info">githut.info</a> project. GitHub is
                 the largest code host in the world, with 40 million users and
@@ -37,7 +37,7 @@ export default function Content() {
                 the GitHub Archive dataset via{" "}
                 <a href="//developers.google.com/bigquery/">Google BigQuery</a>.
             </p>
-            <p>
+            <p class="responsivity-mobile-modif">
                 The language percentage distribution in the line chart shows the
                 top 10 (or manually selected) languages since 2012/Q2. The
                 ranking table shows the top 50 languages of the last quarter.
@@ -58,7 +58,7 @@ export default function Content() {
             </p>
             <h4 id="related-work">Related Work</h4>
             <ul>
-                <li>
+                <li class="responsivity-mobile-modif">
                     <a href="//tiobe.com/tiobe-index/">
                         TIOBE Programming Community Index
                     </a>{" "}
@@ -66,21 +66,21 @@ export default function Content() {
                     and maintained by the TIOBE Company based in Eindhoven, the
                     Netherlands.
                 </li>
-                <li>
+                <li class="responsivity-mobile-modif">
                     <a href="//redmonk.com/sogrady/2016/07/20/language-rankings-6-16/">
                         The RedMonk Programming Language Rankings
                     </a>{" "}
                     are derived from a correlation of programming traction on
                     GitHub and Stack Overflow.
                 </li>
-                <li>
+                <li class="responsivity-mobile-modif">
                     <a href="//pypl.github.io/PYPL.html">
                         The PYPL PopularitY of Programming Language Index
                     </a>{" "}
                     is created by analyzing how often language tutorials are
                     searched on Google.
                 </li>
-                <li>
+                <li class="responsivity-mobile-modif">
                     <a href="//langpop.corger.nl">
                         Programming Language Popularity Chart
                     </a>{" "}
