@@ -70,7 +70,7 @@ export default function LangTable({store, hist, table}) {
      */
     function trendFormatter(cell, _) {
         const arrow = (n) => {
-            const angle = (dir) => `<i class='fa fa-angle-${dir}'></i>`
+            const angle = (dir) => `<i class='fas fa-angle-${dir}'></i>`
             switch (true) {
                 case n === 0:
                     return ""
