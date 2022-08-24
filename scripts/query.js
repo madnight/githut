@@ -49,9 +49,9 @@ const queryBuilder = (tables) => {
         `SELECT language as name, year, quarter, count FROM ( SELECT * FROM (
           SELECT lang as language, y as year, q as quarter, type,
           COUNT(*) as count FROM (SELECT a.type type, b.lang lang, a.y y, a.q q FROM (
-          SELECT type, YEAR(created_at) as y, QUARTER(created_at) as q,
+          SELECT type, actor.login, YEAR(created_at) as y, QUARTER(created_at) as q,
           STRING(REGEXP_REPLACE(repo.url, r'https:\/\/github\.com\/|https:\/\/api\.github\.com\/repos\/', '')) as name
-          FROM ${tables} ) a
+          FROM ${tables} WHERE NOT LOWER(actor.login) LIKE "%bot%") a
           JOIN ( SELECT repo_name as name, lang FROM ( SELECT * FROM (
           SELECT *, ROW_NUMBER() OVER (PARTITION BY repo_name ORDER BY lang) as num FROM (
           SELECT repo_name, FIRST_VALUE(language.name) OVER (
