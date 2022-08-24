@@ -20,7 +20,13 @@ export default {
         width: isMobile ? 0 : 1400,
     },
     title: { text: "" },
-    xAxis: { categories: [] },
+    xAxis: { categories: [],
+        labels: {
+            formatter: function () {
+                return " "
+            },
+        },
+    },
     yAxis: {
         title: {
             text: "",
