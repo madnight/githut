@@ -35,6 +35,7 @@ export default [
     "SaltStack",
     "SCSS",
     "Starlark",
+    "Stylus",
     "Scilab",
     "Smarty",
     "TeX",
