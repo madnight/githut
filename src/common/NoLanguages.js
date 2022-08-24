@@ -33,6 +33,7 @@ export default [
     "Protocol Buffer",
     "QMake",
     "SaltStack",
+    "SCSS",
     "Starlark",
     "Scilab",
     "Smarty",
