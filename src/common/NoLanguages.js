@@ -41,4 +41,5 @@ export default [
     "XML",
     "XSLT",
     "Yacc",
+    "YAML"
 ]
