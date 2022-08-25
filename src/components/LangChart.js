@@ -10,16 +10,15 @@
  * @see {@link https://creativecommons.org/licenses/by-nc/3.0/}
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import ChartConfig from "common/LangChartConfig"
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import GitHubColors from "github-colors"
-import { isMobile } from 'react-device-detect'
+import { isMobile } from "react-device-detect"
 import _ from "lodash/fp"
 
 export default function LangChart(props) {
-
     const [state, setState] = useState(ChartConfig)
     const [debounce] = useState(() => _.debounce(200)(setState))
     let dataLength = 0
@@ -35,11 +34,19 @@ export default function LangChart(props) {
      * @returns {Object} xAxis categories (year/quarter)
      */
     function categories() {
-        return _.pipe(
-            _.map((y) => _.map((q) => (q === 1 ? y : "")), _.range(1, 5)),
-            _.flatten,
-            _.drop(1)
-        )(_.range(2012, 2050))
+        return _.drop(
+            1,
+            _.flatten(
+                _.map(
+                    (year) =>
+                        _.map(
+                            (quarter) => (quarter === 1 ? year.toString() : ""),
+                            _.range(1, 5)
+                        ),
+                    _.range(2012, 2050)
+                )
+            )
+        )
     }
 
     /**

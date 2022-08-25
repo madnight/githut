@@ -23,7 +23,7 @@ export default {
     xAxis: { categories: [],
         labels: {
             formatter: function () {
-                return " "
+                return this.value
             },
         },
     },
