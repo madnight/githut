@@ -26,6 +26,7 @@ import pullRequests from "data/gh-pull-request.json"
 import pushEvent from "data/gh-push-event.json"
 import starEvent from "data/gh-star-event.json"
 import issueEvent from "data/gh-issue-event.json"
+import DownloadButton from "./DownloadButton";
 
 export default function Layout() {
 
@@ -54,7 +55,12 @@ export default function Layout() {
                             hist={hist}
                             table={table}
                         />
-                        <Button {...route} store={event} />
+                        <div className="rowCenter">
+                            <Button {...route} store={event} />
+                        </div>
+                        <div className="rowCenter">
+                            <DownloadButton />
+                        </div>
                         <div className="rowCenter">
                             <Select {...route} hist={hist} year="true" />
                             <Select {...route} hist={hist} />

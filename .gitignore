@@ -3,6 +3,9 @@ node_modules
 *.log
 *.gz
 
+# yarn
+.yarn/*
+
 # deploy
 build
 

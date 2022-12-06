@@ -35,7 +35,10 @@ export default function Button({ match, store, history }) {
     }
 
     return (
-        <div>
+        <div style={{
+            padding: "0.5rem",
+            margin: "0.5rem",
+        }}>
             <center>
                 <MaterialButton
                     className={
