@@ -59,9 +59,6 @@ export default function Layout() {
                             <Button {...route} store={event} />
                         </div>
                         <div className="rowCenter">
-                            <DownloadButton />
-                        </div>
-                        <div className="rowCenter">
                             <Select {...route} hist={hist} year="true" />
                             <Select {...route} hist={hist} />
                         </div>
@@ -70,6 +67,9 @@ export default function Layout() {
                             hist={hist}
                             table={table}
                         />
+                        <div className="rowCenter">
+                            <DownloadButton />
+                        </div>
                     </div>
                 )}
             />

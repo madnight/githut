@@ -17,6 +17,7 @@ export default function DownloadButton({ _match, _store, _history }) {
     const style = {
         padding: "0.5rem",
         margin: "0.5rem",
+        marginBottom: "5rem"
     };
 
     function displayChoices() {
