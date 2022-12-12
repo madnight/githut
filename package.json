@@ -22,6 +22,7 @@
     "dev": "react-scripts start"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "bootstrap": "^5.0.1",
     "file-saver": "^2.0.5",
     "github-colors": "^2.2.18",
@@ -35,8 +36,9 @@
     "react-helmet": "^6.1.0",
     "react-materialize": "^3.3.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^4.0.3",
-    "react-select": "^4.3.1"
+    "react-scripts": "^5.0.0",
+    "react-select": "^4.3.1",
+    "standard": "^17.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.3",
