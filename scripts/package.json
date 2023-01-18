@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/bigquery": "5.6.0",
-    "@google-cloud/storage": "2.5.2",
+    "@google-cloud/bigquery": "6.0.3",
     "commander": "^2.11.0",
     "lodash": "^4.17.4",
     "yargs": "7.1.0"
