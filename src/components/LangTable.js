@@ -17,7 +17,7 @@ import _ from "lodash/fp"
 export default function LangTable({store, hist, table}) {
 
     const [state, setState] = useState({ data: []})
-    const [numberState, setNumberState] = useState(10)
+    const [numberState, setNumberState] = useState(50)
 
     const style = {
         margin: "auto",
@@ -258,9 +258,9 @@ export default function LangTable({store, hist, table}) {
         <div style={style}>
             <div className="inputBox">
                 <label>Number of languages: <b>{numberState}</b> </label>
-                <input onChange={handleInput} min="1" max="50" className="inputBox__input" type="range" value={numberState}  ></input>
+                <input onChange={handleInput} min="2" max="50" className="inputBox__input" type="range" value={numberState}  ></input>
             </div>
-            
+
             <BootstrapTable
                 condensed
                 striped
