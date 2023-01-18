@@ -3,7 +3,6 @@
 </p>
 
 <a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img height="20" src="https://img.shields.io/badge/license-AGPL--3.0-brightgreen.svg" alt="License (AGPL-3.0)"></a>
-<a href="https://github.com/madnight/githut/actions/workflows/CI.yml"><img src="https://img.shields.io/github/workflow/status/madnight/githut/CI" alt="Build Status" /></a>
 <a href="https://codeclimate.com/github/madnight/githut"><img height="20" src="https://codeclimate.com/github/madnight/githut/badges/issue_count.svg" alt="Issue Count"></a>
 <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-blue.svg" alt="Code Style"></a>
 <img src="https://i.imgur.com/WK7zKol.png" alt=""></p>
