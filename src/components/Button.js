@@ -4,13 +4,17 @@
  * @license AGPL-3.0
  */
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react"
 import { Button as MaterialButton } from "react-materialize"
 
 export default function Button({ match, store, history, title }) {
 
-//    let activec = active;
-//    const [activec, setState] = useState(active)
+    const [state, setState] = useState([
+        "pushes",
+        "stars",
+        "issues",
+        "pull_requests",
+    ])
 
     useEffect(() => {
         store[1]({ type: match.params.event })
@@ -28,7 +32,7 @@ export default function Button({ match, store, history, title }) {
             match.params.quarter +
             (match.params.lang ?
                 ("/" + match.params.lang) : "")
-        )
+                )
     }
     let button;
     if(title===match.params.event){
@@ -44,12 +48,17 @@ export default function Button({ match, store, history, title }) {
     else{
         button = <MaterialButton
                     className={
-                        "waves-effect waves-light blue-grey darken-1 btn"
+                        " waves-effect waves-light blue-grey-inactive"
                     }
                     onClick={next}
                 >
                     {title}
                 </MaterialButton>
+    }
+    return (
+        <div>
+            <center>
+                {button}
             </center>
         </div>
     )
