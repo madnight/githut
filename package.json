@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production react-scripts build",
-    "postbuild": "react-snap && prettier -w build/index.html",
+    "postbuild": "prettier -w build/index.html",
     "deploy": "npm run build && gh-pages -d build",
     "lint": "eslint -c .eslintrc src",
     "lint-fix": "eslint -c .eslintrc src --fix",
