@@ -80,13 +80,6 @@ export default function Content() {
                     is created by analyzing how often language tutorials are
                     searched on Google.
                 </li>
-                <li className="responsivity-mobile-modif">
-                    <a href="//langpop.corger.nl">
-                        Programming Language Popularity Chart
-                    </a>{" "}
-                    shows GitHub (lines changed) and StackOverflow (tags) ratio
-                    for programming languages.
-                </li>
             </ul>
         </div>
     )
