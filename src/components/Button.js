@@ -42,7 +42,7 @@ export default function Button({ match, store, history, title }) {
         }
         onClick={next}
     >
-        {title}
+        {title.replace("_"," ")}
     </MaterialButton>
     }
     else{
@@ -52,7 +52,7 @@ export default function Button({ match, store, history, title }) {
                     }
                     onClick={next}
                 >
-                    {title}
+                    {title.replace("_"," ")}
                 </MaterialButton>
     }
     return (
