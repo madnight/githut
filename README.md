@@ -93,3 +93,17 @@ madnight.github.io/githut/#/pull_requests/2021/1/Python,Lua,JavaScript
                 stars
                 issues
 ```
+
+### BibTeX
+
+If you wish to quote, you may use the following BibTeX.
+
+```
+@misc{githuttwo,
+  author = {Fabian Beuke},
+  title = {GitHut 2.0: GitHub Language Statistics},
+  year = {2023},
+  note = {GitHub repository},
+  howpublished = {\url{https://madnight.github.io/githut/#/}}
+}
+```
