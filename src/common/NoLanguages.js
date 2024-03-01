@@ -47,6 +47,7 @@ export default [
     "Smarty",
     "TeX",
     "Vue",
+    "Vim script",
     "XML",
     "XSLT",
     "Yacc",

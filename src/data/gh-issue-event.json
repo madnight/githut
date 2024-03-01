@@ -8952,12 +8952,6 @@
     "count": "3101"
   },
   {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "1",
-    "count": "3053"
-  },
-  {
     "name": "Julia",
     "year": "2017",
     "quarter": "1",
@@ -9580,12 +9574,6 @@
     "year": "2017",
     "quarter": "2",
     "count": "3087"
-  },
-  {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "2",
-    "count": "3053"
   },
   {
     "name": "DM",
@@ -10230,12 +10218,6 @@
     "count": "2605"
   },
   {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "3",
-    "count": "2476"
-  },
-  {
     "name": "Julia",
     "year": "2017",
     "quarter": "3",
@@ -10848,12 +10830,6 @@
     "count": "2328"
   },
   {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "4",
-    "count": "2256"
-  },
-  {
     "name": "Elixir",
     "year": "2017",
     "quarter": "4",
@@ -11460,12 +11436,6 @@
     "count": "2495"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "1",
-    "count": "2313"
-  },
-  {
     "name": "OCaml",
     "year": "2018",
     "quarter": "1",
@@ -12030,12 +12000,6 @@
     "count": "2153"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "2",
-    "count": "1920"
-  },
-  {
     "name": "Dart",
     "year": "2018",
     "quarter": "2",
@@ -12546,12 +12510,6 @@
     "count": "1827"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "3",
-    "count": "1726"
-  },
-  {
     "name": "Erlang",
     "year": "2018",
     "quarter": "3",
@@ -13048,12 +13006,6 @@
     "year": "2018",
     "quarter": "4",
     "count": "1449"
-  },
-  {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "4",
-    "count": "1388"
   },
   {
     "name": "Dart",
@@ -13554,12 +13506,6 @@
     "count": "1525"
   },
   {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "1",
-    "count": "1473"
-  },
-  {
     "name": "Dockerfile",
     "year": "2019",
     "quarter": "1",
@@ -14026,12 +13972,6 @@
     "year": "2019",
     "quarter": "2",
     "count": "1188"
-  },
-  {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "2",
-    "count": "1131"
   },
   {
     "name": "Jsonnet",
@@ -14502,12 +14442,6 @@
     "count": "1341"
   },
   {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "3",
-    "count": "1187"
-  },
-  {
     "name": "Julia",
     "year": "2019",
     "quarter": "3",
@@ -14970,12 +14904,6 @@
     "count": "1207"
   },
   {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "4",
-    "count": "1205"
-  },
-  {
     "name": "Elixir",
     "year": "2019",
     "quarter": "4",
@@ -15426,12 +15354,6 @@
     "count": "1274"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "1",
-    "count": "1264"
-  },
-  {
     "name": "CoffeeScript",
     "year": "2020",
     "quarter": "1",
@@ -15874,12 +15796,6 @@
     "year": "2020",
     "quarter": "2",
     "count": "1566"
-  },
-  {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "2",
-    "count": "1534"
   },
   {
     "name": "Clojure",
@@ -16380,12 +16296,6 @@
     "count": "1215"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "3",
-    "count": "1197"
-  },
-  {
     "name": "OCaml",
     "year": "2020",
     "quarter": "3",
@@ -16854,12 +16764,6 @@
     "count": "1175"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "4",
-    "count": "1057"
-  },
-  {
     "name": "TSQL",
     "year": "2020",
     "quarter": "4",
@@ -17272,12 +17176,6 @@
     "year": "2021",
     "quarter": "1",
     "count": "1535"
-  },
-  {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "1",
-    "count": "1200"
   },
   {
     "name": "DM",
@@ -17724,12 +17622,6 @@
     "count": "1225"
   },
   {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "2",
-    "count": "1177"
-  },
-  {
     "name": "Starlark",
     "year": "2021",
     "quarter": "2",
@@ -18112,12 +18004,6 @@
     "year": "2021",
     "quarter": "3",
     "count": "1156"
-  },
-  {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "3",
-    "count": "1105"
   },
   {
     "name": "Vue",
@@ -18544,12 +18430,6 @@
     "year": "2021",
     "quarter": "4",
     "count": "522"
-  },
-  {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "4",
-    "count": "512"
   },
   {
     "name": "Pascal",
@@ -18982,12 +18862,6 @@
     "year": "2022",
     "quarter": "1",
     "count": "563"
-  },
-  {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "1",
-    "count": "553"
   },
   {
     "name": "Pascal",
@@ -19494,12 +19368,6 @@
     "count": "287"
   },
   {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "2",
-    "count": "263"
-  },
-  {
     "name": "Vala",
     "year": "2022",
     "quarter": "2",
@@ -19954,12 +19822,6 @@
     "year": "2022",
     "quarter": "3",
     "count": "192"
-  },
-  {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "3",
-    "count": "191"
   },
   {
     "name": "CodeQL",
@@ -20455,12 +20317,6 @@
   },
   {
     "name": "YAML",
-    "year": "2022",
-    "quarter": "4",
-    "count": "94"
-  },
-  {
-    "name": "Vim script",
     "year": "2022",
     "quarter": "4",
     "count": "94"
@@ -21040,12 +20896,6 @@
     "year": "2023",
     "quarter": "1",
     "count": "108"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "1",
-    "count": "101"
   },
   {
     "name": "SWIG",
@@ -21702,12 +21552,6 @@
     "count": "75"
   },
   {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "2",
-    "count": "74"
-  },
-  {
     "name": "QML",
     "year": "2023",
     "quarter": "2",
@@ -22222,12 +22066,6 @@
     "year": "2023",
     "quarter": "3",
     "count": "106"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "3",
-    "count": "104"
   },
   {
     "name": "Haxe",
@@ -22864,12 +22702,6 @@
     "year": "2023",
     "quarter": "4",
     "count": "79"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "4",
-    "count": "78"
   },
   {
     "name": "Tcl",

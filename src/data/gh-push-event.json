@@ -150,12 +150,6 @@
     "count": "1120"
   },
   {
-    "name": "Vim script",
-    "year": "2012",
-    "quarter": "2",
-    "count": "1090"
-  },
-  {
     "name": "Common Lisp",
     "year": "2012",
     "quarter": "2",
@@ -742,12 +736,6 @@
     "year": "2012",
     "quarter": "3",
     "count": "1623"
-  },
-  {
-    "name": "Vim script",
-    "year": "2012",
-    "quarter": "3",
-    "count": "1520"
   },
   {
     "name": "Puppet",
@@ -1356,12 +1344,6 @@
     "count": "1385"
   },
   {
-    "name": "Vim script",
-    "year": "2012",
-    "quarter": "4",
-    "count": "1368"
-  },
-  {
     "name": "ColdFusion",
     "year": "2012",
     "quarter": "4",
@@ -1942,12 +1924,6 @@
     "year": "2013",
     "quarter": "1",
     "count": "2401"
-  },
-  {
-    "name": "Vim script",
-    "year": "2013",
-    "quarter": "1",
-    "count": "2069"
   },
   {
     "name": "XSLT",
@@ -2542,12 +2518,6 @@
     "year": "2013",
     "quarter": "2",
     "count": "2510"
-  },
-  {
-    "name": "Vim script",
-    "year": "2013",
-    "quarter": "2",
-    "count": "2482"
   },
   {
     "name": "Puppet",
@@ -3174,12 +3144,6 @@
     "count": "3284"
   },
   {
-    "name": "Vim script",
-    "year": "2013",
-    "quarter": "3",
-    "count": "3103"
-  },
-  {
     "name": "Rust",
     "year": "2013",
     "quarter": "3",
@@ -3760,12 +3724,6 @@
     "year": "2013",
     "quarter": "4",
     "count": "4534"
-  },
-  {
-    "name": "Vim script",
-    "year": "2013",
-    "quarter": "4",
-    "count": "4294"
   },
   {
     "name": "Rust",
@@ -4366,12 +4324,6 @@
     "year": "2014",
     "quarter": "1",
     "count": "5129"
-  },
-  {
-    "name": "Vim script",
-    "year": "2014",
-    "quarter": "1",
-    "count": "4929"
   },
   {
     "name": "Dart",
@@ -4980,12 +4932,6 @@
     "count": "5024"
   },
   {
-    "name": "Vim script",
-    "year": "2014",
-    "quarter": "2",
-    "count": "4954"
-  },
-  {
     "name": "Kotlin",
     "year": "2014",
     "quarter": "2",
@@ -5592,12 +5538,6 @@
     "count": "5271"
   },
   {
-    "name": "Vim script",
-    "year": "2014",
-    "quarter": "3",
-    "count": "5104"
-  },
-  {
     "name": "OCaml",
     "year": "2014",
     "quarter": "3",
@@ -6184,12 +6124,6 @@
     "year": "2014",
     "quarter": "4",
     "count": "6830"
-  },
-  {
-    "name": "Vim script",
-    "year": "2014",
-    "quarter": "4",
-    "count": "6672"
   },
   {
     "name": "OCaml",
@@ -6792,12 +6726,6 @@
     "count": "7734"
   },
   {
-    "name": "Vim script",
-    "year": "2015",
-    "quarter": "1",
-    "count": "7132"
-  },
-  {
     "name": "Julia",
     "year": "2015",
     "quarter": "1",
@@ -7390,12 +7318,6 @@
     "year": "2015",
     "quarter": "2",
     "count": "9792"
-  },
-  {
-    "name": "Vim script",
-    "year": "2015",
-    "quarter": "2",
-    "count": "8710"
   },
   {
     "name": "Kotlin",
@@ -8004,12 +7926,6 @@
     "count": "9505"
   },
   {
-    "name": "Vim script",
-    "year": "2015",
-    "quarter": "3",
-    "count": "8806"
-  },
-  {
     "name": "Puppet",
     "year": "2015",
     "quarter": "3",
@@ -8604,12 +8520,6 @@
     "count": "10252"
   },
   {
-    "name": "Vim script",
-    "year": "2015",
-    "quarter": "4",
-    "count": "10217"
-  },
-  {
     "name": "F#",
     "year": "2015",
     "quarter": "4",
@@ -9190,12 +9100,6 @@
     "year": "2016",
     "quarter": "1",
     "count": "12890"
-  },
-  {
-    "name": "Vim script",
-    "year": "2016",
-    "quarter": "1",
-    "count": "12050"
   },
   {
     "name": "SCSS",
@@ -9810,12 +9714,6 @@
     "count": "12134"
   },
   {
-    "name": "Vim script",
-    "year": "2016",
-    "quarter": "2",
-    "count": "11953"
-  },
-  {
     "name": "OCaml",
     "year": "2016",
     "quarter": "2",
@@ -10404,12 +10302,6 @@
     "count": "11657"
   },
   {
-    "name": "Vim script",
-    "year": "2016",
-    "quarter": "3",
-    "count": "11425"
-  },
-  {
     "name": "Matlab",
     "year": "2016",
     "quarter": "3",
@@ -10984,12 +10876,6 @@
     "year": "2016",
     "quarter": "4",
     "count": "14515"
-  },
-  {
-    "name": "Vim script",
-    "year": "2016",
-    "quarter": "4",
-    "count": "13160"
   },
   {
     "name": "Makefile",
@@ -11578,12 +11464,6 @@
     "year": "2017",
     "quarter": "1",
     "count": "17308"
-  },
-  {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "1",
-    "count": "17271"
   },
   {
     "name": "Vue",
@@ -12180,12 +12060,6 @@
     "count": "17941"
   },
   {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "2",
-    "count": "16800"
-  },
-  {
     "name": "CoffeeScript",
     "year": "2017",
     "quarter": "2",
@@ -12780,12 +12654,6 @@
     "count": "19084"
   },
   {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "3",
-    "count": "14992"
-  },
-  {
     "name": "Emacs Lisp",
     "year": "2017",
     "quarter": "3",
@@ -13378,12 +13246,6 @@
     "year": "2017",
     "quarter": "4",
     "count": "13528"
-  },
-  {
-    "name": "Vim script",
-    "year": "2017",
-    "quarter": "4",
-    "count": "12599"
   },
   {
     "name": "Elixir",
@@ -13998,12 +13860,6 @@
     "count": "8073"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "1",
-    "count": "7758"
-  },
-  {
     "name": "Erlang",
     "year": "2018",
     "quarter": "1",
@@ -14604,12 +14460,6 @@
     "count": "5969"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "2",
-    "count": "5807"
-  },
-  {
     "name": "Dart",
     "year": "2018",
     "quarter": "2",
@@ -15178,12 +15028,6 @@
     "year": "2018",
     "quarter": "3",
     "count": "6123"
-  },
-  {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "3",
-    "count": "5881"
   },
   {
     "name": "TeX",
@@ -15804,12 +15648,6 @@
     "count": "5123"
   },
   {
-    "name": "Vim script",
-    "year": "2018",
-    "quarter": "4",
-    "count": "4874"
-  },
-  {
     "name": "Erlang",
     "year": "2018",
     "quarter": "4",
@@ -16410,12 +16248,6 @@
     "count": "4574"
   },
   {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "1",
-    "count": "4570"
-  },
-  {
     "name": "MATLAB",
     "year": "2019",
     "quarter": "1",
@@ -17014,12 +16846,6 @@
     "year": "2019",
     "quarter": "2",
     "count": "4369"
-  },
-  {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "2",
-    "count": "4238"
   },
   {
     "name": "CoffeeScript",
@@ -17628,12 +17454,6 @@
     "count": "3253"
   },
   {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "3",
-    "count": "3173"
-  },
-  {
     "name": "Vim Script",
     "year": "2019",
     "quarter": "3",
@@ -18226,12 +18046,6 @@
     "year": "2019",
     "quarter": "4",
     "count": "3429"
-  },
-  {
-    "name": "Vim script",
-    "year": "2019",
-    "quarter": "4",
-    "count": "3240"
   },
   {
     "name": "DM",
@@ -18828,12 +18642,6 @@
     "count": "3340"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "1",
-    "count": "3335"
-  },
-  {
     "name": "DM",
     "year": "2020",
     "quarter": "1",
@@ -19420,12 +19228,6 @@
     "year": "2020",
     "quarter": "2",
     "count": "3485"
-  },
-  {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "2",
-    "count": "3471"
   },
   {
     "name": "Erlang",
@@ -20040,12 +19842,6 @@
     "count": "2489"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "3",
-    "count": "2407"
-  },
-  {
     "name": "Smarty",
     "year": "2020",
     "quarter": "3",
@@ -20646,12 +20442,6 @@
     "count": "2474"
   },
   {
-    "name": "Vim script",
-    "year": "2020",
-    "quarter": "4",
-    "count": "2276"
-  },
-  {
     "name": "CoffeeScript",
     "year": "2020",
     "quarter": "4",
@@ -21244,12 +21034,6 @@
     "year": "2021",
     "quarter": "1",
     "count": "2101"
-  },
-  {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "1",
-    "count": "1947"
   },
   {
     "name": "Jinja",
@@ -21924,12 +21708,6 @@
     "count": "1208"
   },
   {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "2",
-    "count": "1206"
-  },
-  {
     "name": "HCL",
     "year": "2021",
     "quarter": "2",
@@ -22536,12 +22314,6 @@
     "count": "1119"
   },
   {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "3",
-    "count": "1100"
-  },
-  {
     "name": "HCL",
     "year": "2021",
     "quarter": "3",
@@ -23128,12 +22900,6 @@
     "year": "2021",
     "quarter": "4",
     "count": "867"
-  },
-  {
-    "name": "Vim script",
-    "year": "2021",
-    "quarter": "4",
-    "count": "866"
   },
   {
     "name": "Julia",
@@ -23772,12 +23538,6 @@
     "count": "838"
   },
   {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "1",
-    "count": "833"
-  },
-  {
     "name": "Fortran",
     "year": "2022",
     "quarter": "1",
@@ -24364,12 +24124,6 @@
     "year": "2022",
     "quarter": "2",
     "count": "829"
-  },
-  {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "2",
-    "count": "745"
   },
   {
     "name": "WebAssembly",
@@ -24964,12 +24718,6 @@
     "year": "2022",
     "quarter": "3",
     "count": "876"
-  },
-  {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "3",
-    "count": "851"
   },
   {
     "name": "WebAssembly",
@@ -25584,12 +25332,6 @@
     "count": "568"
   },
   {
-    "name": "Vim script",
-    "year": "2022",
-    "quarter": "4",
-    "count": "500"
-  },
-  {
     "name": "Gherkin",
     "year": "2022",
     "quarter": "4",
@@ -26146,12 +25888,6 @@
     "year": "2023",
     "quarter": "1",
     "count": "882"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "1",
-    "count": "881"
   },
   {
     "name": "Gherkin",
@@ -26754,12 +26490,6 @@
     "count": "748"
   },
   {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "2",
-    "count": "742"
-  },
-  {
     "name": "Vala",
     "year": "2023",
     "quarter": "2",
@@ -27310,12 +27040,6 @@
     "year": "2023",
     "quarter": "3",
     "count": "926"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "3",
-    "count": "886"
   },
   {
     "name": "F#",
@@ -27922,12 +27646,6 @@
     "year": "2023",
     "quarter": "4",
     "count": "858"
-  },
-  {
-    "name": "Vim script",
-    "year": "2023",
-    "quarter": "4",
-    "count": "833"
   },
   {
     "name": "CodeQL",
