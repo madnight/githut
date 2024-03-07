@@ -79,7 +79,7 @@ WHERE count >= 100) WHERE type = 'PullRequestEvent'
 ```
 
 ### Manual
-Googles BigQuery is free for public datasets like Github, Reddit or Stackoverflow. It is limited to 1000 GB query volume per month. One of the querys above takes about 50-200 MB query volume. The public dataset for Github is available here: https://cloud.google.com/bigquery/public-data/github
+Googles BigQuery is free for public datasets like Github, Reddit or Stackoverflow. It is limited to 1000 GB query volume per month. One of the querys above takes about 50-200 MB query volume. The public dataset for Github is available here: https://console.cloud.google.com/bigquery?p=bigquery-public-data&d=samples&t=github_nested&page=table
 
 
 ### URL Schema
