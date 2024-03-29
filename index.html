@@ -35,39 +35,20 @@
       overflow-y: scroll;
     }
     body,
-    html {
-      background: #e8f8ff;
+    html,
+    root {
       height: 100%;
-      font-family: "Open Sans", sans-serif;
+      font-family: sans-serif;
       font-weight: 300;
-      background: -webkit-gradient(
-        radial,
-        center center,
-        0,
-        center center,
-        100%,
-        color-stop(0, #fff),
-        color-stop(100%, #e8f8ff)
-      );
-      background: -webkit-radial-gradient(
-        center,
-        ellipse cover,
-        #fff 0,
-        #e8f8ff 100%
-      );
-      background: -o-radial-gradient(
-        center,
-        ellipse cover,
-        #fff 0,
-        #e8f8ff 100%
-      );
-      background: -ms-radial-gradient(
-        center,
-        ellipse cover,
-        #fff 0,
-        #e8f8ff 100%
-      );
-      background: radial-gradient(ellipse at center, #fff 0, #e8f8ff 100%);
+      background-color: #f5f5f5;
+    }
+    @media (prefers-color-scheme: dark) {
+      body,
+      html,
+      root {
+        background-color: #181715;
+        color: #dcdcdc;
+      }
     }
     h1,
     h2,
@@ -151,7 +132,6 @@
     }
     #footer .social a,
     .social-top a {
-      color: #666;
       background-color: transparent;
       width: 19px;
       height: 20px;
@@ -168,9 +148,8 @@
     .react-bs-table .react-bs-container-header > table > thead > tr > th {
       font-size: 16px;
     }
-    .table-striped > tbody > tr:nth-child(odd) > td,
-    .table-striped > tbody > tr:nth-child(odd) > th {
-      background-color: #f7fcff;
+    .react-bs-container-header.table-header-wrapper {
+      border-bottom: 0 solid #dcdcdc;
     }
     .rowCenter {
       display: flex;
@@ -187,7 +166,7 @@
       flex-flow: row wrap;
     }
     .blue-grey-inactive {
-      background-color: #e1e5e7 !important;
+      background-color: #aaa;
     }
     .inputBox {
       display: flex;
@@ -222,9 +201,11 @@
       text-overflow: ellipsis;
     }
     .react-bs-table {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin: 5px 10px;
+      border-left: 1px solid #dcdcdc;
+      border-right: 1px solid #dcdcdc;
+      border-bottom: 1px solid #dcdcdc;
+      border-radius: 0;
+      margin: 0 0;
     }
     .react-bs-container-header {
       overflow: hidden;
@@ -238,10 +219,7 @@
       vertical-align: middle;
     }
     .blue-grey {
-      background-color: #607d8b !important;
-    }
-    .blue-grey.darken-1 {
-      background-color: #546e7a !important;
+      background-color: #607d8b;
     }
     html {
       font-family: sans-serif;
@@ -250,9 +228,6 @@
     }
     body {
       margin: 0;
-    }
-    a {
-      background-color: transparent;
     }
     b,
     strong {
@@ -311,7 +286,6 @@
       list-style-type: none;
     }
     a {
-      color: #039be5;
       text-decoration: none;
       -webkit-tap-highlight-color: transparent;
     }
@@ -358,7 +332,7 @@
       display: table;
     }
     thead {
-      border-bottom: 1px solid #d0d0d0;
+      border-bottom: 0 solid #dcdcdc;
     }
     td,
     th {
@@ -366,7 +340,7 @@
       display: table-cell;
       text-align: left;
       vertical-align: middle;
-      border-radius: 2px;
+      border-radius: 0;
     }
     .right {
       float: right !important;
@@ -378,7 +352,6 @@
       line-height: 1.5;
       font-family: Roboto, sans-serif;
       font-weight: 400;
-      color: rgba(0, 0, 0, 0.87);
     }
     html {
       font-size: 14px;
@@ -425,15 +398,10 @@
     .btn-large {
       text-decoration: none;
       color: #fff;
-      background-color: #26a69a;
       text-align: center;
       letter-spacing: 0.5px;
       transition: 0.2s ease-out;
       cursor: pointer;
-    }
-    .btn-large:hover,
-    .btn:hover {
-      background-color: #2bbbad;
     }
     .waves-effect {
       position: relative;
@@ -463,9 +431,8 @@
     input[type="time"],
     input[type="url"],
     textarea.materialize-textarea {
-      background-color: transparent;
       border: none;
-      border-bottom: 1px solid #9e9e9e;
+      border-bottom: 0 solid #9e9e9e;
       border-radius: 0;
       outline: 0;
       height: 3rem;
@@ -484,9 +451,6 @@
     }
     body {
       margin: 0;
-    }
-    a {
-      background-color: transparent;
     }
     b,
     strong {
@@ -552,8 +516,6 @@
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
       line-height: 1.42857143;
-      color: #333;
-      background-color: #fff;
     }
     button,
     input,
@@ -575,9 +537,6 @@
       margin-top: 0;
       margin-bottom: 10px;
     }
-    table {
-      background-color: transparent;
-    }
     th {
       text-align: left;
     }
@@ -595,14 +554,11 @@
       padding: 8px;
       line-height: 1.42857143;
       vertical-align: top;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #dcdcdc;
     }
     .table > thead > tr > th {
       vertical-align: bottom;
-      border-bottom: 2px solid #ddd;
-    }
-    .table-striped > tbody > tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
+      border-bottom: 0 solid #dcdcdc;
     }
     .btn {
       display: inline-block;
@@ -621,8 +577,7 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      background-image: none;
-      border: 1px solid transparent;
+      border: 0 solid transparent;
       border-radius: 4px;
     }
     .btn:hover {
@@ -636,9 +591,6 @@
     }
     body {
       margin: 0;
-    }
-    a {
-      background-color: transparent;
     }
     b,
     strong {
@@ -704,8 +656,6 @@
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
       line-height: 1.42857143;
-      color: #333;
-      background-color: #fff;
     }
     button,
     input,
@@ -738,9 +688,6 @@
       margin-top: 0;
       margin-bottom: 10px;
     }
-    table {
-      background-color: transparent;
-    }
     th {
       text-align: left;
     }
@@ -751,10 +698,6 @@
     }
     .table > thead > tr > th {
       vertical-align: bottom;
-      border-bottom: 2px solid #ddd;
-    }
-    .table-striped > tbody > tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
     }
     .btn {
       display: inline-block;
@@ -773,8 +716,6 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      background-image: none;
-      border: 1px solid transparent;
       border-radius: 4px;
     }
     @media screen and (max-width: 600px) {
