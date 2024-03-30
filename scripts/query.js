@@ -62,9 +62,13 @@ const queryBuilder = (tables) => {
           FROM ${tables} WHERE NOT LOWER(actor.login) LIKE "%bot%") a
           JOIN ( SELECT repo_name as name, lang FROM ( SELECT * FROM (
           SELECT *, ROW_NUMBER() OVER (PARTITION BY repo_name ORDER BY lang) as num FROM (
-          SELECT repo_name, FIRST_VALUE(language.name) OVER (
-          partition by repo_name order by language.bytes DESC) AS lang
-          FROM [bigquery-public-data:github_repos.languages]))
+          SELECT
+            JSON_EXTRACT_SCALAR(payload, "$.pull_request.base.repo.language") as lang,
+            repo.name as repo_name
+          FROM ${tables}
+          WHERE
+            JSON_EXTRACT_SCALAR(payload, "$.pull_request.base.repo.language") IS NOT NULL
+          ))
           WHERE num = 1 order by repo_name)
           WHERE lang != 'null') b ON a.name = b.name)
           GROUP by type, language, year, quarter, actor.login
